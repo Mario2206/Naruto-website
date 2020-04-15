@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php?action=subscribing" method='post' enctype="multipart/form-data">
+    <form action="http://projet-naruto.local/subscription/subscribing" method='post' enctype="multipart/form-data">
         <input type='text' name= 'firstname' value='Math' />
         <input type='text' name= 'lastname' value='Raimb' />
         <input type='text' name= 'username' value='Derf250' />
-        <input type='mail' name= 'mail' value='example@mail.fr' />
+        <input type='mail' name= 'mail' value='mathieu.2001@hotmail.fr' />
         <input type='password' name= 'password' value='Matcamant@2206' />
         <input type='password' name= 'confirmPassword' value='Matcamant@2206' />
         <input type='text' name= 'village' value='konoha' />

@@ -1,10 +1,10 @@
 <?php
 
-include_once('Model.php');
+namespace Model;
 
 class Updatedata extends Model {
 
-    public function updateBdd($table, $changes, $filters = null) {
+    public function updateBdd($table, $changes, $filters = null) {//Chnage is an associative array and filters can be too
         $update = 'UPDATE '.$table.' SET ';
         $changesPart = "";
         $arrayForReq = array();

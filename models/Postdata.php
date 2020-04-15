@@ -1,5 +1,5 @@
 <?php
-include_once('Model.php');
+namespace Model;
 
 class Postdata extends Model {
 

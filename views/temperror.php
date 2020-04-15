@@ -6,9 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Error !!</h1>
+    <h1>Erreur sur les informations données !!</h1>
     <ul>
-    <!-- ERRORS (get with POST transfer) -->
+        <?php 
+            foreach($errors as $error) {
+                echo "<li>".$error."</li>";
+            }
+        ?>
     </ul>
 </body>
 </html>

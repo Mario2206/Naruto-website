@@ -1,47 +1,84 @@
 <?php
-include('controllers/Subscribe.php');
+namespace Controller;
+
 class Router {
 
     private $get;
     private $post;
     
-    function __construct($get = null, $post = null) {
+    function __construct($get = null,$post = null) {
         //FOR TESTING
-        $this->get = $_GET ?  $_GET :  $get;
-        $this->post = $_POST ? $_POST : $post;
-        var_dump($this->get);
+        $this->post = $_POST ?? $post;
+        $this->get = $_GET ?? $get;
     }
     
 
     public function runRouter() {
-        $get = $this->get;
+        $sub = new Subscribe();
         $post = $this->post;
+        $get = $this->get;
+        $router = new \AltoRouter();
+
         try{
-            if(isset($get["action"])) {
-                switch($get["action"]) {
-                    case "subscribe" :
-                        $sub = new Subscribe();
-                        $sub->displaySub();
-                        break;  
-                    case "subscribing" : 
-                        $sub = new Subscribe();
-                        $sub->checkForSubscribing($post);
-                        break;
-                    case "subscribed" : 
-                        $sub = new Subscribe();
-                        $sub->displaySubAccepted();
-                        break;
-                    case "errorsubscribed" : 
-                        $sub = new Subscribe();
-                        $sub->errorSub();
-                    break;
-                    default : 
-                        throw new Exception("Page not found");
-                }
-            } else {
-                throw new Exception("Page not found");
-            }
-        } catch(Exception $e) {
+            //CREATE ROUTES
+
+            //<-- HOME ROUTES -->
+            $router->map("GET", "/", function() {
+                echo "Homepage";
+           });
+
+           //<-- CONTACT ROUTES -->
+           $router->map("GET", "/contact/", function() {
+                echo "Contact";
+            });
+
+            // <-- SUB ROUTES -->
+           $router->map("GET", '/subscription/', function() {
+               $control = new Subscribe();
+                $control->displaySub();
+           });
+           $router->map("POST", '/subscription/subscribing', function(){
+                $control = new Subscribe();
+                $control->checkForSubscribing($this->post); 
+           });
+           $router->map("GET", '/subscription/subscribed', function() {
+            $control = new Subscribe();
+            $control->displaySubAccepted();
+           });
+           $router->map("GET", "/subscription/error", function() {
+               $control = new Subscribe();
+               $control->displayErrors();
+           });
+           $router->map("GET", "/subscription/verification/[i:id]-[i:vKey]", function($params) {
+               $control = new Subscribe();
+               $control->checkSubscribe($params["id"], $params["vKey"]);
+           });
+
+           //<-- CONNECT ROUTES -->
+           $router->map("GET", "/connection/", function() {
+               $control = new Connection();
+               $control->displayConnect();
+           });
+           $router->map("POST", "/connection/connecting", function() {
+            $control = new Connection();
+            $control->checkForConnecting($this->post);
+            });
+            $router->map("GET", "/connection/error-connection", function() {
+            $control = new Connection();
+            $control->displayError();
+            });
+
+
+           //MATCH ROUTE
+           $match = $router->match();
+
+           if($match !== false ) {
+               $match["target"]($match["params"]);
+           } else {
+               echo "HomePage";
+               
+           }
+        } catch(\Exception $e) {
             die($e->getmessage());
         }
     }

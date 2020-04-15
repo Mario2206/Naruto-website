@@ -1,5 +1,5 @@
 <?php
-
+namespace Model;
 class FileReader {
 
     private $ext_img = ["jpg", "png"];
@@ -34,14 +34,14 @@ class FileReader {
             
         //Send img
         if($this->state) {
-            return move_uploaded_file($file["tmp_name"], $this->urlFile);
+            return $this->state = move_uploaded_file($file["tmp_name"], $this->urlFile);
         } else {
             return false;
         }
     }
 
     public function getUrl() {
-        return $this->state ? $this->urlFile : null;
+        return $this->state ? $this->urlFile : "";
     }
 
     private function cryptName($name) {//Crypt the name enables to conserv every file and to avoid overwriting  

@@ -1,5 +1,5 @@
 <?php
-include_once('Model.php');
+namespace Model;
 
 class Getdata extends Model {
    
@@ -15,6 +15,10 @@ class Getdata extends Model {
         $req->execute($filters);
         return $data = $req->fetchAll(); 
 
+    }
+    public function getId($table,$filter) {
+        $data = $this->getByFilters($table, $filter);
+        return $data[0]->id;
     }
     
 }
