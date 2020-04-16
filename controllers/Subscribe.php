@@ -4,15 +4,19 @@ namespace Controller;
 use Model\{
     Getdata,
     Postdata,
-    Encryption,
-    CheckMail,
     Updatedata
+};
+use Helper\{
+    Encryption,
+    CheckMail
+};
+use Exception\{
+    Exception_arr
 };
 
 class Subscribe {
 
     const GOOD_DIR = "http://projet-naruto.local/subscription/subscribed";
-    const BAD_DIR = "http://projet-naruto.local/subscription/error";
     const POST_ALLOWED = array(
         "firstname",
          "lastname",
@@ -26,8 +30,8 @@ class Subscribe {
          "year"
     );
     const FILE_ALLOWED = "avatar";
-    const SYNTAX_PASS = '#[A-Za-z]{1,}[$!/;,?ù%£^+=}{\'@\#]{1,}[1-9]{2,}#';
-    const SYNTAX_MAIL = '#^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$#';
+    const SYNTAX_PASS = '#[A-Za-z]+[$!/;,?ù%£^+=}{\'@\#]+[1-9]{2,}#';
+    const SYNTAX_MAIL = '#^[a-z0-9._-]{1,}@[a-z0-9._-]{1,}\.[a-z]{2,6}$#';
     const VILLAGE_ALLOWED =["konoha", "iwa", "suna", "kiri", "kumo"];
     
     private $getData;
@@ -48,12 +52,7 @@ class Subscribe {
     public function displaySubAccepted() {
         require('views/temp2.php');
     }
-    //SEND SUB ERRORS
-    public function displayErrors() {
-        $errors = $_SESSION['sub_errors'];
-        require('views/temperror.php');
-    }
-    //CHECK IF THE MAIL IS CORRECT
+    //VERIF LINK
     public function checkSubscribe($id, $vKey) {
         $account = $this->getData->getByFilters("accounts", ["id"=>$id])[0];
         if($account->isVerif == 0 && $account->vKey === $vKey) {
@@ -99,11 +98,11 @@ class Subscribe {
             if(empty($this->errors)) {
 
                 //check and send img file
-                $postChecked+= [Subscribe::FILE_ALLOWED=>""];
-                if(!empty($_FILES[Subscribe::FILE_ALLOWED]["name"])) {
+                $postChecked+= [self::FILE_ALLOWED=>""];
+                if(!empty($_FILES[self::FILE_ALLOWED]["name"])) {
                     $img_reader = new FileReader();
-                    if($img_reader->getImage($_FILES[Subscribe::FILE_ALLOWED])) {
-                        $postChecked[Subscribe::FILE_ALLOWED] = $img_reader->getUrl();
+                    if($img_reader->getImage($_FILES[self::FILE_ALLOWED])) {
+                        $postChecked[self::FILE_ALLOWED] = $img_reader->getUrl();
                     }
                 }
                 //ENCODING for sending
@@ -125,14 +124,14 @@ class Subscribe {
                 if($this->postData->setData("accounts", $postToSend)) {
                     //SEND EMAIL VERIFICATION
                     CheckMail::mailVerif($postToSend["mail"],$postToSend["vKey"]);
-                    header('Location:'.Subscribe::GOOD_DIR);
+                    header('Location:'.self::GOOD_DIR);
+                    exit();
                 } else {
                     throw new \Exception("Servor error: data couldn't be sended to servor");
                 } 
 
             } else {
-                $_SESSION["sub_errors"] = $this->errors;
-                header('Location:'.Subscribe::BAD_DIR);
+                throw new Exception_arr($this->errors); 
             }   
 
         } else {
@@ -143,7 +142,7 @@ class Subscribe {
 
     private function checkPostVar($post) {//check if all var are sended
         $postChecked = array_filter($post, function($key) {
-            return in_array($key, Subscribe::POST_ALLOWED);
+            return in_array($key, self::POST_ALLOWED);
         },ARRAY_FILTER_USE_KEY);
         return $postChecked;
     }
@@ -155,17 +154,17 @@ class Subscribe {
 
     private function checkPassword($passwords) {//array
         if($passwords[0] === $passwords[1]) {
-            return preg_match(Subscribe::SYNTAX_PASS, $passwords[0]) == 1 ? true : false;
+            return preg_match(self::SYNTAX_PASS, $passwords[0]) == 1 ? true : false;
         } else {
             return false;
         }
     }
 
     private function checkMail($mail) {
-        return preg_match(Subscribe::SYNTAX_MAIL, $mail) == 1 && !$this->getData->getByFilters("accounts", ["mail"=>$mail]) ? true : false;
+        return preg_match(self::SYNTAX_MAIL, $mail) == 1 && !$this->getData->getByFilters("accounts", ["mail"=>$mail]) ? true : false;
     }
 
     private function checkVillage($village) {
-        return in_array($village, Subscribe::VILLAGE_ALLOWED);
+        return in_array($village, self::VILLAGE_ALLOWED);
     }
 }

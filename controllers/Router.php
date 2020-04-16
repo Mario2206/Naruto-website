@@ -1,12 +1,15 @@
 <?php
 namespace Controller;
+use Exception\{
+    Exception_arr
+};
 
 class Router {
 
     private $get;
     private $post;
     
-    function __construct($get = null,$post = null) {
+    function __construct(array $get = null, array $post = null) {
         //FOR TESTING
         $this->post = $_POST ?? $post;
         $this->get = $_GET ?? $get;
@@ -14,9 +17,7 @@ class Router {
     
 
     public function runRouter() {
-        $sub = new Subscribe();
-        $post = $this->post;
-        $get = $this->get;
+
         $router = new \AltoRouter();
 
         try{
@@ -29,12 +30,21 @@ class Router {
 
            //<-- CONTACT ROUTES -->
            $router->map("GET", "/contact/", function() {
-                echo "Contact";
+                $control = new Contact();
+                $control->displayContact();
+            });
+            $router->map("POST", "/contact/contacting", function() {
+                $control = new Contact();
+                $control->checkContactReq($this->post);
+            });
+            $router->map("GET", "/contact/contacted", function() {
+                $control = new Contact();
+                $control->displayEndReq();
             });
 
             // <-- SUB ROUTES -->
            $router->map("GET", '/subscription/', function() {
-               $control = new Subscribe();
+                $control = new Subscribe();
                 $control->displaySub();
            });
            $router->map("POST", '/subscription/subscribing', function(){
@@ -42,14 +52,10 @@ class Router {
                 $control->checkForSubscribing($this->post); 
            });
            $router->map("GET", '/subscription/subscribed', function() {
-            $control = new Subscribe();
-            $control->displaySubAccepted();
+                $control = new Subscribe();
+                $control->displaySubAccepted();
            });
-           $router->map("GET", "/subscription/error", function() {
-               $control = new Subscribe();
-               $control->displayErrors();
-           });
-           $router->map("GET", "/subscription/verification/[i:id]-[i:vKey]", function($params) {
+           $router->map("GET", "/subscription/verification/[i:id]-[i:vKey]", function(array $params) {
                $control = new Subscribe();
                $control->checkSubscribe($params["id"], $params["vKey"]);
            });
@@ -60,12 +66,12 @@ class Router {
                $control->displayConnect();
            });
            $router->map("POST", "/connection/connecting", function() {
-            $control = new Connection();
-            $control->checkForConnecting($this->post);
+                $control = new Connection();
+                $control->checkForConnecting($this->post);
             });
-            $router->map("GET", "/connection/error-connection", function() {
-            $control = new Connection();
-            $control->displayError();
+            $router->map("GET", "/connection/verification", function() {
+                $control = new Connection();
+                $control->sendEmailForSub();
             });
 
 
@@ -78,8 +84,12 @@ class Router {
                echo "HomePage";
                
            }
-        } catch(\Exception $e) {
-            die($e->getmessage());
+        } 
+        catch(Exception_arr $e) {
+            echo $e;
+        }
+        catch(\Exception $e) {
+            die($e->getMessage());
         }
     }
 }

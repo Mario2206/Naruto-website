@@ -3,13 +3,15 @@ namespace Controller;
 
 use Model\ {
     Getdata,
+};
+use Helper\ {
+    CheckMail,
     Encryption
 };
 
 class Connection {
 
     const GOOD_DIR = "http://projet-naruto.local/";
-    const BAD_DIR = "http://projet-naruto.local/connection/error-connection";
 
     private $getData;
 
@@ -22,7 +24,7 @@ class Connection {
         require('views/temp_connect.php');
     }
 
-    public function checkForConnecting($post) {
+    public function checkForConnecting(array $post) {
         //Check informations from connection form
         if(isset($post["id_connection"]) && isset($post["password"])) {
             
@@ -34,23 +36,27 @@ class Connection {
             $account = $this->getData->getByFilters("accounts", $filter)[0];
             //CHECK PASSWORD
             if(Encryption::check($password,$account->password)) {
+                $_SESSION["current_account"] = $account;
                 if($account->isVerif == 1) {
-                    $_SESSION["current_account"] = $account;
                     header("Location:".Connection::GOOD_DIR);
+                    exit();
                 } else {
-                    header("Location:".Connection::BAD_DIR);
+                    echo "votre compte  n'est pas vérifié";//Proposer de renvoyer un mail
                 }
             } else {
                 header("Location:".Connection::BAD_DIR);
+                exit();
             }
         }
 
 
-    }
+    } 
 
-    public function displayError() {
-        //show error if there is
-        echo "Les données soumises sont incorrectes ou vous n'avez pas procédé à la vérification de votre compte";
-    }   
+    public function sendEmailForSub() {
+        $dest = $_SESSION['current_account']["mail"];
+        $vKey = $_SESSION["current_account"]["vKey"];
+        CheckMail::mailVerif($dest, $vKey);
+        echo "l'email a été envoyé !";
+    }
 
 }

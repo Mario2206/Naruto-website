@@ -3,7 +3,7 @@ namespace Model;
 
 class Postdata extends Model {
 
-    public function setData($table, $postInfos) {
+    public function setData(string $table, array $postInfos) : bool {
         $postInit = "INSERT INTO ".$table;
         $postIndexes = '(';
         $postItemsVar = '(';

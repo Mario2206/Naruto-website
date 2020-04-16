@@ -1,10 +1,15 @@
 <?php 
-namespace Model;
+namespace Helper;
+
+use Model\ {
+    Getdata 
+};
 
 class CheckMail {
 
 
-    public static function mailVerif($dest, $vKey) {
+    public static function mailVerif (string $dest, string $vKey) : bool 
+    {
         $getData = new Getdata();
         $id = $getData->getId("accounts", ["mail"=>$dest]);
         $link = "http://projet-naruto.local/subscription/verification/".$id."-".$vKey;
@@ -16,5 +21,19 @@ class CheckMail {
         ];
 
         return mail($to, $subject, $message, $headers);
+    }
+
+    public static function sendMail ($data) {
+        $headers = [
+            "From"=>$data['mail'],
+            "Name"=>$data["name"],
+            "Firstname"=>$data["firstname"]
+        ];
+        $to = $GLOBALS["ADMIN_ADRESS"];
+        $message = $data["message"];
+        $subject = $data["subject"];    
+
+        return mail($to, $subject, $message, $headers);
+
     }
 }

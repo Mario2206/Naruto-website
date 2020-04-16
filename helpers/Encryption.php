@@ -1,5 +1,6 @@
 <?php
-namespace Model;
+namespace Helper;
+
 class Encryption {
 
     public static function crypt($password) {

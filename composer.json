@@ -9,7 +9,9 @@
     "autoload": {
         "psr-4" : {
             "Controller\\" : "controllers/",
-            "Model\\" : "models/"
+            "Model\\" : "models/",
+            "Helper\\" : "helpers/",
+            "Exception\\" : "exceptions"
         }
     },
     "require": {
