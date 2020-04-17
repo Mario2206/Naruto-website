@@ -1,6 +1,8 @@
 <?php
 namespace Helper;
-
+/**
+ * 
+ */
 class Encryption {
 
     public static function crypt($password) {

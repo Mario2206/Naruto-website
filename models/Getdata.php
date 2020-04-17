@@ -1,6 +1,8 @@
 <?php
 namespace Model;
-
+/**
+ * 
+ */
 class Getdata extends Model {
    
 

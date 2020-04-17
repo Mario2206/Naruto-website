@@ -1,6 +1,8 @@
 <?php
 namespace Model;
-
+/**
+ * 
+ */
 class Postdata extends Model {
 
     public function setData(string $table, array $postInfos) : bool {

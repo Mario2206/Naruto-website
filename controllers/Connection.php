@@ -8,7 +8,9 @@ use Helper\ {
     CheckMail,
     Encryption
 };
-
+/**
+ * 
+ */
 class Connection {
 
     const GOOD_DIR = "http://projet-naruto.local/";
@@ -21,7 +23,7 @@ class Connection {
 
     public function displayConnect() {
         //View for connection 
-        require('views/temp_connect.php');
+        require('../views/components/temp_connect.php');
     }
 
     public function checkForConnecting(array $post) {

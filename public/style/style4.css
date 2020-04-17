@@ -1,0 +1,105 @@
+
+#main_container_child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+section {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(219,98,28,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    padding: 20px 10px;
+    box-sizing: border-box;
+    font-size: 2.5em;
+    font-family: "electroharmonix";
+    color: #edd944;
+    border: 4px solid #edd944;
+    margin: 30px 0;
+    background-color: #6b5835;
+}
+#form_container {
+    background: url('../img/parchment_2.png');
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#form_container div {
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+form {
+    margin: 40px 0;
+    width: 70%;
+    border: 3px solid #6b5835;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form label, form input[type="submit"] {
+    font-family: "kaorigel.bold";
+    font-size: 1.7em;
+}
+form input {
+    color: #54442a;
+    font-family: "kaorigel.medium";
+    font-size: 1em;
+}
+.input {
+    width: 70%;
+}
+textarea {
+    color: #54442a;
+    background-color: #e2d3b5;
+    width: 90%;
+    resize: none;
+    font-family: "kaorigel.medium";
+    font-size: 1.4em;
+    border:2px inset;
+}
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ebdabc;
+}
+
+.initInput {
+    background-color: #e2d3b5;
+}
+
+@media screen and (max-width : 1050px) {
+    #form_container div label {
+        margin: 5px 0;
+    }
+}
+@media screen and (max-width : 500px) {
+    h1 {
+        font-size: 1.5em;
+        width: 90%;
+        text-align: center;
+    }
+    #form_container div label {
+       text-align: center;
+    }
+    form {
+        width: 90%;
+    }
+    .input {
+        width: 90%;
+    }
+}

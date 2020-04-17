@@ -1,5 +1,8 @@
 <?php
 namespace Model;
+/**
+ * 
+ */
 class Deletedata extends Model {
 
     public function deleteFromBdd($table, $filters = null) {

@@ -1,0 +1,22 @@
+section {
+    background: url('../img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#info_container {
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    padding: 300px 30px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    background-color: rgba(219,98,28,0.5);
+}
+
+#info_container p {
+    border-radius: 15px;
+    border: 2px solid #145bb7;
+    padding: 5px;
+    font-family: "kaorigel.bold";
+    background-color: rgb(226, 103, 32);
+}

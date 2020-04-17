@@ -1,6 +1,8 @@
 <?php
 namespace Helper;
-
+/**
+ * 
+ */
 class FileReader {
 
     private $ext_img = ["jpg", "png"];

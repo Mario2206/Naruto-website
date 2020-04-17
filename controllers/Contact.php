@@ -1,63 +1,59 @@
 <?php
 namespace Controller;
 
-use Model\ {
-    Postdata
-};
-use Exception\{
-    Exception_arr
-};
+use Exception\ExceptionArr;
+use Helper\CheckMail;
+/**
+ * 
+ */
+class Contact extends Controller {
 
-class Contact {
-
-    const SYNTAX_MAIL = '#^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$#';
     const MIN_LENGTH_MESS = 30;
     const MAX_LENGTH_MESS = 500;
     const GOOD_DIR = "http://projet-naruto.local/contact/contacted";
+    const POST_ALLOWED = ["mail","subject","message"];
 
-    private $postData;
-
-    public function __construct() {
-        $this->postData = new Postdata();
-    }
 
     public function displayContact() {
         //view contact
-        require("views/temp_contact.php");
+        require("../views/components/contact.php");
     }
 
     public function checkContactReq(array $post) {
         //verifications
-        $mail = $post["mail"];
-        $subject = $post["subject"];
-        $mess = $post["message"];
+        if(!$postChecked= $this->checkPostVar($post, self::POST_ALLOWED)) {
+            throw new \Exception("Error about post request");
+        }
+        $mail = $postChecked["mail"];
+        $subject = $postChecked["subject"];
+        $mess = $postChecked["message"];
         $errors = [];
 
-        if(preg_match(self::SYNTAX_MAIL, $mail) == 0) {
+        if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             array_push($errors, "Le mail ne correspond pas aux normes");
         }
         if(empty($subject)) {
             array_push($errors, "Le sujet ne peut pas être vide");
         }
-        if(strlen($mess) < self::MIN_LENGTH_MESS || strlen($mess) > self::MAX_LENGTH_MESS) {
+        if(iconv_strlen($mess) < self::MIN_LENGTH_MESS || strlen($mess) > self::MAX_LENGTH_MESS) {
             array_push($errors, "Le message ne correspond pas à une quantité de caractères raisonnable.");
         }
 
         if(empty($errors)) {
-            $date = new \DateTime();
             $data = [
                 "sender"=>$mail,
+                "dest"=>$GLOBALS["ADMIN_ADRESS"],
                 "subject"=>$subject,
                 "message"=>$mess,
-                "sending_date"=>$date->format('Y-m-d H:i:s.u')
             ];
-            if($this->postData->setData("contacts", $data)){
-                echo "good sending";
+            if(CheckMail::mail($data, false)){
+                header("Location:".self::GOOD_DIR);
+                exit();
             } else {
                 throw new \Exception("Bad sending !");
             }
         } else {
-            throw new Exception_arr($errors);//show errors
+            throw new ExceptionArr($errors);//show errors
         }
     }
 

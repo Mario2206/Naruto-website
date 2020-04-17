@@ -1,0 +1,218 @@
+
+
+#main_container {
+    width: 100%;
+}
+
+/* sections */
+section:not(#main_pres) {
+    padding: 20px 10px;
+    background-color: #22252d;
+  
+}
+section:not(#main_pres) > * {
+    color: #d7dae2;
+}
+
+#main_pres {
+    
+    height: 100vh;
+    background: url('../img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+} 
+#container_main_pres {
+    height: 100vh;
+    display: flex; 
+    align-content: flex-start;
+    background-color: rgba(219,98,28,0.5);
+    padding: 40px 10px;
+}
+#parchment_pres {
+    overflow: auto;
+    height: 80vh;
+    border: 1px solid black;
+    background: url('../img/parchment_2.png');
+    background-size : cover;
+    padding: 20px;
+    width: 60%;
+    text-align: center;
+    flex : 2 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px;
+    
+}
+h1 {
+    margin: 30px 0;
+    font-family: 'kaorigel.bold';
+    font-size: 30px;
+}
+#parchment_pres p {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 100;
+    line-height: 30px;
+    font-family: 'kaorigel.medium';
+}
+#parchment_pres #signature {
+    font-family: 'kaorigel.bold';
+    text-align: right;
+    padding-right:50px ;
+    font-size: 25px;
+}
+#main_pres_childImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex : 10 1 auto;
+    background-color: #b4bac3;
+    border-radius: 15px;
+    border: 2px solid black;
+    margin: 20px;
+    width: 30%;
+    height: 60vh;
+    box-shadow: 20px -10px rgba(0,0,0,0.9);
+}
+ #main_pres_childImg img {
+    width: 80%;
+    height: 80%;
+}
+
+.secondary_desc p {
+    text-align: center;
+    padding: 10px;
+    font-style: italic;
+    font-weight: bold;
+    color: #d2d2c7;
+    line-height: 25px;
+}
+.button_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button_desc button {
+    margin : 20px 0;
+    background : none;
+    border: none;
+    width: 30%;
+}
+.button_desc button img {
+    width : 100%;
+}
+.button_desc button:hover {
+    cursor: pointer;
+}
+h2, h3 {
+    font-size: 35px;
+    padding: 50px 0 50px 20px;
+    font-family: 'electroharmonix';
+    color: #edd944;
+}
+.text_desc {
+    display: flex;
+}
+
+/* footer */
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #113e7a;
+    border-top: 2px solid black;
+    padding: 20px 0;
+}
+footer div {
+    display: flex;
+    flex-direction: column;
+    
+}
+footer .a_footer {
+    margin: 20px 0 10px 0   ;
+}
+footer div strong {
+    font-size:  20px;
+    color: #b4bac3;
+    text-align: center;
+}
+.a_footer a {
+    margin : 10px 0;
+    text-align: center;
+    color: #b4bac3;
+    text-decoration: none;
+   
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width : 1050px) {
+    
+    /* Content */
+    h2,h3 {
+        font-size: 45px;
+    }
+    #main_pres {
+        height: auto;
+    }
+    #container_main_pres {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+    }
+    #parchment_pres {
+        box-sizing: border-box;
+        width: 95%;
+        padding: 0;
+        height: auto;
+        overflow: auto;
+        padding: 0 40px;
+    }
+    #parchment_pres p {
+        font-size: 25px;
+    }
+    #signature {
+        margin: 20px 0;
+    }
+    #main_pres_childImg {
+       display: none;
+    }
+    h1,h2,h3 {
+        text-align: center;
+    }
+    .secondary_desc {
+        font-size: 20px;
+        padding: 0 50px;
+    }
+    .text_desc {
+        flex-direction: column;
+    }
+    .button_desc button {
+        width: 50%;
+    }
+}
+@media screen and (max-width : 500px) {
+    h2,h3 {
+        padding: 40px 0;
+        font-size: 30px;
+    }
+    .button_desc button {
+        width: 90%;
+    }
+    #container_main_pres {
+        padding: 0 0;
+    }
+    #parchment_pres {
+        width: 100%;
+        border: none;
+        margin: 0;
+    }
+    #parchment_pres p {
+        font-size: 17px;
+    }
+    .secondary_desc {
+        font-size: 15px;
+    }
+}

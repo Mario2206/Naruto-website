@@ -1,8 +1,10 @@
 <?php
 
 namespace Exception;
-
-class Exception_arr extends \Exception {
+/**
+ * 
+ */
+class ExceptionArr extends \Exception {
 
     public function __construct(array $mess_arr, $code = 0) {
         parent::__construct(null, $code);

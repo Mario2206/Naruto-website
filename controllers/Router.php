@@ -1,9 +1,12 @@
 <?php
 namespace Controller;
-use Exception\{
-    Exception_arr
-};
 
+use Exception\{
+    ExceptionArr
+};
+/**
+ * 
+ */
 class Router {
 
     private $get;
@@ -25,7 +28,14 @@ class Router {
 
             //<-- HOME ROUTES -->
             $router->map("GET", "/", function() {
-                echo "Homepage";
+                $control = new HomePage();
+                $control->display();
+           });
+
+           //<--  ANNEX ROUTES --> 
+           $router->map("GET", "/my-friends/", function() {
+            $control = new AnnexPage();
+            $control->display();
            });
 
            //<-- CONTACT ROUTES -->
@@ -81,12 +91,13 @@ class Router {
            if($match !== false ) {
                $match["target"]($match["params"]);
            } else {
-               echo "HomePage";
+                $control = new HomePage();
+                $control->display();
                
            }
         } 
-        catch(Exception_arr $e) {
-            echo $e;
+        catch(ExceptionArr $e) {
+            die($e);
         }
         catch(\Exception $e) {
             die($e->getMessage());

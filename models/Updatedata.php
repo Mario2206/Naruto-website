@@ -1,7 +1,9 @@
 <?php
 
 namespace Model;
-
+/**
+ * 
+ */
 class Updatedata extends Model {
 
     public function updateBdd($table, $changes, $filters = null) {//Chnage is an associative array and filters can be too

@@ -1,0 +1,135 @@
+.letter_maj {
+    font-size: 35px;
+}
+.clear {
+    clear: both;
+}
+*{
+    margin : 0;
+    padding : 0;
+    font-family: sans-serif;
+}
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+@font-face {
+    font-family: "electroharmonix";
+    src: url('../fonts/electroharmonix.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: "kaorigel.medium";
+    src: url('../fonts/kaorigel.medium.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: "kaorigel.bold";
+    src: url('../fonts/kaorigel.bold.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+@keyframes button_hover{
+    0%  {
+        transform : rotate(0);
+    }
+    33%  {
+        transform : rotate(10deg);
+    }
+    66% {
+        transform: rotate(-10deg);
+    }   
+    100% {
+        transform: rotate(0);
+    }
+}
+
+#container_helper {
+    /* opacity: 0.7; */
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor : pointer;
+}
+#helper {
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    position: absolute;
+    background-color: #7f0814;
+    border: 2px solid black;
+
+}
+#img_Helper {
+   position: relative;
+   bottom: 15px;
+   right: 5px;
+   z-index: 100;
+    width: 70px;
+    height: 70px;
+}
+#txt_helper {
+    overflow: hidden;
+    animation: divArrival 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 30%;
+    height: 50px;
+    font-style: italic;
+    position: fixed;
+    bottom: 90px;
+    right: 140px;
+    
+}
+#txt_helper p {
+    text-align: center;
+    animation: txtArrival 3s;
+    font-size: 1em;
+}
+@keyframes txtArrival {
+    from {opacity: 0}
+    to{opacity: 1}
+}
+@keyframes txtHiding {
+    from {opacity: 1}
+    to{opacity: 0}
+}
+@keyframes divArrival {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    60% {
+        width: 35%;
+        height: 75px;
+    }
+    100% {
+        width: 30%;
+        height: 50px;
+    }
+}
+@keyframes divHidding {
+    from {
+        width: 30%;
+        height: 50px;
+    }
+    to{
+        width: 0;
+        height: 0;
+    }
+}
+
+@media screen and (max-width : 800px) {
+    #container_helper {
+        display: none;
+    }
+}

@@ -1,39 +1,62 @@
 <?php 
 namespace Helper;
 
-use Model\ {
-    Getdata 
-};
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class CheckMail {
 
-
-    public static function mailVerif (string $dest, string $vKey) : bool 
-    {
-        $getData = new Getdata();
-        $id = $getData->getId("accounts", ["mail"=>$dest]);
-        $link = "http://projet-naruto.local/subscription/verification/".$id."-".$vKey;
-        $to = $dest;
-        $subject = "Verification du compte";
-        $message = "Bonjour!\n\nVoici un code de vérification afin de m'assurer que tu n'es pas un menteur !\n\nCODE : {$link}\n\nGarde ce code précieusement car il te sera demandé lors de ta première connexion sur le site !\n\nBonne journée mon ami et à la prochaine !!";
-        $headers = [
-            "From"=>"mathieu220601@gmail.com"
-        ];
-
-        return mail($to, $subject, $message, $headers);
-    }
-
-    public static function sendMail ($data) {
-        $headers = [
-            "From"=>$data['mail'],
-            "Name"=>$data["name"],
-            "Firstname"=>$data["firstname"]
-        ];
-        $to = $GLOBALS["ADMIN_ADRESS"];
+    /**
+     * public method to send mail
+     * 
+     * @param array $data ->  keys = ["dest","subject", "message", "sender"]
+     *      
+     * ?return bool value 
+     */
+    
+    public function mail(array $data, bool $html = false) : bool {
+        $to = $data["dest"];
+        $subject = $data["subject"];
         $message = $data["message"];
-        $subject = $data["subject"];    
-
+        $headers = [
+            "From"=>$data["sender"],
+            'X-Mailer' => 'PHP/' . phpversion(),
+        ];
+        $html ? $headers["Content-type"] = "text/html" : false;
         return mail($to, $subject, $message, $headers);
+    } 
 
+    /**
+     * public method to prepare a correct confirmation mail
+     * 
+     * @param string $id, @param string $dest, @param string $vKey : required
+     * 
+     * ?return bool value
+     */
+
+    public static function mailVerif (string $id,string $dest, string $vKey) : bool 
+    {
+        $link = "http://projet-naruto.local/subscription/verification/".$id."-".$vKey;
+        $subject = "Verification du compte";
+        $message = "
+        <h1>Bonjour!</h1>
+        <br/><br/>
+        Voici un code de vérification afin de m'assurer que tu n'es pas un menteur !
+        <br/><br/>
+        CODE : {$link}
+        <br/><br/>
+        Garde ce code précieusement car il te sera demandé lors de ta première connexion sur le site !
+        <br/><br/>
+        Bonne journée mon ami et à la prochaine !!";
+        
+        $dataForMail = [
+            "sender"=>$GLOBALS['ADMIN_ADRESS'],
+            "dest"=>$dest,
+            "subject"=>$subject,
+            "message"=>$message
+        ];
+
+        return self::mail($dataForMail, true);
     }
 }
