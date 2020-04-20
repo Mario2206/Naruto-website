@@ -18,5 +18,6 @@ $css = [
     $GLOBALS["PATH"]."style/info.css"
 ];
 $temp = new Template($content, $css);
+$temp->title = "Information";
 $temp->init();
 ?>

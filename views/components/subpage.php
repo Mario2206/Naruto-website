@@ -12,7 +12,7 @@
 </head>
 <body>
     <section>
-        <form method="post" action="/subscription/subscribing">
+        <form method="post" action="/subscription/subscribing" enctype="multipart/form-data">
             <div id="container_h1">
                 <h1>Inscription</h1>
             </div>
@@ -129,9 +129,9 @@
             </div>
         </form>
     </section>
-    <script src="http://projet-naruto.local/js/HandlerRadio.js"></script>
-    <script src="http://projet-naruto.local/js/Input.js"></script>
-    <script src="http://projet-naruto.local/js/Form.js"></script>
+    <script src="http://projet-naruto.local/js/package/HandlerRadio.js"></script>
+    <script src="http://projet-naruto.local/js/package/Input.js"></script>
+    <script src="http://projet-naruto.local/js/package/Form.js"></script>
     <script src="http://projet-naruto.local/js/navigationSubscription.js"></script>
     
 </body>

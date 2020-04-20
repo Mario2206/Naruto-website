@@ -10,10 +10,13 @@ class Template {
      * @param $css -> path(s) to find css file(s)
      * @param $js -> path(s) to find js file(s)
      * 
-     * !return HTML page 
      */
 
-    
+     /**
+      * title of webpage : Only property that can change
+      */
+     public $title = "Template";
+
      private $links;
      private $scripts;
      private $content;
@@ -33,9 +36,13 @@ class Template {
         
     }
 
+    /**
+     * Init the view on the page : 
+     * !return string HTML page 
+     */
 
     public function init() {
-        $data = $this->data;
+        $title = $this->title;
         $links = $this->links;
         $content = $this->content;
         $scripts = $this->scripts;
@@ -43,9 +50,22 @@ class Template {
         require("../views/components/temp1.php");
     }
 
+    /**
+     * method to create link tag
+     * @param string $css
+     * 
+     * !return string css tag
+     */
+
     private function createLink(string $css) : string {
         return "<link rel=\"stylesheet\" href=\"{$css}\">";
     }
+    /**
+     * method to create script tag
+     * @param string $css
+     * 
+     * !return string script tag
+     */
     private function createScript(string $js) : string {
         return "<script src=\"{$js}\"></script>";
     }

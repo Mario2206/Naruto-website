@@ -34,10 +34,11 @@ ob_start();
         "http://projet-naruto.local/style/alert.css"
     ];
     $js = [
-        "http://projet-naruto.local/js/Form.js",
-        "http://projet-naruto.local/js/Input.js",
+        "http://projet-naruto.local/js/package/Form.js",
+        "http://projet-naruto.local/js/package/Input.js",
         "http://projet-naruto.local/js/contactForm.js"
     ];
     $temp = new Template($content, $css, $js);
+    $temp->title = "Contact";
     $temp->init();
 ?>

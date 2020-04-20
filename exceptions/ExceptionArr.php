@@ -2,7 +2,9 @@
 
 namespace Exception;
 /**
+ * Exception class for treating array data
  * 
+ * @param array $messages
  */
 class ExceptionArr extends \Exception {
 
@@ -11,6 +13,11 @@ class ExceptionArr extends \Exception {
         $this->errors = $mess_arr;
     }
 
+    /**
+     * public method for returning errors
+     * 
+     * !return string errors
+     */
     public function __toString() :string {
         $message = "";
 

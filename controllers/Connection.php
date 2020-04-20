@@ -9,33 +9,42 @@ use Helper\ {
     Encryption
 };
 /**
- * 
+ * Class Connection Controller 
  */
-class Connection {
+class Connection extends Controller {
 
     const GOOD_DIR = "http://projet-naruto.local/";
+    const BAD_DIR = "http://projet-naruto.local/connection/";
+    const VERIF_DIR = "http://projet-naruto.local/connection/waiting-confirmation";
+    const MAIL_DIR = "http://projet-naruto.local/connection/send-confirmation-mail";
 
-    private $getData;
-
-    public function __construct() {
-        $this->getData = new Getdata();
-    }
-
+    /**
+     * method for sending connect view
+     */
     public function displayConnect() {
         //View for connection 
-        require('../views/components/temp_connect.php');
+        require('../views/components/connect.php');
     }
 
+    /**
+     * method for checking entering connection
+     * 
+     * @param array $postData
+     */
     public function checkForConnecting(array $post) {
         //Check informations from connection form
         if(isset($post["id_connection"]) && isset($post["password"])) {
             
             $id_connection = $post["id_connection"];
             $password = $post["password"];
-            $isMail = preg_match(Subscribe::SYNTAX_MAIL, $id_connection);
+            $isMail = filter_var($id_connection,FILTER_VALIDATE_EMAIL);
             $filter = $isMail ? ["mail"=>$id_connection] : ["username"=>$id_connection]; 
             
-            $account = $this->getData->getByFilters("accounts", $filter)[0];
+            
+            if(!$account = $this->getData->getByFilters("accounts", $filter)[0]) {
+                header("Location:".self::BAD_DIR);
+                exit();
+            }
             //CHECK PASSWORD
             if(Encryption::check($password,$account->password)) {
                 $_SESSION["current_account"] = $account;
@@ -43,22 +52,37 @@ class Connection {
                     header("Location:".Connection::GOOD_DIR);
                     exit();
                 } else {
-                    echo "votre compte  n'est pas vérifié";//Proposer de renvoyer un mail
+                    header("Location:".self::VERIF_DIR);
+                    exit();
                 }
             } else {
-                header("Location:".Connection::BAD_DIR);
+                header("Location:".self::BAD_DIR);
                 exit();
             }
+        } else {
+            throw new \Exception("ERROR ABOUT POST REQUEST : POST ID AREN'T CORRECT");
         }
 
 
     } 
-
+    /**
+     * method for sending confirmation view
+     */
+    public function displayConfirmMail() {
+        $dir = self::MAIL_DIR;
+        $message = "Veuillez confirmer votre adresse mail silvousplait.<br/>Si le mail ne vous est pas parvenu, <a href='{$dir}'>cliquez-ici</a>";
+        require("../views/components/info.php");
+    }
+    /**
+     * method for resending confirm mail
+     */
     public function sendEmailForSub() {
-        $dest = $_SESSION['current_account']["mail"];
-        $vKey = $_SESSION["current_account"]["vKey"];
-        CheckMail::mailVerif($dest, $vKey);
-        echo "l'email a été envoyé !";
+        $dest = $_SESSION['current_account']->mail;
+        $vKey = $_SESSION["current_account"]->vKey;
+        $id = $_SESSION["current_account"]->id;
+        CheckMail::mailVerif($id,$dest, $vKey);
+        header("Location:".self::VERIF_DIR);
+        exit();
     }
 
 }

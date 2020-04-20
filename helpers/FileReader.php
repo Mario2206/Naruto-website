@@ -1,19 +1,26 @@
 <?php
 namespace Helper;
 /**
- * 
+ * Class for checking file
  */
 class FileReader {
 
     private $ext_img = ["jpg", "png"];
     private $current_ext = "";
-    private $dir = "public/img_uploaded/";
+    private $dir ="img_uploaded/";
     private $fileName = "fileName";
     private $urlFile = "";
     private $state = true;
-    private $MAX_SIZE = 100000000;
+    const MAX_SIZE = 100000000;
 
-    public function getImage($file) {
+    /**
+     * method for checking if the file is an image
+     * 
+     * @param array $file
+     * 
+     * !return bool status
+     */
+    public function getImage(array $file) :bool {
         $this->fileName = $file["name"];
         //Check if the file is an image
         if(!getImageSize($file['tmp_name'])) {
@@ -25,7 +32,7 @@ class FileReader {
             $this->state = false;
         }
         //check img size
-        if($file["size"] > $this->MAX_SIZE) {
+        if($file["size"] > self::MAX_SIZE) {
             $this->state = false;
         }
         //check if the file already exists

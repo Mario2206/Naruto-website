@@ -6,8 +6,7 @@ function Form(inputObject) {
     this.error = []
 
     this.validateForm = function() {
-    
-        
+        this.error = [];
         for(const input in this.inputObject) {
             const inputObj = this.inputObject[input]
             !inputObj.input instanceof Input ? console.log("Error : args have to be Input Object") : false;
@@ -51,6 +50,7 @@ function Form(inputObject) {
 
         backDiv.appendChild(alert);
         document.body.appendChild(backDiv);
+
     }
 
     this.triggerResponse = function() {

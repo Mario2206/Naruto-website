@@ -2,7 +2,7 @@
 
 namespace Controller;
 /**
- * 
+ * Send the HomePage
  */
 class HomePage {
 

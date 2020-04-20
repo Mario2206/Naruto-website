@@ -4,7 +4,7 @@ namespace Controller;
 use Exception\ExceptionArr;
 use Helper\CheckMail;
 /**
- * 
+ * Contact class
  */
 class Contact extends Controller {
 
@@ -13,12 +13,19 @@ class Contact extends Controller {
     const GOOD_DIR = "http://projet-naruto.local/contact/contacted";
     const POST_ALLOWED = ["mail","subject","message"];
 
-
+    /**
+     * CONTACT VIEW
+     */
     public function displayContact() {
-        //view contact
+
         require("../views/components/contact.php");
     }
 
+    /**
+     * CONTROLLER METHOD FOR CHECKING POST DATA 
+     * 
+     * @param array $post 
+     */
     public function checkContactReq(array $post) {
         //verifications
         if(!$postChecked= $this->checkPostVar($post, self::POST_ALLOWED)) {
@@ -56,9 +63,12 @@ class Contact extends Controller {
             throw new ExceptionArr($errors);//show errors
         }
     }
-
+    /**
+     * GOOD SENDING VIEW
+     */
     public function displayEndReq() {
         //view  good reqs
-        echo "good sending";
+        $message = "L'envoi s'est effectue avec succes !";
+        require('../views/components/info.php');
     }
 }

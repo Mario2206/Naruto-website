@@ -1,3 +1,4 @@
+"use-strict";
 (function(){
     const ID_RETURN = "return"
     const ID_SUB = "submitDef"

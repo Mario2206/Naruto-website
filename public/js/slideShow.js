@@ -29,7 +29,6 @@
         const widthScreen = document.querySelector('#screen').clientWidth
         const ref = widthScreen*0.2
         
-        
         if(Math.abs(moveX) > ref) {
             moveSlider(moveX)
         }           

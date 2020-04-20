@@ -1,0 +1,80 @@
+#container_connect_form {
+    height: 100vh;
+    background: url("../img/back_connect.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+#container_color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(219,98,28,0.5);
+}
+#title_container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+h1 {
+    font-family: 'electroharmonix';
+    color: #edd944;
+}
+#connect_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: rgba(34, 37, 45,0.8);
+    
+}
+
+#connect_form  input {
+    width: 100%;
+    padding: 20px 5px;
+    box-sizing: border-box;
+    margin: 20px 0;
+}
+.txt_input {
+    font-family: "kaorigel.medium";
+    font-size: 20px;
+}
+input[type="submit"] {
+    cursor: pointer;
+    font-family: "kaorigel.bold";
+    font-size: 20px;
+    background-color: #edd944;
+    border-color: #edd944;
+}
+#connect_form hr {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #edd944;
+    margin: 3px 0;
+}
+#sub_label {
+    text-align: center;
+}
+
+/* INPUT  */
+
+.goodInput {
+    transition: 0.5s;
+    border: 2px solid green;
+    color: green;
+}
+.badInput {
+    transition: 0.5s;
+    border: 2px solid red;
+    color: red;
+}
+
+/* ERROR */
+#errorMessage {
+    color: red;
+    letter-spacing: 2px;
+}

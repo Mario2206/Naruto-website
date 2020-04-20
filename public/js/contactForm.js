@@ -1,3 +1,4 @@
+"use-strict";
 (function(){
     console.log(document.querySelector("#objectInput"));
     

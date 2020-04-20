@@ -27,8 +27,6 @@
                     <img src="http://projet-naruto.local/img/symbole.png" alt="symbol" title="Konoha" class="img_symbol">
                 </div>
             </div>
-            
-            
         </section>
         <section>
             <div class="secondary_desc">
@@ -95,5 +93,6 @@
 $content = ob_get_clean();
 $css = ["http://projet-naruto.local/style/style.css"];
 $temp = new Template($content, $css);
+$temp->title = "Home";
 $temp->init();
 ?>

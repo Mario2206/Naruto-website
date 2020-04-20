@@ -8,7 +8,9 @@ use Model\{
     Deletedata
 };
 /**
+ * Basic controller class 
  * 
+ * Get all models and children inherit of them
  */
 abstract class Controller {
 
@@ -27,7 +29,15 @@ abstract class Controller {
         $this->deleteData= new Deletedata();
     }
 
-    protected function checkPostVar($post, $postAllowed) {//check if all var are sended
+    /**
+     * protected method that enables to test the post request and check if  data is correct 
+     * 
+     * @param array $post
+     * @param array $postAllowed
+     * 
+     * !return bool or array
+     */
+    protected function checkPostVar(array $post,array $postAllowed) {//check if all var are sended
         $this->postAllowed = $postAllowed;
 
         $postChecked = array_filter($post, function($key) {
@@ -35,8 +45,13 @@ abstract class Controller {
         },ARRAY_FILTER_USE_KEY);
         return count($postChecked) === count($postAllowed) ? $postChecked : false;
     }
-    
-    protected function debug($debug) {
-        echo "<pre>".var_dump($debug)."</pre>";
+    /**
+     * protected method for formating debug data
+     * @param $debug Data
+     * 
+     * !return string
+     */
+    protected function debug($debug) :string {
+        return "<pre>".var_dump($debug)."</pre>";
     }
 }

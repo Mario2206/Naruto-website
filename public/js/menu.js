@@ -1,3 +1,4 @@
+"use-strict";
 (function(){
     const button = document.querySelector('#button_resp');
     const nav_container = document.querySelector('nav .ul');

@@ -90,11 +90,12 @@
     $content = ob_get_clean();
     $css = [$GLOBALS["PATH"]."style/style2.css"];
     $js=[
-        $GLOBALS["PATH"]."js/HandlerTouches.js", 
+        $GLOBALS["PATH"]."js/package/HandlerTouches.js", 
         $GLOBALS["PATH"]."js/slideShow.js", 
         $GLOBALS["PATH"]."js/helperButton.js", 
         $GLOBALS["PATH"]."js/menu.js"
     ];
     $temp = new Template($content, $css, $js);
+    $temp->title = "Mes compagnons de route";
     $temp->init();
 ?>

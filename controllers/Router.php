@@ -4,10 +4,15 @@ namespace Controller;
 use Exception\{
     ExceptionArr
 };
+use Helper\FileReader;
+
 /**
+ * Routing class : manages all possible routes
  * 
+ * @param array $get : for testing and simulating GET request
+ * @param array $post : for testing and simulating POST request
  */
-class Router {
+class Router extends Controller {
 
     private $get;
     private $post;
@@ -17,7 +22,9 @@ class Router {
         $this->post = $_POST ?? $post;
         $this->get = $_GET ?? $get;
     }
-    
+    /**
+     * inits and checks all routes and actives the correct controller
+     */
 
     public function runRouter() {
 
@@ -79,11 +86,24 @@ class Router {
                 $control = new Connection();
                 $control->checkForConnecting($this->post);
             });
-            $router->map("GET", "/connection/verification", function() {
+            $router->map("GET", "/connection/waiting-confirmation", function() {
+                $control = new Connection();
+                $control->displayConfirmMail();
+            });
+            $router->map("GET", "/connection/send-confirmation-mail", function() {
                 $control = new Connection();
                 $control->sendEmailForSub();
             });
+            
 
+            //<-- ROUTES FOR TESTING -->
+            $router->map("GET", "/test/", function() {
+                require("../views/test.php");
+            });
+            $router->map("POST", "/test/ok", function() {
+                $fileReader = new FileReader();
+                echo $this->debug($fileReader->getImage($_FILES["test"]));
+            });
 
            //MATCH ROUTE
            $match = $router->match();
