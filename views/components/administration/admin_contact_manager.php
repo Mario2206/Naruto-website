@@ -31,7 +31,10 @@
                 <td><?=$item->subject; ?></td>
                 <td><?=$item->message; ?></td>
                 <td><?=$item->sending_date; ?></td>
-                <td><a class="link" href="/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
+                <td><a class="link green" href="/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
+                <td>
+                    <?=$item->already_seen == 1 ? "<img src='".$GLOBALS["PATH"]."img/icons/courriel.png' alt='Courriel'/>" : false ?>
+                </td>
             </tr>
             <?php
                 }

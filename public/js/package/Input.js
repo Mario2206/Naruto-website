@@ -32,6 +32,7 @@ function Input (element) {
         this.input.addEventListener('input', function(e) {
             obj.state = eventFunc(arg);
             !obj.state ? obj.badStyle(obj.input) : obj.goodStyle(obj.input) 
+            e.target.value = obj.value.replace(/[<>]/g, '');
         }) 
     }
     

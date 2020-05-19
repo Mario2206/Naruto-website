@@ -15,7 +15,7 @@ class CheckMail {
      * ?return bool value 
      */
     
-    public function mail(array $data, bool $html = false) : bool {
+    public static function mail(array $data, bool $html = false) : bool {
         $to = $data["dest"];
         $subject = $data["subject"];
         $message = $data["message"];

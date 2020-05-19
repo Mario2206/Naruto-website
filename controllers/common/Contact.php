@@ -38,9 +38,9 @@ class Contact extends Controller {
         if(!$postChecked= $this->checkPostVar($post, self::POST_ALLOWED)) {
             throw new \Exception("Error about post request");
         }
-        $mail = strip_tags($postChecked["mail"]);
-        $subject = strip_tags($postChecked["subject"]);
-        $mess = strip_tags($postChecked["message"]);
+        $mail = $postChecked["mail"];
+        $subject = $postChecked["subject"];
+        $mess = $postChecked["message"];
         $errors = [];
 
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {

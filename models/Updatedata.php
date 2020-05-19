@@ -6,7 +6,7 @@ namespace Model;
  */
 class Updatedata extends Model {
 
-    public function updateBdd($table, $changes, $filters = null) {//Chnage is an associative array and filters can be too
+    public function updateBdd(string $table, array $changes, array $filters = null) : bool {
         $update = 'UPDATE '.$table.' SET ';
         $changesPart = "";
         $arrayForReq = array();

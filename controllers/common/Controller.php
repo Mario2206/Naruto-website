@@ -51,6 +51,7 @@ abstract class Controller {
             throw new Exception("Page 404 : not found");
         }
     }
+    
     /**
      * protected method for formating debug data
      * @param $debug Data
@@ -59,5 +60,19 @@ abstract class Controller {
      */
     protected function debug($debug) :string {
         return "<pre>".var_dump($debug)."</pre>";
+    }
+
+    /**
+     * protected method for delteing HTML elements from string value  
+     * @param array $values
+     * 
+     * !return array clearedValues
+     */
+    protected function clearValueFromArray(array $values) : array    {
+        $newValues = [];
+        foreach($values as $key=>$val) {
+            $newValues[$key] = strip_tags($val);
+        }
+        return $newValues;
     }
 }

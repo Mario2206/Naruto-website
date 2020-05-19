@@ -3,11 +3,24 @@
     margin: 0;
     font-family: sans-serif;
 }
+body {
+    background: url("../../img/background.png");
+}
+h1 {
+    font-family: "electroharmonix";
+    color: rgb(255, 224, 45);
+}
+#main {
+    background-color: rgba(34, 32, 32, 0.5);
+    min-height: 100vh;
+}
 a {
     text-decoration: none;
     color: black;
 }
-
+p {
+    font-family: "kaorigel.medium";
+}
 nav {
     padding: 10px 0;
     background-color: #145bb7; 
@@ -22,27 +35,32 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
 #container {
-    padding: 20px 10px;
+    padding: 50px 20px;
 }
 
-hr{
-    
-    width: 60%;
-    margin: 50px auto;
-    border: 1px solid #145bb7;
-
+/* SPECIAL CLASSES  */
+.alert {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+.green {
+    background-color: rgb(50, 211, 117);
+   
+}
+.borderGreen {
+     border: 2px solid green;
+}
+.red {
+    background-color: rgb(236, 93, 93);
+}
+.borderRed {
+    border: 2px solid red;
 }
 
-input[type="submit"] {
-    background-color: #145bb7;
+.link {
     color: white;
-    font-weight: bold;
-    border: none;
-    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    transition: 0.5s;
-    box-shadow: none;
+    padding: 5px 10px;
+    border-radius: 10px;
 }

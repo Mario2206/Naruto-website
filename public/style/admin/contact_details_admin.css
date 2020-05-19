@@ -1,23 +1,28 @@
 /* Contact details */
 h1 {
     margin: 20px 0;
+    color: black;
 }
 h3 {
     margin: 20px 0;
     font-weight: normal;
 }
-#container_message {
+.container_contact {
+    padding: 5px;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.container_message {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#message {
-    background-color: rgba(114, 114, 114,0.2);
+.message {
     text-align: center;
     padding: 30px 10px;
     width: 80%;
 }
-#date {
+.date {
     font-style: italic;
     margin: 20px 0;
     text-align: end;
@@ -25,15 +30,27 @@ h3 {
 
 
 /* FORM */
+#title_response {
+    padding: 10px 0;
+
+}
+
 form {
+    margin-top: 50px;
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 100px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(43, 41, 41, 0.9);
+    padding: 30px 10px;
 }
 #area_mess {
     width: 100%;
+    color: rgba(255, 255, 255, 0.6);
 }
  textarea {
+     transition: 0.5s;
     resize: none;
     width: 90%;
     height: 50vh;
@@ -41,6 +58,10 @@ form {
     font-size: 18px;
     padding: 5px;
     font-style: italic;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+textarea:focus {
+    background-color: rgba(255, 255, 255, 1);
 }
 #area_mess p {
     text-align: center;
@@ -50,8 +71,17 @@ form {
     font-weight: bold;
 }
 input[type="submit"] {
+    transition: 0.5s;
+    background-color: #145bb7;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;    
     width: 50%;
     padding: 20px 0;
-    border-radius: 10px;
+    border-radius: 0px 0px 40px 40px;
     margin-top: 30px;
+}
+input[type="submit"]:hover {
+    border-radius: 100px 0px;
 }

@@ -138,14 +138,19 @@ class Router extends Controller {
                 $control = new \Controller\Admin\ContactManagement();
                 $control->display();
             });
-            $router->map("GET", "/administration/admin/management/contacts/[i:id]", function($params) {
+            $router->map("GET|POST", "/administration/admin/management/contacts/[i:id]", function($params) {
                 $control = new \Controller\Admin\ContactManagement();
                 $control->displayContact($params["id"]);
+            });
+            $router->map("POST", "/administration/admin/management/contacts/reply/[i:id]", function($params) {
+                $control = new \Controller\Admin\ContactManagement();
+                $control->sendResponse($this->post, $params["id"]);
             });
 
              //<-- ROUTES FOR TESTING -->
              $router->map("GET", "/test/", function() {
-                require("../views/test.php");
+                 var_dump($this->clearValueFromArray(array()));
+               // require("../views/test.php");
             });
             $router->map("POST", "/test/ok", function() {
                 $fileReader = new FileReader();

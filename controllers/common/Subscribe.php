@@ -91,6 +91,9 @@ class Subscribe extends Controller {
             throw new \Exception("Error about post request");
         }
 
+        //Clear string values from HTML elements
+        $postChecked = $this->clearValueFromArray($postChecked);
+
         //check if the username is already existing
         if($this->checkUsername(array("username"=>$postChecked["username"]))){
             array_push($this->errors,"Le nom d'utilisateur est déjà pris");

@@ -15,5 +15,6 @@ class Disconnection extends Controller {
     public function disconnect() {
         session_destroy();
         header("Location:".$this->DIR);
+        exit;
     }
 }
