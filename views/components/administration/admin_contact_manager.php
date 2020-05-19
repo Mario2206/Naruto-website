@@ -47,7 +47,7 @@
 
     $content = ob_get_clean();
     $css = [
-        $GLOBALS["PATH"]."/style/admin/contact_admin.css"
+        $GLOBALS["PATH"]."/style/admin/table_style_admin.css"
     ];
     $temp = new Template($content, $css);
     $temp->defineHtmlTemplate("../views/components/templates/tempAdmin.php");

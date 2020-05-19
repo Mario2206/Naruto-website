@@ -133,6 +133,14 @@ class Router extends Controller {
                 $control = new \Controller\Admin\MembersManagement();
                 $control->display();
             });
+            $router->map("GET", "/administration/admin/management/members/delete/[i:id]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->deleteMember($params["id"]);
+            });
+            $router->map("POST", "/administration/admin/management/members/modification/[i:id]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->displayModif($this->post);
+            });
                 //contact
             $router->map("GET", "/administration/admin/management/contacts/", function() {
                 $control = new \Controller\Admin\ContactManagement();

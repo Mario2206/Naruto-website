@@ -2,7 +2,7 @@
 
 namespace Model;
 /**
- * 
+ * For updating data
  */
 class Updatedata extends Model {
 

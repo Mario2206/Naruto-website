@@ -22,9 +22,6 @@ table tbody tr {
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid black;
 }
-table tbody tr td {
-    font-family: "kaorigel.medium";
-}
 table tbody tr td img {
     width: 30px;
 }
@@ -35,3 +32,20 @@ table tbody tr:hover {
     transition: 0.3s;
     background-color: rgb(255, 255, 255);
 }
+
+/* FORM */
+
+input[type="text"] {
+    background: none;
+    border: none;
+    text-align: center;
+    font-family: "kaorigel.medium";
+    outline: none;
+    height: 100%;
+   
+}
+input[type="text"]:not(.inputAllowed) {
+     cursor: not-allowed;
+}
+
+

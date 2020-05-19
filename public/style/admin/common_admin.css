@@ -7,7 +7,7 @@ body {
     background: url("../../img/background.png");
 }
 h1 {
-    font-family: "electroharmonix";
+    font-family: sans-serif;
     color: rgb(255, 224, 45);
 }
 #main {
@@ -63,4 +63,7 @@ nav a:hover {
     color: white;
     padding: 5px 10px;
     border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
 }

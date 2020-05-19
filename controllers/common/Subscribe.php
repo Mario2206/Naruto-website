@@ -171,7 +171,7 @@ class Subscribe extends Controller {
      * 
      * !return bool
      */
-    private function checkUsername(array $postChecked)  {
+    protected function checkUsername(array $postChecked)  {
         
         $data = $this->getData->getByFilters('accounts', $postChecked);
         return $data;
@@ -206,7 +206,7 @@ class Subscribe extends Controller {
      * 
      * !return bool
      * */
-    private function checkMail(string $mail) : bool {
+    protected function checkMail(string $mail) : bool {
         return filter_var($mail, FILTER_VALIDATE_EMAIL) && !$this->getData->getByFilters("accounts", ["mail"=>$mail]) ? true : false;
     }
 }

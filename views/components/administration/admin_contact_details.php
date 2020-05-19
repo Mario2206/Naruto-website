@@ -28,10 +28,10 @@
     ?>
 
     <div class="alert green borderGreen">La demande de contact a déjà été traité !</div>
-    <div class="container_contact">
+    <div class="container_contact reply">
         <h1>Contact avec <?=$data[0]->contact_reply->recipient; ?></h1>
         <h2>Envoyé par <?=$data[0]->contact_reply->sender; ?></h2>
-        <h3>Sujet : <?=$data[0]->contact_reply->subject; ?></h2>
+        <h3><?=$data[0]->contact_reply->subject; ?></h2>
         <div class="container_message">
             <p class="message"><?=nl2br(htmlspecialchars($data[0]->contact_reply->message)); ?></p>
         </div>
