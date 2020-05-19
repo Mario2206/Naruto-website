@@ -8,11 +8,13 @@
     ],
     "autoload": {
         "psr-4" : {
-            "Controller\\" : "controllers/",
+            "Controller\\" : "controllers/common/",
+            "Controller\\Admin\\" : "controllers/administration/",
             "Model\\" : "models/",
             "Helper\\" : "helpers/",
             "Exception\\" : "exceptions",
             "Template\\" : "views/template/"
+
         }
     },
     "require": {

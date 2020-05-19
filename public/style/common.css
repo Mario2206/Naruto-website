@@ -82,7 +82,7 @@ body {
     justify-content: center;
     background-color: white;
     width: 30%;
-    height: 50px;
+    height: 75px;
     font-style: italic;
     position: fixed;
     bottom: 90px;
@@ -109,17 +109,17 @@ body {
     }
     60% {
         width: 35%;
-        height: 75px;
+        height: 100px;
     }
     100% {
         width: 30%;
-        height: 50px;
+        height: 75px;
     }
 }
 @keyframes divHidding {
     from {
         width: 30%;
-        height: 50px;
+        height: 75px;
     }
     to{
         width: 0;

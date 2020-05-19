@@ -80,7 +80,7 @@
     </div>
     <div id="container_UI">
         <div id="container_helper">
-            <div id="txt_helper"><p>Je te conseille de faire glisser pour  défiler les informations</p></div>
+            <div id="txt_helper"><p>Maintiens le clique sur le slider et glisses la souris vers la droite ou vers la gauche pour faire défiler les informations</p></div>
             <div id="helper"></div>
             <img src="http://projet-naruto.local/img/icon_helper.png" alt="helper" id="img_Helper">
         </div>
@@ -88,7 +88,7 @@
 
 <?php
     $content = ob_get_clean();
-    $css = [$GLOBALS["PATH"]."style/style2.css"];
+    $css = [$GLOBALS["PATH"]."style/friends.css"];
     $js=[
         $GLOBALS["PATH"]."js/package/HandlerTouches.js", 
         $GLOBALS["PATH"]."js/slideShow.js", 

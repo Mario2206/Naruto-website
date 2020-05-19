@@ -1,0 +1,17 @@
+#container_table table {
+    width: 100%;
+}
+table tr {
+    text-align: center;
+    height: 30px;
+}
+table thead {
+    background-color: #eca03e;
+}
+
+.link {
+    color: white;
+    background-color: green;
+    padding: 5px 10px;
+    border-radius: 10px;
+}

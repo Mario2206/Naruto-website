@@ -198,6 +198,8 @@ option {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
     
 }
 #submitDef {

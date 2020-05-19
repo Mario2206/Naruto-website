@@ -39,7 +39,7 @@ nav .ul a {
     text-decoration: none;
     color: black;
 }
-nav .ul a >* {
+nav .ul a div {
     list-style: none;
     font-size: 20px;
     font-weight: bold;

@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Exception;
 use Model\{
     Getdata,
     Postdata,
@@ -44,6 +45,11 @@ abstract class Controller {
             return in_array($key, $this->postAllowed);
         },ARRAY_FILTER_USE_KEY);
         return count($postChecked) === count($postAllowed) ? $postChecked : false;
+    }
+    protected function prohibitionSession() {
+        if(isset($_SESSION["current_account"])) {
+            throw new Exception("Page 404 : not found");
+        }
     }
     /**
      * protected method for formating debug data

@@ -57,8 +57,9 @@
         buttons[i].addEventListener('click', function(e) {
             
             if(e.target.id === ID_RETURN) {//Return Button 
-                e.preventDefault()
+                
                 if(alreadyMove) {
+                    e.preventDefault()
                     moveContainer.style.transform= `TranslateX(0)`
                     alreadyMove = false
                 }

@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use DateTime;
 use Exception\ExceptionArr;
 use Helper\CheckMail;
 /**
@@ -10,14 +11,20 @@ class Contact extends Controller {
 
     const MIN_LENGTH_MESS = 30;
     const MAX_LENGTH_MESS = 500;
-    const GOOD_DIR = "http://projet-naruto.local/contact/contacted";
     const POST_ALLOWED = ["mail","subject","message"];
 
+    private $GOOD_DIR;
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->GOOD_DIR = $GLOBALS["PATH"]."contact/contacted";
+    }
     /**
      * CONTACT VIEW
      */
-    public function displayContact() {
-
+    public function displayContact() 
+    {
         require("../views/components/contact.php");
     }
 
@@ -31,9 +38,9 @@ class Contact extends Controller {
         if(!$postChecked= $this->checkPostVar($post, self::POST_ALLOWED)) {
             throw new \Exception("Error about post request");
         }
-        $mail = $postChecked["mail"];
-        $subject = $postChecked["subject"];
-        $mess = $postChecked["message"];
+        $mail = strip_tags($postChecked["mail"]);
+        $subject = strip_tags($postChecked["subject"]);
+        $mess = strip_tags($postChecked["message"]);
         $errors = [];
 
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
@@ -54,7 +61,13 @@ class Contact extends Controller {
                 "message"=>$mess,
             ];
             if(CheckMail::mail($data, false)){
-                header("Location:".self::GOOD_DIR);
+                $this->postData->setData("contacts", [
+                    "sender"=>$mail,
+                    "subject"=>$subject,
+                    "message"=>$mess,
+                    "sending_date"=>date("Y-m-d H:i:s.u")
+                ]);
+                header("Location:".$this->GOOD_DIR);
                 exit();
             } else {
                 throw new \Exception("Bad sending !");

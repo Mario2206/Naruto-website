@@ -22,8 +22,10 @@ class Template {
      private $content;
 
      private $data = []; 
+     private $view;
 
     public function __construct(string $content, array $css = [], array $js = []) {
+        $this->view = "../views/components/templates/temp1.php";
         $this->content = $content;  
         
         foreach($css as $css) {
@@ -47,9 +49,17 @@ class Template {
         $content = $this->content;
         $scripts = $this->scripts;
 
-        require("../views/components/temp1.php");
+        require($this->view);
     }
 
+    /**
+     * For changing the html template
+     * 
+     * @param string $temp_path -> path of the template
+     */
+    public function defineHtmlTemplate($temp_path) {
+        $this->view = $temp_path;
+    }
     /**
      * method to create link tag
      * @param string $css

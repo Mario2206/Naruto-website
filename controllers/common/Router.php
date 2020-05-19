@@ -4,6 +4,7 @@ namespace Controller;
 use Exception\{
     ExceptionArr
 };
+
 use Helper\FileReader;
 
 /**
@@ -19,8 +20,8 @@ class Router extends Controller {
     
     function __construct(array $get = null, array $post = null) {
         //FOR TESTING
-        $this->post = $_POST ?? $post;
-        $this->get = $_GET ?? $get;
+        $this->post = $post ?? $_POST;
+        $this->get = $get ?? $_GET;
     }
     /**
      * inits and checks all routes and actives the correct controller
@@ -39,9 +40,14 @@ class Router extends Controller {
                 $control->display();
            });
 
-           //<--  ANNEX ROUTES --> 
-           $router->map("GET", "/my-friends/", function() {
+           //<-- ANNEX ROUTES -->
+           $router->map("GET", "/legal_notices/", function() {
             $control = new AnnexPage();
+            $control->display();
+           });
+           //<--  FRIENDS PAGE ROUTES --> 
+           $router->map("GET", "/my-friends/", function() {
+            $control = new FriendsPage();
             $control->display();
            });
 
@@ -79,25 +85,66 @@ class Router extends Controller {
 
            //<-- CONNECT ROUTES -->
            $router->map("GET", "/connection/", function() {
-               $control = new Connection();
+               $control = new \Controller\Connection();
                $control->displayConnect();
            });
            $router->map("POST", "/connection/connecting", function() {
-                $control = new Connection();
+                $control = new \Controller\Connection();
                 $control->checkForConnecting($this->post);
             });
             $router->map("GET", "/connection/waiting-confirmation", function() {
-                $control = new Connection();
+                $control = new \Controller\Connection();
                 $control->displayConfirmMail();
             });
             $router->map("GET", "/connection/send-confirmation-mail", function() {
-                $control = new Connection();
+                $control = new \Controller\Connection();
                 $control->sendEmailForSub();
             });
             
+            //<-- DISCONNECT ROUTE -->
+            $router->map("GET", "/disconnection/", function() {
+                $control = new Disconnection();
+                $control->disconnect();
+            });
 
-            //<-- ROUTES FOR TESTING -->
-            $router->map("GET", "/test/", function() {
+            //<-- ROUTES FOR ADMINISTRATION -->
+
+                //Connection
+            $router->map("GET", "/administration/admin/connect", function() {
+                $control = new \Controller\Admin\Connection();
+                $control->display();
+            });
+            $router->map("POST", "/administration/admin/connecting", function() {
+                $control = new \Controller\Admin\Connection();
+                $control->checkPermission($this->post);
+            });
+                //Home
+            $router->map("GET", "/administration/admin/management/", function() {
+                $control = new \Controller\Admin\HomeManagement();
+                $control->display();
+            });
+                //articles
+            $router->map("GET", "/administration/admin/management/articles/", function() {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->display();
+            });
+                //members
+            $router->map("GET", "/administration/admin/management/members/", function() {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->display();
+            });
+                //contact
+            $router->map("GET", "/administration/admin/management/contacts/", function() {
+                $control = new \Controller\Admin\ContactManagement();
+                $control->display();
+            });
+            $router->map("GET", "/administration/admin/management/contacts/[i:id]", function($params) {
+                $control = new \Controller\Admin\ContactManagement();
+                $control->displayContact($params["id"]);
+            });
+
+             //<-- ROUTES FOR TESTING -->
+             $router->map("GET", "/test/", function() {
                 require("../views/test.php");
             });
             $router->map("POST", "/test/ok", function() {

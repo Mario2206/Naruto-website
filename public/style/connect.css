@@ -33,7 +33,7 @@ h1 {
     
 }
 
-#connect_form  input {
+#connect_form  input:not(#checkbox) {
     width: 100%;
     padding: 20px 5px;
     box-sizing: border-box;
@@ -42,6 +42,21 @@ h1 {
 .txt_input {
     font-family: "kaorigel.medium";
     font-size: 20px;
+}
+#checkbox_lab {
+    width: 100%;
+    padding: 10px 0;
+}
+
+#checkbox_lab p {
+    display: inline;
+    color: white;
+    font-family: "kaorigel.medium";
+}
+#subLink {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 input[type="submit"] {
     cursor: pointer;
@@ -77,4 +92,18 @@ input[type="submit"] {
 #errorMessage {
     color: red;
     letter-spacing: 2px;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width : 500px) {
+    #container_connect_form {
+        height: auto;
+    }
+    #container_color {
+        padding: 50px 0;
+    }
+    #connect_form {
+        width: 80%;
+    }
 }

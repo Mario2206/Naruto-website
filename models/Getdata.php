@@ -5,6 +5,10 @@ namespace Model;
  */
 class Getdata extends Model {
    
+    public function getAll($table) {
+        $req = $this->bdd->query("SELECT * FROM ".$table." ORDER BY sending_date DESC");
+        return $req->fetchAll();
+    }
 
     public function getByFilters($table,$filters) {//$filter is an object
         $query = "SELECT * FROM ".$table." WHERE ";

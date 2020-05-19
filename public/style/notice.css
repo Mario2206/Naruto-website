@@ -1,0 +1,23 @@
+#container_legal_notices {
+    padding: 40px 20px;
+    background-color: rgba(252, 146, 60,0.8);
+}
+#important {
+    text-align: center;
+    font-size: 2em;
+    display: block;
+    padding: 10px 0;
+}
+h2 {
+    padding: 10px 0;
+}
+h3 {
+    padding: 5px 0;
+}
+p {
+    font-family: "kaorigel.medium";
+}
+#container_legal_notices a {
+    font-family: "kaorigel.bold";
+    color: #145bb7;
+}

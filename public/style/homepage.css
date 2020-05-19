@@ -88,6 +88,7 @@ h1 {
     font-weight: bold;
     color: #d2d2c7;
     line-height: 25px;
+    width: 50%;
 }
 .button_desc {
     display: flex;

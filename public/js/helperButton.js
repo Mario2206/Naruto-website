@@ -28,7 +28,7 @@
         div.style.animation = 'divArrival 1s';
         p.style.opacity = "1";
         div.style.width = "30%";
-        div.style.height = "50px";
+        div.style.height = "75px";
         button.style.opacity = "1";
     }
 })()

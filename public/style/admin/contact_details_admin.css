@@ -1,0 +1,57 @@
+/* Contact details */
+h1 {
+    margin: 20px 0;
+}
+h3 {
+    margin: 20px 0;
+    font-weight: normal;
+}
+#container_message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#message {
+    background-color: rgba(114, 114, 114,0.2);
+    text-align: center;
+    padding: 30px 10px;
+    width: 80%;
+}
+#date {
+    font-style: italic;
+    margin: 20px 0;
+    text-align: end;
+}
+
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#area_mess {
+    width: 100%;
+}
+ textarea {
+    resize: none;
+    width: 90%;
+    height: 50vh;
+    border: 1px solid #145bb7;
+    font-size: 18px;
+    padding: 5px;
+    font-style: italic;
+}
+#area_mess p {
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+input[type="submit"] {
+    width: 50%;
+    padding: 20px 0;
+    border-radius: 10px;
+    margin-top: 30px;
+}

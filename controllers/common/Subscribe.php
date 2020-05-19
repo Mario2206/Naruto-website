@@ -18,7 +18,6 @@ use Exception\ExceptionArr;
  */
 class Subscribe extends Controller {
 
-    const GOOD_DIR = "http://projet-naruto.local/subscription/subscribed";
     const POST_ALLOWED = array(
         "firstname",
          "lastname",
@@ -33,10 +32,18 @@ class Subscribe extends Controller {
     );
     const FILE_ALLOWED = "avatar";
     const VILLAGE_ALLOWED =["konoha", "iwa", "suna", "kiri", "kumo"];
+
+    private $GOOD_DIR;
     
    
     private $errors = [];
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->prohibitionSession();
+        $this->GOOD_DIR = $GLOBALS["PATH"]."subscription/subscribed";
+    }
     /**
      * SEND SUBSCRIPTION PAGE
      */
@@ -146,7 +153,7 @@ class Subscribe extends Controller {
             //SEND EMAIL VERIFICATION
             $id = $this->getData->getId("accounts", ["mail"=>$postToSend['mail']]);
             CheckMail::mailVerif($id,$postToSend["mail"],$postToSend["vKey"]);
-            header('Location:'.self::GOOD_DIR);
+            header('Location:'.$this->GOOD_DIR);
             exit();
         } else {
             throw new \Exception("Servor error: data couldn't be sended to servor");
@@ -162,6 +169,7 @@ class Subscribe extends Controller {
      * !return bool
      */
     private function checkUsername(array $postChecked)  {
+        
         $data = $this->getData->getByFilters('accounts', $postChecked);
         return $data;
     }
