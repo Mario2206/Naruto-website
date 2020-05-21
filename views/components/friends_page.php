@@ -12,7 +12,7 @@
                             <span class="page_slide">1/3</span>
                             <strong>Sasuke</strong>
                             <div class="img_container">
-                                <img src="http://projet-naruto.local/img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
+                                <img src="<?=PATH ?>img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
                             </div>
                             <p>
                                 <span class="letter_maj">S</span>asuke Uchiwa est un ninja de renom. Très jeune, il développe des capacité exceptionnelles 
@@ -33,7 +33,7 @@
                             <span class="page_slide">2/3</span>
                             <strong>Sasuke</strong>
                             <div class="img_container">
-                                <img src="http://projet-naruto.local/img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
+                                <img src="<?=PATH ?>img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
                             </div>
                             <p>
                                 <span class="letter_maj">P</span>haec Gallus Hierapolim profecturus ut expeditioni specie tenus adesset, Antiochensi plebi supplicit
@@ -54,7 +54,7 @@
                             <span class="page_slide">3/3</span>
                             <strong>Sasuke</strong>
                             <div class="img_container">
-                                <img src="http://projet-naruto.local/img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
+                                <img src="<?=PATH ?>img/img_sasuke.png" alt="image Sasuke" title="Sasuke">
                             </div>
                             <p>
                                 <span class="letter_maj">P</span>haec Gallus Hierapolim profecturus ut expeditioni specie tenus adesset, Antiochensi plebi supplicit
@@ -82,18 +82,18 @@
         <div id="container_helper">
             <div id="txt_helper"><p>Maintiens le clique sur le slider et glisses la souris vers la droite ou vers la gauche pour faire défiler les informations</p></div>
             <div id="helper"></div>
-            <img src="http://projet-naruto.local/img/icon_helper.png" alt="helper" id="img_Helper">
+            <img src="<?= PATH?>img/icon_helper.png" alt="helper" id="img_Helper">
         </div>
     </div>
 
 <?php
     $content = ob_get_clean();
-    $css = [$GLOBALS["PATH"]."style/friends.css"];
+    $css = ["friends.css"];
     $js=[
-        $GLOBALS["PATH"]."js/package/HandlerTouches.js", 
-        $GLOBALS["PATH"]."js/slideShow.js", 
-        $GLOBALS["PATH"]."js/helperButton.js", 
-        $GLOBALS["PATH"]."js/menu.js"
+        "package/HandlerTouches.js", 
+        "slideShow.js", 
+        "helperButton.js", 
+        "menu.js"
     ];
     $temp = new Template($content, $css, $js);
     $temp->title = "Mes compagnons de route";

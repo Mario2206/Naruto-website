@@ -2,9 +2,9 @@
 
 namespace Controller;
 
-class FriendsPage {
+class FriendsPage extends Controller {
 
     public function display() {
-        require("../views/components/friends_page.php");
+        $this->render("friends_page.php");
     }
 }

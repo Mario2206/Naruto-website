@@ -23,7 +23,7 @@
                     <p id="signature">NARUTO</p>
                 </div>
                 <div id="main_pres_childImg">
-                    <img src="http://projet-naruto.local/img/symbole.png" alt="symbol" title="Konoha" class="img_symbol">
+                    <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="img_symbol">
                 </div>
             </div>
         </section>
@@ -67,9 +67,9 @@
             <div class="secondary_desc">
                 <h3>Mes objectifs</h3>
                 <div class="button_desc">
-                   <button><img src="http://projet-naruto.local/img/parchment_naruto.png" alt=""></button>
-                   <button><img src="http://projet-naruto.local/img/parchment_naruto2.png" alt=""></button>
-                   <button><img src="http://projet-naruto.local/img/parchment_naruto3.png" alt=""></button>
+                   <button><img src="<?=PATH ?>img/parchment_naruto.png" alt=""></button>
+                   <button><img src="<?=PATH ?>img/parchment_naruto2.png" alt=""></button>
+                   <button><img src="<?=PATH ?>img/parchment_naruto3.png" alt=""></button>
                 </div>
             </div>
             <br/><br/><br/><br/>
@@ -77,7 +77,7 @@
 <?php
 
 $content = ob_get_clean();
-$css = ["http://projet-naruto.local/style/homepage.css"];
+$css = ["homepage.css"];
 $temp = new Template($content, $css);
 $temp->title = "Home";
 $temp->init();

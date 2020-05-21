@@ -20,6 +20,8 @@ abstract class Controller {
     protected $updateData;
     protected $deleteData;
 
+    protected $errors = [];
+
     private $postAllowed;
 
 
@@ -30,6 +32,22 @@ abstract class Controller {
         $this->deleteData= new Deletedata();
     }
 
+    protected function render(string $path, array $vars = []) {
+        extract($vars);
+        require ROOT."/views/components/".$path;
+    }
+
+    protected function redirect(string $url) {
+        header("Location:".PATH.$url);
+        exit();
+    }
+
+    protected function setError(string $error) {
+        array_push($this->errors, $error);
+    }
+    protected function getError() {
+        return $this->errors;
+    }
     /**
      * protected method that enables to test the post request and check if  data is correct 
      * 
@@ -46,6 +64,9 @@ abstract class Controller {
         },ARRAY_FILTER_USE_KEY);
         return count($postChecked) === count($postAllowed) ? $postChecked : false;
     }
+    /***
+     * For hidding pages for connected persons
+     */
     protected function prohibitionSession() {
         if(isset($_SESSION["current_account"])) {
             throw new Exception("Page 404 : not found");
@@ -76,5 +97,11 @@ abstract class Controller {
         return $newValues;
     }
 
+    protected function cut(array $initArray, string $keyToDelete) {
+        $this->key = $keyToDelete;
+        return array_filter($initArray, function($k) {
+                return $k !== $this->key;
+            },ARRAY_FILTER_USE_KEY);
+    }
     
 }

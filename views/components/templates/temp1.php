@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/nav.css">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/footer.css">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/common.css">
+    <link rel="stylesheet" href="<?= PATH ?>style/nav.css">
+    <link rel="stylesheet" href="<?= PATH ?>style/footer.css">
+    <link rel="stylesheet" href="<?= PATH ?>style/common.css">
     <?= $links?>
     <title><?= $title ?></title>
     <meta name="author" content="RAIMBAULT Mathieu">
@@ -16,7 +16,7 @@
         <?=$content?>
         <?php require("../views/components/footer.php") ?>
     </div>
-    <script src="http://projet-naruto.local/js/menu.js"></script>
+    <script src="<?= PATH ?>js/menu.js"></script>
     <?=$scripts ?>
 </body>
 </html>

@@ -23,10 +23,10 @@ class Updatedata extends Model {
             $filtersPart = "";
 
             foreach($filters as $key=>$filter) {
-                $filtersPart.= $key.' = :'.$key.', ';
+                $filtersPart.= $key.' = :'.$key.' AND ';
             }
 
-            $filtersPart = rtrim($filtersPart,', ');
+            $filtersPart = rtrim($filtersPart,'AND ');
             $updateReq.= ' WHERE '.$filtersPart;
 
         }

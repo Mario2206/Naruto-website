@@ -69,7 +69,7 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $css = [
-    $GLOBALS["PATH"]."style/notice.css"
+    "notice.css"
 ];
 $temp = new Template($content, $css);
 $temp->title = "Mentions légales";

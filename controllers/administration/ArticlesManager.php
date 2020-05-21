@@ -11,7 +11,8 @@ class ArticlesManager extends Controller {
     {
         parent::__construct();
     }
-    public function display() {
-        require("../views/components/administration/admin_articles_management.php");
+    public function display() 
+    {
+        $this->render("administration/admin_articles_management.php");
     }
 }

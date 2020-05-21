@@ -4,10 +4,10 @@ namespace Controller;
 /**
  * Send the HomePage
  */
-class HomePage {
+class HomePage extends Controller {
 
     public function display() {
-        require("../views/components/homepage.php");
+        $this->render("homepage.php");
     }
     
 }

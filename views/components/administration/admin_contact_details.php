@@ -14,7 +14,7 @@
 
 <?php if(!isset($data[0]->contact_reply)) :?>
 
-    <?=$errors ? "<div class=\"alert bad\"><strong>".$errors."</div>" : false ?>
+    <?=$errors ? "<div class=\"alert red borderRed\"><strong>".$errors."</div>" : false ?>
     <form action="/administration/admin/management/contacts/reply/<?=$data[0]->id;?>" method="post">
         <label id="area_mess">
             <p id="title_response">RE : <?=$data[0]->subject; ?></p>
@@ -45,8 +45,8 @@
 
 $content = ob_get_clean();
 $css =  [
-    $GLOBALS["PATH"]."style/admin/contact_details_admin.css"
+    "admin/contact_details_admin.css"
 ];
 $temp = new Template($content, $css);
-$temp->defineHtmlTemplate("../views/components/templates/tempAdmin.php");
+$temp->defineHtmlTemplate("tempAdmin.php");
 $temp->init();

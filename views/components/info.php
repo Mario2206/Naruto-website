@@ -15,7 +15,7 @@
 
 $content = ob_get_clean();
 $css = [
-    $GLOBALS["PATH"]."style/info.css"
+    "info.css"
 ];
 $temp = new Template($content, $css);
 $temp->title = "Information";

@@ -33,7 +33,7 @@
                 <td><?=$item->sending_date; ?></td>
                 <td><a class="link green" href="/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
                 <td>
-                    <?=$item->already_seen == 1 ? "<img src='".$GLOBALS["PATH"]."img/icons/courriel.png' alt='Courriel'/>" : false ?>
+                    <?=$item->already_seen == 1 ? "<img src='".PATH."img/icons/courriel.png' alt='Courriel'/>" : false ?>
                 </td>
             </tr>
             <?php
@@ -47,8 +47,8 @@
 
     $content = ob_get_clean();
     $css = [
-        $GLOBALS["PATH"]."/style/admin/table_style_admin.css"
+        "admin/table_style_admin.css"
     ];
     $temp = new Template($content, $css);
-    $temp->defineHtmlTemplate("../views/components/templates/tempAdmin.php");
+    $temp->defineHtmlTemplate("tempAdmin.php");
     $temp->init();

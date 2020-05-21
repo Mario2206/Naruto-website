@@ -58,6 +58,9 @@ nav a:hover {
 .borderRed {
     border: 2px solid red;
 }
+.blue {
+    background-color: rgb(61, 105, 228);
+}
 
 .link {
     color: white;

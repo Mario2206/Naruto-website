@@ -33,7 +33,7 @@ class Encryption {
      */
     public static function createKey() {
         $MIN = 100000;
-        $MAX = 10000000000;
+        $MAX = 9223372036854775800;
         return mt_rand($MIN,$MAX);
     }
 }

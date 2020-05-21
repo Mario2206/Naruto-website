@@ -128,18 +128,39 @@ class Router extends Controller {
                 $control = new \Controller\Admin\ArticlesManager();
                 $control->display();
             });
-                //members
+                //members(user)
             $router->map("GET", "/administration/admin/management/members/", function() {
                 $control = new \Controller\Admin\MembersManagement();
                 $control->display();
             });
             $router->map("GET", "/administration/admin/management/members/delete/[i:id]", function($params) {
                 $control = new \Controller\Admin\MembersManagement();
-                $control->deleteMember($params["id"]);
+                $control->deleteMember($params["id"], "accounts");
             });
             $router->map("POST", "/administration/admin/management/members/modification/[i:id]", function($params) {
                 $control = new \Controller\Admin\MembersManagement();
-                $control->displayModif($this->post);
+                $control->dataChanging($this->post);
+            });
+                //members(admin)
+            $router->map("POST", "/administration/admin/management/members/creation/admin/", function() {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->inviteAdmin($this->post);
+            });
+            $router->map("GET", "/administration/admin/management/members/delete/admin/[i:id]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->deleteMember($params["id"], "_admins");
+            });
+            $router->map("GET", "/administration/admin/management/members/confirm/admin/[i:id]-[i:vKey]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->displaySubscribeAdmin($params["id"], $params['vKey']);
+            });
+            $router->map("POST", "/administration/admin/management/members/confirm/admin/checking/[i:id]-[i:vKey]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->SubscribeAdminChecking($this->post, $params);
+            });
+            $router->map("GET", "/administration/admin/management/members/confirm/admin/finally/[i:id]-[i:vKey]", function($params) {
+                $control = new \Controller\Admin\MembersManagement();
+                $control->confirmSubsribeByAdmin($params["id"], $params["vKey"]);
             });
                 //contact
             $router->map("GET", "/administration/admin/management/contacts/", function() {
@@ -157,8 +178,8 @@ class Router extends Controller {
 
              //<-- ROUTES FOR TESTING -->
              $router->map("GET", "/test/", function() {
-                 var_dump($this->clearValueFromArray(array()));
-               // require("../views/test.php");
+                 
+               require("../views/test.php");
             });
             $router->map("POST", "/test/ok", function() {
                 $fileReader = new FileReader();

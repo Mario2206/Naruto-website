@@ -35,14 +35,14 @@ ob_start();
 <?php
     $content = ob_get_clean();
     $css = [
-        "http://projet-naruto.local/style/contact.css",
-        "http://projet-naruto.local/style/form.css",
-        "http://projet-naruto.local/style/alert.css"
+        "contact.css",
+        "form.css",
+        "alert.css"
     ];
     $js = [
-        "http://projet-naruto.local/js/package/Form.js",
-        "http://projet-naruto.local/js/package/Input.js",
-        "http://projet-naruto.local/js/contactForm.js"
+        "package/Form.js",
+        "package/Input.js",
+        "contactForm.js"
     ];
     $temp = new Template($content, $css, $js);
     $temp->title = "Contact";

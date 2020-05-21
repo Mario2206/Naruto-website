@@ -18,6 +18,9 @@ table thead tr {
 table thead tr th {
     font-family: "kaorigel.bold";
 }
+table tbody :nth-child(2n):not(td) {
+    background-color: rgba(218, 216, 216, 0.7);
+}
 table tbody tr {
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid black;
@@ -46,6 +49,14 @@ input[type="text"] {
 }
 input[type="text"]:not(.inputAllowed) {
      cursor: not-allowed;
+}
+
+select {
+    background: none;
+    border: none;
+}
+select option {
+    background : none;
 }
 
 

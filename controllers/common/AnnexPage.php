@@ -2,10 +2,10 @@
 
 namespace Controller;
 
-class AnnexPage {
+class AnnexPage extends Controller {
 
     public function display() 
     {
-        require("../views/components/legal_notice.php");
+        $this->render("legal_notice.php");
     }
 }

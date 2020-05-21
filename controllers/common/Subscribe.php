@@ -10,7 +10,8 @@ use Model\{
 use Helper\{
     Encryption,
     CheckMail,
-    FileReader
+    FileReader,
+    Checker
 };
 use Exception\ExceptionArr;
 /**
@@ -33,22 +34,20 @@ class Subscribe extends Controller {
     const FILE_ALLOWED = "avatar";
     const VILLAGE_ALLOWED =["konoha", "iwa", "suna", "kiri", "kumo"];
 
-    private $GOOD_DIR;
+    const GOOD_DIR = "subscription/subscribed";
     
    
-    private $errors = [];
 
     public function __construct()
     {
         parent::__construct();
         $this->prohibitionSession();
-        $this->GOOD_DIR = $GLOBALS["PATH"]."subscription/subscribed";
     }
     /**
      * SEND SUBSCRIPTION PAGE
      */
     public function displaySub() {
-        require('../views/components/subpage.php');
+        $this->render('subpage.php');
     }
 
     /**
@@ -57,7 +56,7 @@ class Subscribe extends Controller {
     public function displaySubAccepted() {
         $message = "L'inscription s'est bien passee, il est temps de la confirmer via le lien 
                     que vous venez de recevoir par mail !!!!";
-        require('../views/components/info.php');
+        $this->render("info.php", compact("message"));
     }
 
     /**
@@ -72,7 +71,7 @@ class Subscribe extends Controller {
         if($account->isVerif == 0 && $account->vKey === $vKey) {
             if($this->updateData->updateBdd("accounts", ["isVerif"=>1], ["id"=>$id])){
                 $message = "La confirmation est effectuee.<br/>BIEN JOUE TU PEUX TE CONNECTER !!";
-                require("../views/components/info.php");
+                $this->render('info.php', compact("message"));
             } else {
                 throw new \Exception("Error about confirmation !!");
             }
@@ -95,23 +94,23 @@ class Subscribe extends Controller {
         $postChecked = $this->clearValueFromArray($postChecked);
 
         //check if the username is already existing
-        if($this->checkUsername(array("username"=>$postChecked["username"]))){
-            array_push($this->errors,"Le nom d'utilisateur est déjà pris");
+        if($this->getData->getByFilters("accounts", ["username"=>$postChecked["username"]])){
+            $this->setError("Le nom d'utilisateur est déjà pris");
         }
 
         //check password (syntax and equality)
-        if(!$this->checkPassword(array($postChecked["password"], $postChecked["confirmPassword"]))){
-            array_push($this->errors,"Les mots de passe ne sont pas identiques");
+        if(!Checker::checkPassword(array($postChecked["password"], $postChecked["confirmPassword"]))){
+            $this->setError("Les mots de passe ne sont pas identiques");
         }
 
         //check mail
-        if(!$this->checkMail($postChecked['mail'])) {
-            array_push($this->errors,"Le mail n'est pas conforme ou il est déjà enregistré dans la base de donnée");
+        if(!Checker::checkMail($postChecked['mail']) || $this->getData->getByFilters("accounts", ["mail"=>$postChecked["mail"]])) {
+            $this->setError("Le mail n'est pas conforme ou il est déjà enregistré dans la base de donnée");
         }
 
         //check village
         if(!in_array($postChecked['village'], self::VILLAGE_ALLOWED)) {
-            array_push($this->errors,"Le village n'est pas conforme");
+            $this->setError("Le village n'est pas conforme");
         }
 
         //check date
@@ -119,12 +118,12 @@ class Subscribe extends Controller {
             $date = new \DateTime("{$postChecked['day']}-{$postChecked['month']}-{$postChecked['year']}");
             $birthdate = $date->format('Y-m-d H:i:s.u');
         } else {
-            array_push($this->errors,"La date n'est pas conforme");
+            $this->setError("La date n'est pas conforme");
         }
 
         //Check if errors or not
-        if(!empty($this->errors)) {
-            throw new ExceptionArr($this->errors); 
+        if(!empty($this->getError())) {
+            throw new ExceptionArr($this->getError()); 
         }
 
         //check and send img file
@@ -156,57 +155,11 @@ class Subscribe extends Controller {
             //SEND EMAIL VERIFICATION
             $id = $this->getData->getId("accounts", ["mail"=>$postToSend['mail']]);
             CheckMail::mailVerif($id,$postToSend["mail"],$postToSend["vKey"]);
-            header('Location:'.$this->GOOD_DIR);
-            exit();
+            $this->redirect(self::GOOD_DIR);
         } else {
             throw new \Exception("Servor error: data couldn't be sended to servor");
         } 
               
     }
 
-    /**
-     * check if the username already exists
-     * 
-     * @param array postChecked username : ["username"=>"theUsername"]
-     * 
-     * !return bool
-     */
-    protected function checkUsername(array $postChecked)  {
-        
-        $data = $this->getData->getByFilters('accounts', $postChecked);
-        return $data;
-    }
-
-    /**
-     * check if  password and confirm password are identical and if the password has a correct syntax
-     * 
-     * @param array passwords : ["password", "confirmPassword]
-     * 
-     * !return bool
-     */
-    private function checkPassword(array $passwords) : bool {//array
-        if($passwords[0] === $passwords[1]) {
-            $numberMaj = array_filter(explode("//",$passwords[0]),function($item){
-                return preg_match("#[A-Z]#", $item);
-            });
-            $numberCaract = array_filter(explode("//",$passwords[0]),function($item){
-                return preg_match("#[$!/;,?ù%£^+=}{'@#]#", $item);
-            });
-            $numberNum = array_filter(explode("//",$passwords[0]),function($item){
-                return preg_match("#[0-9]#", $item);
-            });
-            return $numberMaj > 0 && $numberCaract > 0 && $numberNum > 2 && iconv_strlen($passwords[0]) > 10;
-        }   
-    }
-
-    /**
-     * Check if the mail has a correct syntax and if it doesn't exist in bdd
-     * 
-     * @param string mail
-     * 
-     * !return bool
-     * */
-    protected function checkMail(string $mail) : bool {
-        return filter_var($mail, FILTER_VALIDATE_EMAIL) && !$this->getData->getByFilters("accounts", ["mail"=>$mail]) ? true : false;
-    }
 }

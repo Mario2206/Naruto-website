@@ -13,19 +13,15 @@ class Contact extends Controller {
     const MAX_LENGTH_MESS = 500;
     const POST_ALLOWED = ["mail","subject","message"];
 
-    private $GOOD_DIR;
+    const GOOD_DIR = "contact/contacted";
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->GOOD_DIR = $GLOBALS["PATH"]."contact/contacted";
-    }
+  
     /**
      * CONTACT VIEW
      */
     public function displayContact() 
     {
-        require("../views/components/contact.php");
+        $this->render("contact.php");
     }
 
     /**
@@ -67,8 +63,7 @@ class Contact extends Controller {
                     "message"=>$mess,
                     "sending_date"=>date("Y-m-d H:i:s.u")
                 ]);
-                header("Location:".$this->GOOD_DIR);
-                exit();
+                $this->redirect(self::GOOD_DIR);
             } else {
                 throw new \Exception("Bad sending !");
             }
@@ -82,6 +77,6 @@ class Contact extends Controller {
     public function displayEndReq() {
         //view  good reqs
         $message = "L'envoi s'est effectue avec succes !";
-        require('../views/components/info.php');
+        $this->render("info.php", compact("message"));
     }
 }

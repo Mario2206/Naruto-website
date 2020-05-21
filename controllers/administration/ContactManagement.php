@@ -8,14 +8,10 @@ class ContactManagement extends Controller {
 
     const KEY_ALLOWED = ["message"];
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function display() {
         $data = $this->getData->getAll("contacts");
-        require('../views/components/administration/admin_contact_manager.php');
+        $this->render("administration/admin_contact_manager.php", compact("data"));
         $_SESSION["errors"] = null;
     }
 
@@ -30,13 +26,11 @@ class ContactManagement extends Controller {
             $data[0]->contact_reply = $reply[0];
         }
         
-    
-        require('../views/components/administration/admin_contact_details.php');
+        $this->render("administration/admin_contact_details.php", compact("data", "errors"));
         $_SESSION["errors"] = null;
     }
 
     public function sendResponse(array $post, int $idContact) {
-
         if(!$postChecked = $this->checkPostVar($post, self::KEY_ALLOWED)) {
             throw new \Exception("Error about post Request : input names aren't correct");
         }
@@ -44,8 +38,7 @@ class ContactManagement extends Controller {
 
         if(iconv_strlen($postChecked["message"]) < 15 ) {
             $_SESSION["errors"] = "Le message doit faire au minimum 15 caractères";
-            header("Location:".$GLOBALS["PATH"]."administration/admin/management/contacts/".$idContact);
-            exit();
+            $this->redirect("administration/admin/management/contacts/".$idContact);
         }
         $dataForMail = [
             "dest"=>$currentContact[0]->sender,
@@ -66,8 +59,9 @@ class ContactManagement extends Controller {
             if(!$this->postData->setData("contact_reply", $postData) ) {
                 throw new \Exception("Error for storing in bdd");
             }
-            header("Location:".$GLOBALS["PATH"]."administration/admin/management/contacts/".$idContact);
-            exit();
+            $this->redirect("administration/admin/management/contacts/".$idContact);
+        } else{
+            throw new \Exception("Error for sending mail, maybe the mail doesn't exist");
         }
     }
 }

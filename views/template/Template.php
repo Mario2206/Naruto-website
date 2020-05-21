@@ -25,7 +25,7 @@ class Template {
      private $view;
 
     public function __construct(string $content, array $css = [], array $js = []) {
-        $this->view = "../views/components/templates/temp1.php";
+        $this->defineHtmlTemplate("temp1.php");
         $this->content = $content;  
         
         foreach($css as $css) {
@@ -58,7 +58,7 @@ class Template {
      * @param string $temp_path -> path of the template
      */
     public function defineHtmlTemplate($temp_path) {
-        $this->view = $temp_path;
+        $this->view = ROOT."/views/components/templates/".$temp_path;
     }
     /**
      * method to create link tag
@@ -68,7 +68,7 @@ class Template {
      */
 
     private function createLink(string $css) : string {
-        return "<link rel=\"stylesheet\" href=\"{$css}\">";
+        return "<link rel=\"stylesheet\" href=\"".PATH."style/".$css."\">";
     }
     /**
      * method to create script tag
@@ -77,6 +77,6 @@ class Template {
      * !return string script tag
      */
     private function createScript(string $js) : string {
-        return "<script src=\"{$js}\"></script>";
+        return "<script src=\"".PATH."js/".$js."\"></script>";
     }
 }

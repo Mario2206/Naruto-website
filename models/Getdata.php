@@ -24,7 +24,7 @@ class Getdata extends Model {
 
     public function getId($table,$filter) {
         $data = $this->getByFilters($table, $filter);
-        return $data[0]->id;
+        return $data[0]->id ?? false;
     }
     public function getAllIds($table) {
         $req = $this->bdd->query("SELECT id FROM ".$table." ORDER BY sending_date DESC");

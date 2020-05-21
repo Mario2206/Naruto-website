@@ -27,13 +27,13 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $css = [
-    $GLOBALS["PATH"]."style/connect.css",
-    $GLOBALS["PATH"]."style/alert.css"
+    "connect.css",
+    "alert.css"
 ];
 $js= [
-    $GLOBALS["PATH"]."js/package/Input.js",
-    $GLOBALS["PATH"]."js/package/Form.js",
-    $GLOBALS["PATH"]."js/connectForm.js"
+   "package/Input.js",
+    "package/Form.js",
+    "connectForm.js"
 ];
 $temp = new Template($content, $css, $js);
 $temp->title = "Connection au compte utilisateur";

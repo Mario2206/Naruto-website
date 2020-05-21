@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="http://projet-naruto.local/style/subscription.css">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/common.css">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/form.css">
-    <link rel="stylesheet" href="http://projet-naruto.local/style/alert.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/subscription.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/common.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/form.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/alert.css">
     
 </head>
 <body>
@@ -89,7 +89,7 @@
                                         <span id="inputFile">Cliquer-ici</span>
                                         <input type="file" accept="image/png, image/jpeg" name="avatar"/>
                                     </label>
-                                    <img id="avatarImg" src="http://projet-naruto.local/img/icon_connection.png" alt="AVATAR">
+                                    <img id="avatarImg" src="<?=PATH ?>img/icon_connection.png" alt="AVATAR">
                                 </div>   
                             </div>
                         </div>
@@ -97,23 +97,23 @@
                             <p class="title">Choisis ton village caché : </p>
                             <div id="container_labelsForRadio">
                                 <label>
-                                    <img src="http://projet-naruto.local/img/symbole.png" class="imgCharact" alt="konoha"/>
+                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="konoha"/>
                                     <input type="radio" name="village" value="konoha" checked />
                                 </label>
                                 <label>
-                                    <img src="http://projet-naruto.local/img/symbole.png" class="imgCharact" alt="iwa"/>
+                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="iwa"/>
                                     <input type="radio" name="village" value="iwa"  />
                                 </label>
                                 <label>
-                                    <img src="http://projet-naruto.local/img/symbole.png" class="imgCharact" alt="suna"/>
+                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="suna"/>
                                     <input type="radio" name="village" value="suna"  />
                                 </label>
                                 <label>
-                                    <img src="http://projet-naruto.local/img/symbole.png" class="imgCharact" alt="kiri"/>
+                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="kiri"/>
                                     <input type="radio" name="village" value="kiri"  />
                                 </label>
                                 <label>
-                                    <img src="http://projet-naruto.local/img/symbole.png" class="imgCharact" alt="kumo"/>
+                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="kumo"/>
                                     <input type="radio" name="village" value="kumo"  />
                                 </label>
                             </div>
@@ -129,10 +129,10 @@
             </div>
         </form>
     </section>
-    <script src="http://projet-naruto.local/js/package/HandlerRadio.js"></script>
-    <script src="http://projet-naruto.local/js/package/Input.js"></script>
-    <script src="http://projet-naruto.local/js/package/Form.js"></script>
-    <script src="http://projet-naruto.local/js/navigationSubscription.js"></script>
+    <script src="<?=PATH ?>js/package/HandlerRadio.js"></script>
+    <script src="<?=PATH ?>js/package/Input.js"></script>
+    <script src="<?=PATH ?>js/package/Form.js"></script>
+    <script src="<?=PATH ?>js/navigationSubscription.js"></script>
     
 </body>
 </html>
