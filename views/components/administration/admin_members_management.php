@@ -4,6 +4,15 @@ use Controller\Subscribe;
 use Template\Template;
     ob_start();
 ?>
+<!-- ERRORS -->
+<?php if($errors) : ?>
+<div class="alert red borderRed">
+    <?php foreach($errors as $e): ?>
+    <?=$e; ?>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+<!-- CONTENT -->
 <div id="container_table">
     <h1>Membres</h1>  
     <br/><br/>
@@ -30,7 +39,7 @@ use Template\Template;
                     foreach($dataUsers as $item):      
                 ?>
                 <tr>
-                    <form action="/administration/admin/management/members/modification/1" method="post">
+                    <form action="/administration/admin/management/members/modification/" method="post">
                         <td><input type="text" value="<?=$item->id;?>" readonly name="id"/></td>
                         <td><input type="text" value="<?=$item->firstname; ?>"  readonly /></td>
                         <td><input type="text" value="<?=$item->lastname; ?>"readonly /></td>
@@ -52,7 +61,7 @@ use Template\Template;
                         <td><input type="text" value="<?=$item->subDate;?>" name="sub_date" readonly></td>
                         <td><img src='<?=PATH."img/icons/"?><?=$item->isVerif == 1 ? "icon_ok.png" : "cross_icon.png"; ?>' alt="icon"></td>
                         <td><a class="link red" href="/administration/admin/management/members/delete/<?=$item->id;?>">Supprimer</a></td>
-                        <td><input type="submit" class="link green" href="/administration/admin/management/members/modification/<?=$item->id;?>" value='Modifier'/></td>
+                        <td><input type="submit" class="link green"  value='Modifier'/></td>
                     </form>
                 </tr>
                 <?php
@@ -82,12 +91,17 @@ use Template\Template;
                     foreach($dataAdmins as $item):      
                 ?>
                 <tr>
-                    <form action="/administration/admin/management/members/modification/1" method="post">
+                    <form action="/administration/admin/management/members/modification/admin/" method="post">
                         <td><input type="text" value="<?=$item->id;?>" readonly name="id"/></td>
                         <td><input type="text" value="<?=$item->firstname; ?>"  readonly /></td>
                         <td><input type="text" value="<?=$item->lastname; ?>"readonly /></td>
-                        <td><input type="text" value="<?=$item->admin_username; ?>" name="username" class="inputAllowed"/></td>
+                        <td><input type="text" value="<?=$item->admin_username; ?>" name="admin_username" class="inputAllowed"/></td>
                         <td><input type="text" value="<?=$item->mail;?>" name="mail" class="inputAllowed" /></td>
+                        <td><input type="text" value="<?=$item->date; ?>" name="date" /></td>
+                        <td><select name="level">
+                            <option value="<?=$item->level; ?>"><?=$item->level == 0 ? "Normal" : "SuperAdmin"?></option>
+                            <option value="<?=$item->level == 0 ? 1 : 0 ; ?>"><?=$item->level == 0 ? "SuperAdmin" : "Normal" ?></option>
+                        </select></td>
                         <?php if($item->admin_password === ""):?>
                             <td><img src='<?=PATH."img/icons/cross_icon.png"; ?>' alt="icon"></td>
                         <?php elseif($item->is_activated == 0) :?>
@@ -96,7 +110,7 @@ use Template\Template;
                             <td><img src='<?=PATH."img/icons/icon_ok.png"; ?>' alt="icon"></td>
                         <?php endif;?>
                         <td><a class="link red" href="/administration/admin/management/members/delete/admin/<?=$item->id;?>">Supprimer</a></td>
-                        <td><input type="submit" class="link green" href="/administration/admin/management/members/modification/<?=$item->id;?>" value='Modifier'/></td>
+                        <td><input type="submit" class="link green" value='Modifier'/></td>
                     </form>
                 </tr>
                 <?php

@@ -80,5 +80,5 @@ $content = ob_get_clean();
 $css = ["homepage.css"];
 $temp = new Template($content, $css);
 $temp->title = "Home";
-$temp->init();
+$temp->init(compact("session"));
 ?>

@@ -1,0 +1,58 @@
+.container_background {
+    background: url('../img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.container_color {
+    background-color: rgba(219,98,28,0.5);
+}
+.container_article {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('../img/parchment_2.png');
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.6);
+}
+.container_miniature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+.container_miniature img {
+    width: 50%;
+}
+.content {
+    width: 80%;
+}
+.content p {
+    font-family: "kaorigel.medium";
+}
+.container_annex {
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.container_annex  p {
+    font-family: "kaorigel.medium";
+}
+.container_like a {
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+}
+.container_like p {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-size: 40px;
+    color: black;
+}
+.container_like img {
+    width: 40px;
+    height: 40px;
+}

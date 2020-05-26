@@ -6,17 +6,19 @@ use Model\ {
 };
 use Helper\ {
     CheckMail,
-    Encryption
+    Cookie,
+    Encryption,
+    Session
 };
 /**
  * Class Connection Controller 
  */
 class Connection extends Controller {
 
-    const GOOD_DIR = "";
-    const BAD_DIR = "connection/";
-    const VERIF_DIR = "connection/waiting-confirmation";
-    const MAIL_DIR = "connection/send-confirmation-mail";
+    const GOOD_DIR = "/";
+    const BAD_DIR = "/connection/";
+    const VERIF_DIR = "/connection/waiting-confirmation";
+    const MAIL_DIR = "/connection/send-confirmation-mail";
 
 
     /**
@@ -24,8 +26,10 @@ class Connection extends Controller {
      */
     public function displayConnect() {
         //View for connection 
-        $this->prohibitionSession();
-        $this->render("connect.php");
+        $this->prohibitionSession("user");
+        $error = Session::getError();
+        $this->render("connect.php", compact("error"));
+        Session::cleanError();
     }
 
     /**
@@ -44,19 +48,32 @@ class Connection extends Controller {
             
             
             if(!$account = $this->getData->getByFilters("accounts", $filter)[0]) {
+                Session::setError(["Les identifiants sont incorrects"]);
                 $this->redirect(self::BAD_DIR);
             }
+
             //CHECK PASSWORD
             if(Encryption::check($password,$account->password)) {
+
                 if($account->isVerif == 1) {
-                    $_SESSION["current_account"] = $account;
+                    Session::startUserSession($account);
+                    if(isset($post["keepConnection"])) {
+                       //SET COOKIE
+                       $remember_token = Encryption::createKey();
+                       $this->updateData->updateBdd("accounts", ["remember_key"=>$remember_token], ['id'=>$account->id]);
+                       Cookie::storeSessionKey($account->id, $remember_token);
+                    }
                     $this->redirect(self::GOOD_DIR);
+
                 } else {
                     $this->redirect(self::VERIF_DIR);
                 }
+
             } else {
+                Session::setError(["Les identifiants sont incorrects"]);
                 $this->redirect(self::BAD_DIR);
             }
+
         } else {
             throw new \Exception("ERROR ABOUT POST REQUEST : POST ID AREN'T CORRECT");
         }

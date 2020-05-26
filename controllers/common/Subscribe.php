@@ -34,14 +34,14 @@ class Subscribe extends Controller {
     const FILE_ALLOWED = "avatar";
     const VILLAGE_ALLOWED =["konoha", "iwa", "suna", "kiri", "kumo"];
 
-    const GOOD_DIR = "subscription/subscribed";
+    const GOOD_DIR = "/subscription/subscribed";
     
    
 
     public function __construct()
     {
         parent::__construct();
-        $this->prohibitionSession();
+        $this->prohibitionSession("user");
     }
     /**
      * SEND SUBSCRIPTION PAGE
@@ -116,7 +116,7 @@ class Subscribe extends Controller {
         //check date
         if(is_numeric($postChecked["day"]) && is_numeric($postChecked["month"]) && is_numeric($postChecked["year"])) {
             $date = new \DateTime("{$postChecked['day']}-{$postChecked['month']}-{$postChecked['year']}");
-            $birthdate = $date->format('Y-m-d H:i:s.u');
+            $birthdate = $date->format(DATE_FORMAT);
         } else {
             $this->setError("La date n'est pas conforme");
         }
@@ -130,6 +130,7 @@ class Subscribe extends Controller {
         $postChecked+= [self::FILE_ALLOWED=>""];
         if(!empty($_FILES[self::FILE_ALLOWED]["name"])) {
             $img_reader = new FileReader();
+            $img_reader->defineDir("img_uploaded/profil/");
             if($img_reader->getImage($_FILES[self::FILE_ALLOWED])) {
                 $postChecked[self::FILE_ALLOWED] = $img_reader->getUrl();
             }

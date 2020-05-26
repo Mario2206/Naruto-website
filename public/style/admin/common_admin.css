@@ -22,6 +22,8 @@ p {
     font-family: "kaorigel.medium";
 }
 nav {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 0;
     background-color: #145bb7; 
 }
@@ -44,6 +46,18 @@ nav a:hover {
     text-align: center;
     padding: 10px 0;
     margin: 20px 0;
+    font-style: italic;
+}
+.link {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
 }
 .green {
     background-color: rgb(50, 211, 117);
@@ -61,12 +75,31 @@ nav a:hover {
 .blue {
     background-color: rgb(61, 105, 228);
 }
+.orange {
+    background-color: rgb(245, 162, 67);
+    color: black;
+}
+.borderOrange {
+    border: 2px solid rgb(199, 121, 57);
+}
 
-.link {
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
+/* ANIM */
+
+
+@keyframes backgroundPop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spawn {
+    from {
+        transform: translateY(-500px);
+    }
+    To {
+        transform: translateY(0);
+    }
 }

@@ -92,6 +92,10 @@ input[type="submit"] {
 #errorMessage {
     color: red;
     letter-spacing: 2px;
+    text-align: center;
+}
+#errorMessage a {
+    color: red;
 }
 
 /* RESPONSIVE */

@@ -50,7 +50,15 @@ class Router extends Controller {
             $control = new FriendsPage();
             $control->display();
            });
-
+           //<--  ARTICLES  ROUTES --> 
+           $router->map("GET", "/adventures/[i:page]", function($params) {
+            $control = new ArticlesManager();
+            $control->display($params["page"]);
+           });
+           $router->map("GET", "/adventures/details/[i:id]", function($params) {
+            $control = new ArticlesManager();
+            $control->displayArticle($params["id"]);
+           });
            //<-- CONTACT ROUTES -->
            $router->map("GET", "/contact/", function() {
                 $control = new Contact();
@@ -114,9 +122,14 @@ class Router extends Controller {
                 $control = new \Controller\Admin\Connection();
                 $control->display();
             });
+                //LOGOUT
+            $router->map("GET", "/administration/admin/disconnect", function() {
+                $control = new \Controller\Admin\HomeManagement();
+                $control->logout();
+            });
             $router->map("POST", "/administration/admin/connecting", function() {
                 $control = new \Controller\Admin\Connection();
-                $control->checkPermission($this->post);
+                $control->login($this->post);
             });
                 //Home
             $router->map("GET", "/administration/admin/management/", function() {
@@ -128,6 +141,26 @@ class Router extends Controller {
                 $control = new \Controller\Admin\ArticlesManager();
                 $control->display();
             });
+            $router->map("GET", "/administration/admin/management/articles/creation", function() {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->displayForCreation();
+            });
+            $router->map("POST", "/administration/admin/management/articles/creation/creating", function() {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->createArticle($this->post);
+            });
+            $router->map("GET", "/administration/admin/management/articles/modif/[i:id]", function($params) {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->displayForCreation($params["id"]);
+            });
+            $router->map("POST", "/administration/admin/management/articles/modif/[i:id]", function($params) {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->changeData($this->post, $params["id"]);
+            });
+            $router->map("GET", "/administration/admin/management/articles/delete/[i:id]", function($params) {
+                $control = new \Controller\Admin\ArticlesManager();
+                $control->deleteArticle($params["id"]);
+            });
                 //members(user)
             $router->map("GET", "/administration/admin/management/members/", function() {
                 $control = new \Controller\Admin\MembersManagement();
@@ -135,31 +168,35 @@ class Router extends Controller {
             });
             $router->map("GET", "/administration/admin/management/members/delete/[i:id]", function($params) {
                 $control = new \Controller\Admin\MembersManagement();
-                $control->deleteMember($params["id"], "accounts");
+                $control->deleteMember($params["id"]);
             });
-            $router->map("POST", "/administration/admin/management/members/modification/[i:id]", function($params) {
+            $router->map("POST", "/administration/admin/management/members/modification/", function($params) {
                 $control = new \Controller\Admin\MembersManagement();
                 $control->dataChanging($this->post);
             });
                 //members(admin)
             $router->map("POST", "/administration/admin/management/members/creation/admin/", function() {
-                $control = new \Controller\Admin\MembersManagement();
+                $control = new \Controller\Admin\AdminManagement();
                 $control->inviteAdmin($this->post);
             });
             $router->map("GET", "/administration/admin/management/members/delete/admin/[i:id]", function($params) {
-                $control = new \Controller\Admin\MembersManagement();
-                $control->deleteMember($params["id"], "_admins");
+                $control = new \Controller\Admin\AdminManagement();
+                $control->deleteAdmin($params["id"]);
+            });
+            $router->map("POST", "/administration/admin/management/members/modification/admin/", function($params) {
+                $control = new \Controller\Admin\AdminManagement();
+                $control->dataChanging($this->post);
             });
             $router->map("GET", "/administration/admin/management/members/confirm/admin/[i:id]-[i:vKey]", function($params) {
-                $control = new \Controller\Admin\MembersManagement();
+                $control = new \Controller\Admin\AdminManagement();
                 $control->displaySubscribeAdmin($params["id"], $params['vKey']);
             });
             $router->map("POST", "/administration/admin/management/members/confirm/admin/checking/[i:id]-[i:vKey]", function($params) {
-                $control = new \Controller\Admin\MembersManagement();
+                $control = new \Controller\Admin\AdminManagement();
                 $control->SubscribeAdminChecking($this->post, $params);
             });
             $router->map("GET", "/administration/admin/management/members/confirm/admin/finally/[i:id]-[i:vKey]", function($params) {
-                $control = new \Controller\Admin\MembersManagement();
+                $control = new \Controller\Admin\AdminManagement();
                 $control->confirmSubsribeByAdmin($params["id"], $params["vKey"]);
             });
                 //contact

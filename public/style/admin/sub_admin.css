@@ -29,7 +29,7 @@ li {
     align-items: center;
     background-color: rgb(46, 46, 46);
     border-radius: 15px;
-    border : 2px solid rgb(255, 223, 81)
+    border : 2px solid rgb(255, 223, 81);
 }
 #container_input {
     height: 60%;

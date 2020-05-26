@@ -1,13 +1,17 @@
 <?php
 
 namespace Controller;
+
+use Helper\Session;
+
 /**
  * Send the HomePage
  */
 class HomePage extends Controller {
 
     public function display() {
-        $this->render("homepage.php");
+        $session = Session::getValue("user");
+        $this->render("homepage.php", compact("session"));
     }
     
 }

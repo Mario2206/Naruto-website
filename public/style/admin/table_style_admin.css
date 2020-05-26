@@ -25,6 +25,13 @@ table tbody tr {
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid black;
 }
+table tbody td{
+    font-family: "kaorigel.medium";
+    padding: 5px;
+}
+table tbody td .link{
+    margin: 0 auto;
+}
 table tbody tr td img {
     width: 30px;
 }

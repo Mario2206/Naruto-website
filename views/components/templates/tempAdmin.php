@@ -12,15 +12,22 @@
     <div id="main">
         <header>
            <nav>
-                <a href="/administration/admin/management/articles/">Articles</a>
-                <a href="/administration/admin/management/members/">Membres</a>
-                <a href="/administration/admin/management/contacts/">Contacts</a>
+               <div>
+                   <a href="/administration/admin/management/articles/">Articles</a>
+                    <a href="/administration/admin/management/members/">Membres</a>
+                    <a href="/administration/admin/management/contacts/">Contacts</a>
+               </div>
+               <div>
+                   <a href="/administration/admin/disconnect">Se déconnecter</a>
+               </div>
+                
             </nav> 
         </header>
         <div id="container">
             <?=$content; ?>
         </div>
     </div>
-    <?=$scripts ?>
+    <?= $jsLibs;?>
+    <?=$scripts; ?>
 </body>
 </html>

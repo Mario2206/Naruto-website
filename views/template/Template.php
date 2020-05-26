@@ -19,6 +19,7 @@ class Template {
 
      private $links;
      private $scripts;
+     private $jsLibs;
      private $content;
 
      private $data = []; 
@@ -33,21 +34,26 @@ class Template {
         }
 
         foreach($js as $js) {
-            $this->scripts.= $this->createScript($js);
+            $this->scripts.= $this->createScript(PATH."js/".$js);
         }
         
     }
 
     /**
      * Init the view on the page : 
+     * 
+     * @param array $var to contextualise
+     * 
      * !return string HTML page 
      */
 
-    public function init() {
+    public function init(array $varForContext = null) {
         $title = $this->title;
         $links = $this->links;
         $content = $this->content;
         $scripts = $this->scripts;
+        $jsLibs = $this->jsLibs;
+        $varForContext ? extract($varForContext) : false;
 
         require($this->view);
     }
@@ -59,6 +65,13 @@ class Template {
      */
     public function defineHtmlTemplate($temp_path) {
         $this->view = ROOT."/views/components/templates/".$temp_path;
+    }
+
+    public function addExternalScript(array $jsLibs) {
+        foreach($jsLibs as $lib) {
+            $this->jsLibs .= $this->createScript($lib);
+        }
+        
     }
     /**
      * method to create link tag
@@ -76,7 +89,9 @@ class Template {
      * 
      * !return string script tag
      */
-    private function createScript(string $js) : string {
-        return "<script src=\"".PATH."js/".$js."\"></script>";
+    private function createScript(string $path) : string {
+        
+        return "<script src=\"".$path."\"></script>";
     }
+
 }

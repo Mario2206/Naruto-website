@@ -32,7 +32,6 @@ function Input (element) {
         this.input.addEventListener('input', function(e) {
             obj.state = eventFunc(arg);
             !obj.state ? obj.badStyle(obj.input) : obj.goodStyle(obj.input) 
-            e.target.value = obj.value.replace(/[<>]/g, '');
         }) 
     }
     
@@ -166,26 +165,26 @@ function Input (element) {
     }
 
     //METHODS FOR FILE READER 
-    this.showDoc = function(img) {
+    this.showDoc = function(imgTag) {
         const obj = this
         const fileReader = new FileReader()
         fileReader.addEventListener("load", function(e) {
-            const allowFile = obj.testFileExt(obj.value.name);
-            if(img && allowFile ) {
-                img.src = e.target.result;
+            const allowFile = obj.testFileExt(obj.value.name.toLowerCase());
+            if(imgTag && allowFile ) {
+                imgTag.src = e.target.result;
                 obj.state = true;
-                img.style.opacity = "1";
+                imgTag.style.opacity = "1";
             }else if(!allowFile) {
-                img.src = null;
+                imgTag.src = null;
                 obj.state = false;
             }
         }); 
-
+        
         this.input.addEventListener("change", function(e) {
             obj.value = e.target.files[0]
             fileReader.readAsDataURL(obj.value)
         })
-    }
+    }.bind(this)
 
     
 

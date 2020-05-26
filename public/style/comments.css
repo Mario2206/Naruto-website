@@ -1,0 +1,52 @@
+.container_commentaire_editor {
+    background: url('../img/parchment_2.png');
+    padding: 10px;
+    border: 2px solid;
+    width: 85%;
+    margin: 20px auto;
+}
+.container_commentaire_editor form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container_data_user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+}
+.container_data_user span {
+    margin-left: 10px ;
+    font-family: "kaorigel.bold";
+}
+.container_data_user img {
+    width: 100px;
+    border-radius: 100px;
+}
+.container_input {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container_input textarea {
+
+    resize: none;
+    font-family: "kaorigel.medium";
+    font-size: 20px;
+    background-color: #e2d3b5;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.container_input input[type="submit"] {
+    padding: 5px 10px;
+    font-family:"kaorigel.bold" ;
+    background-color: rgb(190, 139, 28);
+    color: #e2d3b5;
+    border: none;
+    font-size: 20px;
+}

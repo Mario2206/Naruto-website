@@ -15,11 +15,11 @@ ob_start();
                             <label>
                                 E-MAIL :
                                 <?php 
-                                    if(!isset($_SESSION["current_account"])){
+                                    if(!isset($session)){
                                 ?>
                                 <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail"> 
                                     <?php }else{?>
-                                <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail" value="<?=$_SESSION["current_account"]->mail?>" disabled>    
+                                <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail" value="<?=$session->mail?>" disabled>    
                                     <?php }?>
                             </label>
                         </div>
@@ -46,5 +46,5 @@ ob_start();
     ];
     $temp = new Template($content, $css, $js);
     $temp->title = "Contact";
-    $temp->init();
+    $temp->init(compact("session"));
 ?>

@@ -97,5 +97,5 @@
     ];
     $temp = new Template($content, $css, $js);
     $temp->title = "Mes compagnons de route";
-    $temp->init();
+    $temp->init(compact("session"));
 ?>

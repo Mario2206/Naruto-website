@@ -4,6 +4,8 @@ namespace Controller;
 use DateTime;
 use Exception\ExceptionArr;
 use Helper\CheckMail;
+use Helper\Session;
+
 /**
  * Contact class
  */
@@ -13,7 +15,7 @@ class Contact extends Controller {
     const MAX_LENGTH_MESS = 500;
     const POST_ALLOWED = ["mail","subject","message"];
 
-    const GOOD_DIR = "contact/contacted";
+    const GOOD_DIR = "/contact/contacted";
 
   
     /**
@@ -21,7 +23,8 @@ class Contact extends Controller {
      */
     public function displayContact() 
     {
-        $this->render("contact.php");
+        $session = Session::getValue("user");
+        $this->render("contact.php", compact("session"));
     }
 
     /**

@@ -8,6 +8,11 @@ class ContactManagement extends Controller {
 
     const KEY_ALLOWED = ["message"];
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->protectPageFor('admin');
+    }
 
     public function display() {
         $data = $this->getData->getAll("contacts");
@@ -38,7 +43,7 @@ class ContactManagement extends Controller {
 
         if(iconv_strlen($postChecked["message"]) < 15 ) {
             $_SESSION["errors"] = "Le message doit faire au minimum 15 caractères";
-            $this->redirect("administration/admin/management/contacts/".$idContact);
+            $this->redirect("/administration/admin/management/contacts/".$idContact);
         }
         $dataForMail = [
             "dest"=>$currentContact[0]->sender,
@@ -59,7 +64,7 @@ class ContactManagement extends Controller {
             if(!$this->postData->setData("contact_reply", $postData) ) {
                 throw new \Exception("Error for storing in bdd");
             }
-            $this->redirect("administration/admin/management/contacts/".$idContact);
+            $this->redirect("/administration/admin/management/contacts/".$idContact);
         } else{
             throw new \Exception("Error for sending mail, maybe the mail doesn't exist");
         }

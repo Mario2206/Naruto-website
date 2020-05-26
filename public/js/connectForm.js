@@ -25,15 +25,7 @@
             e.preventDefault();
             validateForm.showError();
         } 
-        sessionStorage.setItem('connect', 'already');
+
     },true);
-
-    //TEST IF THE PAGE HAS ALREADY BEEN LOADED
-
-    if(sessionStorage.getItem("connect") && performance.getEntriesByType("reload")) {
-        const errorMess = document.querySelector("#errorMessage");
-        errorMess.innerText = "L'identifiant ou le mot de passe n'est pas correct";
-        validateForm.validateForm();
-    }
     
 })()

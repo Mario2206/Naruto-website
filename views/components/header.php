@@ -1,6 +1,6 @@
         <header>
         <?php 
-            if(!isset($_SESSION["current_account"])) {
+            if(!isset($session)) {
         ?>
             <a href="/connection/" id="icon_connection">
                  <img src="<?=PATH ?>img/icon_connection.png" alt="Connection icon" title="Se connecter" >
@@ -9,7 +9,7 @@
             }else{
         ?>
             <a href="/disconnection/" id="icon_connection">
-                 <img src="<?=PATH.$_SESSION["current_account"]->avatar ?>" alt="Connection icon" title="Se déconnecter" >
+                 <img src="<?=PATH.$session->avatar ?>" alt="Connection icon" title="Se déconnecter" >
             </a>
         <?php 
             }
@@ -31,7 +31,7 @@
                             <p>Qui sont mes compagnons ?</p>
                         </div>
                     </a>
-                    <a href="/my-stories/">
+                    <a href="/adventures/0">
                         <div>
                             <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="icon_nav">
                             <p>Mes aventures</p>

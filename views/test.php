@@ -1,8 +1,14 @@
 <?php
 
-use Helper\Checker;
+// use Model\Postdata;
 
-var_dump(Checker::checkLength("salut", 5));
-var_dump(Checker::checkLength("salut", 6));
+// $postData = new Postdata();
 
-var_dump(Checker::checkLengthOfArray(["salut", "cavas"], 5));
+// for($i = 0; $i < 20; $i++ ) {
+//     $postData->setData("comments_article", [
+//         "article_id"=>18,
+//         "user_id"=> 89,
+//         "content"=> "Ceci est l'un des premiers grands commentaire !",
+//         "date"=>'2020-05-26 16:13:10',
+//     ]);
+// }

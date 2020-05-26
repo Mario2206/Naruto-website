@@ -50,8 +50,17 @@ class FileReader {
         }
     }
 
+    /**
+     * to get direction file url
+     * 
+     * !return string
+     */
     public function getUrl() {
         return $this->state ? $this->urlFile : "";
+    }
+
+    public function defineDir(string $dir) {
+        $this->dir = $dir;
     }
 
     private function cryptName($name) {//Crypt the name enables to conserv every file and to avoid overwriting  

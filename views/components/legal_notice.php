@@ -73,4 +73,4 @@ $css = [
 ];
 $temp = new Template($content, $css);
 $temp->title = "Mentions légales";
-$temp->init();
+$temp->init(compact("session"));

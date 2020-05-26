@@ -27,10 +27,10 @@
             ?>
             <tr>
                 <td><?=$item->id; ?></td>
-                <td><?=$item->sender; ?></td>
-                <td><?=$item->subject; ?></td>
-                <td><?=$item->message; ?></td>
-                <td><?=$item->sending_date; ?></td>
+                <td><?=htmlspecialchars($item->sender); ?></td>
+                <td><?=htmlspecialchars($item->subject); ?></td>
+                <td><?=htmlspecialchars($item->message); ?></td>
+                <td><?=htmlspecialchars($item->sending_date); ?></td>
                 <td><a class="link green" href="/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
                 <td>
                     <?=$item->already_seen == 1 ? "<img src='".PATH."img/icons/courriel.png' alt='Courriel'/>" : false ?>

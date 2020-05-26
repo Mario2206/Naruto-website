@@ -2,6 +2,9 @@
 namespace Controller;
 
 use Exception;
+use Helper\Cookie;
+use Helper\Encryption;
+use Helper\Session;
 use Model\{
     Getdata,
     Postdata,
@@ -30,6 +33,8 @@ abstract class Controller {
         $this->postData= new Postdata();
         $this->updateData= new Updatedata();
         $this->deleteData= new Deletedata();
+
+        $this->connectByCookie();
     }
 
     protected function render(string $path, array $vars = []) {
@@ -38,7 +43,7 @@ abstract class Controller {
     }
 
     protected function redirect(string $url) {
-        header("Location:".PATH.$url);
+        header("Location:".$url);
         exit();
     }
 
@@ -64,12 +69,45 @@ abstract class Controller {
         },ARRAY_FILTER_USE_KEY);
         return count($postChecked) === count($postAllowed) ? $postChecked : false;
     }
+
     /***
      * For hidding pages for connected persons
      */
-    protected function prohibitionSession() {
-        if(isset($_SESSION["current_account"])) {
-            throw new Exception("Page 404 : not found");
+    protected function prohibitionSession(string $session_type) {
+        if(Session::getValue($session_type)) {
+            $this->redirect("/");
+        }
+    }
+
+    /**
+     * For protected pages
+     * @param string session_type
+     */
+    protected function protectPageFor(string $session_type) {
+        if(!Session::getValue($session_type)) {
+            $this->redirect("/");
+        }
+    }
+
+    /**
+     * For connecting by cookies
+     */
+
+    private function connectByCookie() {
+
+        if($cook = Cookie::get("user_remember")) {
+            
+            $current_id = explode("//",$cook)[0];
+
+            if($data = $this->getData->getByFilters("accounts", ["id"=>$current_id])) {
+
+                if(Encryption::createSecureKey($data[0]->id,$data[0]->remember_key) === $cook) {
+
+                    Session::startUserSession($data[0]);
+                    
+                }
+            }
+            
         }
     }
     

@@ -5,6 +5,8 @@ namespace Helper;
  */
 class Encryption {
 
+     const ENCRYPT_KEY = "This is an encryption key. Forbidden to decrypt this.";
+
     /**
      * method for encrypting
      * 
@@ -33,7 +35,19 @@ class Encryption {
      */
     public static function createKey() {
         $MIN = 100000;
-        $MAX = 9223372036854775800;
+        $MAX = 922337203685477580;
         return mt_rand($MIN,$MAX);
+    }
+
+    /**
+     * Method for creating a secure key, init with an id and a basic key
+     * 
+     * @param int $id
+     * @param string $basic key
+     * 
+     * !return string
+     */
+    public static function createSecureKey(int $id, string $key) {
+        return $id."//".sha1($id."-".self::ENCRYPT_KEY).$key;
     }
 }

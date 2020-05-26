@@ -1,0 +1,73 @@
+form {
+    margin: 30px 0;
+}
+#container_titles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border : 1px solid white;
+}
+.title {
+    padding: 10px 0;
+}
+.title:not(#title) {
+    width: 25%;
+}
+.title:not(#title) div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.title label {
+    font-weight: bold;
+}
+#title {
+    width: 50%;
+}
+#title input {
+    background: none;
+    outline: none;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    color: white;
+   width: 100%;
+}
+#title input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+.link {
+    display: inline-block;
+}
+#miniature_ex {
+    width: 25%;
+    max-height: 50px;
+}
+input[type='submit'] {
+    border-radius: 100px;
+    font-size: 25px;
+    outline: none;
+    font-style: oblique;
+    color: rgb(199, 121, 57);
+}
+input[type='submit']:hover {
+    transition: 0.5s;
+    background-color:rgb(199, 121, 57) ;
+    color: rgb(245, 162, 67);
+    border-color: rgb(245, 162, 67);
+}
+#container_sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trumbowyg-button-pane {
+    background-color: orange;
+}
+.trumbowyg-editor {
+    background-color: rgba(226, 167, 89, 0.8);
+}
