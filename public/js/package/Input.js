@@ -4,22 +4,25 @@
  * 
  * @param {object} element 
  */
-function Input (element) {
-    
-    this.input = element;
-    this.value = element.value;
-    this.correctStyle = "goodInput";
-    this.uncorrectStyle = "badInput";
-    this.correctExtensions = ["jpg", "png"]
-    this.state = false;
-    
+class Input  {
 
-    const obj = this;
-    //DEFAULT EVENT TO UPDATE INPUT VALUE
-    this.input.addEventListener("contextmenu", function(e) {e.preventDefault()})
-    this.input.addEventListener("input", function() {
-        obj.value = obj.input.value;     
-    })
+    constructor(element) {
+
+        this.input = element;
+        this.value = element.value;
+        this.correctStyle = "goodInput";
+        this.uncorrectStyle = "badInput";
+        this.correctExtensions = ["jpg", "png"]
+        this.state = false;
+    
+        //DEFAULT EVENT TO UPDATE INPUT VALUE
+        this.input.addEventListener("contextmenu", (e)=> {e.preventDefault()})
+        this.input.addEventListener("input", ()=> {
+            this.value = this.input.value;    
+        })
+    }
+    
+    
     
     /**
      * FOR ADDING LISTNERS AND CONSEQUENTLY EVENTS
@@ -28,10 +31,10 @@ function Input (element) {
      * @param arg -->params of this function
      * 
      */
-    this.addListener = function(eventFunc, arg) {
-        this.input.addEventListener('input', function(e) {
-            obj.state = eventFunc(arg);
-            !obj.state ? obj.badStyle(obj.input) : obj.goodStyle(obj.input) 
+    addListener = function(eventFunc, arg) {
+        this.input.addEventListener('input', (e)=> {
+            this.state = eventFunc(arg);
+            !this.state ? this.badStyle(this.input) : this.goodStyle(this.input) 
         }) 
     }
     
@@ -43,7 +46,7 @@ function Input (element) {
       * @param {object} ref ={min: ???, max : ???}
       * !return bool
       */
-    this.checkDateNumber = function(ref) {//arg has to be an obj        
+    checkDateNumber = function(ref) {//arg has to be an obj        
         const nDay = parseInt(this.value)
         return this.checkNumber(nDay, ref) 
     }.bind(this)
@@ -52,7 +55,7 @@ function Input (element) {
       * 
       * !return bool
       */
-    this.testMail = function() {
+    testMail = function() {
         const reg = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
         return reg.test(this.value)
     }.bind(this)
@@ -63,7 +66,7 @@ function Input (element) {
       * 
       * !return bool
       */
-    this.testText = function(length) {
+    testText = function(length) {
         return this.testLength(length)
     }.bind(this)
 
@@ -71,7 +74,7 @@ function Input (element) {
       * 
       * !return bool
       */
-    this.syntaxPassword = function() {//1 maj ; 1  special caract ; 2 numbers
+    syntaxPassword = function() {//1 maj ; 1  special caract ; 2 numbers
         const reg = /[A-Za-z]{1,}[$!/;,?ù%£^+=}{'@#]{1,}[1-9]{2,}/ 
         const regMaj = this.caractFinder(/[A-Z]/);
         const regNum = this.caractFinder(/[0-9]/);
@@ -85,7 +88,7 @@ function Input (element) {
       * --> method has to be assign to the "confirm password" input for a good render
       * !return bool
       */
-    this.testPasswordEquality = function(originPassword) {
+    testPasswordEquality = function(originPassword) {
         return this.testEquality({ref : originPassword.value, checked :this.value}) && originPassword.state
     }.bind(this)
 
@@ -99,7 +102,7 @@ function Input (element) {
      * 
      * !return bool
      */
-    this.checkNumber = function(number, refNumber) {//arg is an obj
+    checkNumber = function(number, refNumber) {//arg is an obj
         return number > refNumber.max || number < refNumber.min || isNaN(number) ? false : true  
     }
 
@@ -110,7 +113,7 @@ function Input (element) {
      * 
      * !return array 
      */
-    this.caractFinder = function(regExp) {
+    caractFinder = function(regExp) {
          return this.value.split("").filter(item => regExp.test(item))
     }
 
@@ -121,7 +124,7 @@ function Input (element) {
      * 
      * !return array 
      */
-    this.testEquality = function(passwords) {//arg is an object
+    testEquality = function(passwords) {//arg is an object
         return passwords.ref === passwords.checked
     }.bind(this)
     
@@ -132,7 +135,7 @@ function Input (element) {
      * 
      * !return bool
      */
-    this.testLength = function(length) {
+    testLength = function(length) {
         return this.value.length >= length.minLength && this.value.length<=length.maxLength
     }.bind(this)
 
@@ -143,13 +146,13 @@ function Input (element) {
      * 
      * !return bool
      */
-    this.testFileExt = function(filename) {
+    testFileExt = function(filename) {
         return this.correctExtensions.includes(filename.split('.').pop());
     }.bind(this)
 
     //METHODS FOR STYLE
 
-     this.style = function(element, classToAdd, classToRemove ) {
+     style = function(element, classToAdd, classToRemove ) {
         if(element.classList.contains(classToAdd) || element.classList.contains(classToRemove)) {
             element.classList.replace(classToRemove, classToAdd)
         } else {
@@ -157,15 +160,15 @@ function Input (element) {
         }
     }
 
-    this.goodStyle = function(element) {
+    goodStyle = function(element) {
        this.style(element, this.correctStyle, this.uncorrectStyle)
     }
-    this.badStyle = function(element) {
+    badStyle = function(element) {
         this.style(element, this.uncorrectStyle, this.correctStyle)
     }
 
     //METHODS FOR FILE READER 
-    this.showDoc = function(imgTag) {
+    showDoc = (imgTag) => {
         const obj = this
         const fileReader = new FileReader()
         fileReader.addEventListener("load", function(e) {
@@ -184,7 +187,7 @@ function Input (element) {
             obj.value = e.target.files[0]
             fileReader.readAsDataURL(obj.value)
         })
-    }.bind(this)
+    }
 
     
 

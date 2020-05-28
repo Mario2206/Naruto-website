@@ -20,6 +20,7 @@ class Router extends Controller {
     
     function __construct(array $get = null, array $post = null) {
         //FOR TESTING
+        parent::__construct();
         $this->post = $post ?? $_POST;
         $this->get = $get ?? $_GET;
     }
@@ -55,9 +56,13 @@ class Router extends Controller {
             $control = new ArticlesManager();
             $control->display($params["page"]);
            });
-           $router->map("GET", "/adventures/details/[i:id]", function($params) {
+           $router->map("GET", "/adventures/details/[i:id]-[i:page]", function($params) {
             $control = new ArticlesManager();
-            $control->displayArticle($params["id"]);
+            $control->displayArticle($params["id"], $params["page"]);
+           });
+           $router->map("POST", "/adventures/details/post-comment", function() {
+            $control = new ArticlesManager();
+            $control->postComment($this->post);
            });
            //<-- CONTACT ROUTES -->
            $router->map("GET", "/contact/", function() {
@@ -149,9 +154,9 @@ class Router extends Controller {
                 $control = new \Controller\Admin\ArticlesManager();
                 $control->createArticle($this->post);
             });
-            $router->map("GET", "/administration/admin/management/articles/modif/[i:id]", function($params) {
+            $router->map("GET", "/administration/admin/management/articles/modif/[i:id]-[i:page]", function($params) {
                 $control = new \Controller\Admin\ArticlesManager();
-                $control->displayForCreation($params["id"]);
+                $control->displayForModification($params["id"], $params["page"]);
             });
             $router->map("POST", "/administration/admin/management/articles/modif/[i:id]", function($params) {
                 $control = new \Controller\Admin\ArticlesManager();
@@ -212,10 +217,37 @@ class Router extends Controller {
                 $control = new \Controller\Admin\ContactManagement();
                 $control->sendResponse($this->post, $params["id"]);
             });
+                //characters
+            $router->map("GET", "/administration/admin/management/characters/", function() {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->display();
+            });
+            $router->map("GET", "/administration/admin/management/characters/create", function() {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->displayForCreation();
+            });
+            $router->map("GET", "/administration/admin/management/characters/modif/[i:id]", function($params) {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->displayForModification($params["id"]);
+            });
+            $router->map("POST", "/administration/admin/management/characters/creating", function() {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->setCharacter($this->post);
+            });
+            $router->map("POST", "/administration/admin/management/characters/changing/[i:id]", function($params) {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->setCharacter($this->post, $params["id"]);
+            });
+            $router->map("GET", "/administration/admin/management/characters/delete/[i:id]", function($params) {
+                $control = new \Controller\Admin\CharactersManagement();
+                $control->deleteCharacter($params["id"]);
+            });
+            
+
 
              //<-- ROUTES FOR TESTING -->
-             $router->map("GET", "/test/", function() {
-                 
+             $router->map("GET|POST", "/test/", function() {
+                $data = $this->getData->getAll("comments_article");
                require("../views/test.php");
             });
             $router->map("POST", "/test/ok", function() {

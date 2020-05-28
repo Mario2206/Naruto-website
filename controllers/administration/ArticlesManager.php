@@ -10,6 +10,8 @@ class ArticlesManager extends Controller {
     const POST_ALLOWED = ["title", "content", "synopsis"];
     const FILE_ALLOWED = "miniature";
     const GOOD_DIR = "/administration/admin/management/articles/";
+    const CREATOR_DIR = "/administration/admin/management/articles/creation";
+    const MAX_COMMENTS = 10;
 
 
     public function __construct()
@@ -24,11 +26,50 @@ class ArticlesManager extends Controller {
         $this->render("administration/admin_articles_management.php", compact("articles"));
     }
 
-    public function displayForCreation(int $id = null) {
-        if($id) {
-           $data = $this->getData->getByFilters("articles", ['id'=>$id]); 
+    public function displayForCreation() {
+
+        $this->render("administration/admin_article_creator.php");
+    }
+
+    public function displayForModification(int $id, int $current_page = 0) { 
+
+        if($data = $this->getData->getByFilters("articles", ["id"=>$id])[0]) {
+            
+            $nComments = $this->getData->getNumberOfEntries("comments_article", ["article_id"=>$id]);
+            $nPages = ceil($nComments / self::MAX_COMMENTS);
+
+            if($current_page > $nPages) {
+
+                $this->redirect("/");
+
+            }
+        
+            $tables = ["comments_article", "accounts"];
+
+            $entries = [
+                "comments_article.content"=>"comment_content",
+                "comments_article.date"=>"comment_date",
+                "comments_article.reply"=>"comment_reply",
+                "accounts.username"=>"username",
+                "accounts.avatar"=>"avatar"
+            ];
+            $joints = [
+                "comments_article.user_id"=>"accounts.id"
+            ];
+            $filter = [
+                "article_id"=> $id
+            ];
+
+            $comments = $this->getData->getFromTables($tables,$entries,$joints, $filter, [$current_page*self::MAX_COMMENTS, self::MAX_COMMENTS]);
+            
+            $this->render("administration/admin_article_creator.php", compact("data", "comments", "nPages", "current_page"));
+
+        } else {
+
+            $this->redirect(self::CREATOR_DIR);
+            
         }
-        $this->render("administration/admin_article_creator.php", compact(isset($data) ? "data" : null));
+
     }
 
     public function createArticle(array $post) {
@@ -75,11 +116,14 @@ class ArticlesManager extends Controller {
 
     public function deleteArticle(int $id) {
 
-        if($this->deleteData->deleteFromBdd("articles", ["id"=>$id])) {
+        if($this->deleteData->deleteFromBdd("articles", ["id"=>$id]) && $this->deleteData->deleteFromBdd("comments_article", ["article_id"=>$id])) {
+            
             $this->redirect(self::GOOD_DIR);
 
         } else {
+
             throw new \Exception(BDD_ERROR);
+
         }
     }
 

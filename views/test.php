@@ -1,14 +1,31 @@
 <?php
 
-// use Model\Postdata;
+// use Template\{
+//     Template,
+//     Table
+// };
 
-// $postData = new Postdata();
+// ob_start();
+// // $data =  [
+// //     ["article_id" => "1", "test2"=> "2", "test3"=> "3", "test4"=>"4"],
+// //     ["article_id" => "1", "test2"=> "2", "test3"=> "3", "test4"=>"4"]
 
-// for($i = 0; $i < 20; $i++ ) {
-//     $postData->setData("comments_article", [
-//         "article_id"=>18,
-//         "user_id"=> 89,
-//         "content"=> "Ceci est l'un des premiers grands commentaire !",
-//         "date"=>'2020-05-26 16:13:10',
-//     ]);
-// }
+// // ];
+// $keys = ["id", "test1", "test2", "test3", "test4", "test5"];
+
+// $table = new Table($keys,$data);
+// $table->setSurroundTag(
+//     [
+//         "article_id"=>"<strong>[::data] </strong>"
+//     ]
+// );
+// $table->init();
+
+// $content = ob_get_clean();
+// $css = [
+//     "admin/table_style_admin.css",
+// ];
+// $temp = new Template($content, $css);
+// $temp->defineHtmlTemplate("tempAdmin.php");
+// $temp->init();
+?>

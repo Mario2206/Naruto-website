@@ -1,17 +1,41 @@
 "use-strict";
+/**
+ * Object for checking all inputs
+ */
+class Form {
+    /**
+     * 
+     * @param {Object} inputObject {inputName : {input: inputObject, error : "Here write error to send to client"}}
+     */
+    constructor(inputObject) {
 
-function Form(inputObject) {
-    this.inputObject = inputObject
-    this.state = false
-    this.error = []
+        this.inputObject = inputObject
+        this.state = false
+        this.error = []
 
-    this.validateForm = function() {
+    }
+
+    
+    /**
+     * Method for checking all input 
+     * 
+     * !return bool 
+     */
+    validateForm = ()=> {
+
         this.error = [];
         for(const input in this.inputObject) {
             const inputObj = this.inputObject[input]
-            !inputObj.input instanceof Input ? console.log("Error : args have to be Input Object") : false;
             
-            this.state = inputObject[input].input.state
+            if(inputObj.input instanceof Input === false) {
+
+                console.log("Error : args have to be Input Object");
+                return false
+
+            };
+            
+            this.state = this.inputObject[input].input.state
+            
             if(!this.state) {
                 
                 this.error.push(inputObj.error)
@@ -20,15 +44,21 @@ function Form(inputObject) {
         if(this.error.length !== 0) {
             this.triggerResponse()
         }
+        
         return this.error.length === 0 && this.state  
+
     }
     
-    this.showError = function() {
+    /**
+     * Method for sending error to client
+     * (add css file "alert.css")
+     */
+    showError = function() {
         const backDiv = document.createElement("div");
         backDiv.classList.add("backAlert");
 
         const alert = document.createElement("ul");
-        alert.classList.add("alert");
+        alert.classList.add("error_message");
 
         const title = document.createElement("strong");
         title.innerText = "ATTENTION";
@@ -53,12 +83,17 @@ function Form(inputObject) {
 
     }
 
-    this.triggerResponse = function() {
+    /**
+     * In order to dispatch an event if there are errors in input data
+     */
+    triggerResponse = function() {
         const event = new Event('input')
+        const eventForInputFile = new Event('change')
         
         for(let input in this.inputObject) {
-            console.log(this.inputObject[input].input.input);
+        
             this.inputObject[input].input.input.dispatchEvent(event)
+            this.inputObject[input].input.input.dispatchEvent(eventForInputFile)
         }
     }
 }

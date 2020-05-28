@@ -13,7 +13,7 @@ ob_start();
 
             <?php foreach($articles as $a): ?>
 
-                <a href="/adventures/details/<?=$a->id; ?>" class="article_temp">
+                <a href="/adventures/details/<?=$a->id; ?>-0" class="article_temp">
 
                     <span class="part1"><img src="<?=PATH.$a->miniature ?>" alt="miniature" class="miniature"></span>
 
@@ -67,4 +67,4 @@ $css = [
     "article_manager.css"
 ];
 $temp = new Template($content, $css);
-$temp->init();
+$temp->init(compact("session"));

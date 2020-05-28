@@ -17,7 +17,7 @@ $("#text_editor").trumbowyg('html', inputContent.val())
 form.submit( function(e) {
 
     let synopsis;
-    synopsis = prompt("Confirmer la création de l'article ?");
+    synopsis = prompt("Définir un synopsis à l'aventure ?");
 
     if(synopsis.length > 0) {
 
@@ -25,7 +25,7 @@ form.submit( function(e) {
         inputSynopsis.val(synopsis)
 
     } else {
-        alert("Il est nécessaire d'intégrer un synopsis à votre histoire")
+        alert("Le synopsis doit contenir au moins une lettre")
         e.preventDefault()
     }
     

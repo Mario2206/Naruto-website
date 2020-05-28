@@ -53,21 +53,21 @@ ob_start();
 
             <section class="container_commentaire_editor">
 
-                <form action="#" method="post">
+                <form action="<?=isset($session) ? "/adventures/details/post-comment" : "" ?>" method="post">
 
                     <div class="container_input">
                         
                         <div class="container_data_user">
+            
+                            <img src="<?=PATH ?><?=$session->avatar ?? "img/img_sasuke.png" ?>" alt="profil">
 
-                            <img src="<?=PATH;?>/img/img_sasuke.png" alt="profil">
-
-                            <span>Username</span>
+                            <span><?=$session->username ?? "Nom d'utilisateur" ?></span>
 
                         </div>
 
-                        <textarea name="comment" cols="30" rows="5" placeholder="Tapez votre commentaire ..."></textarea>
+                        <textarea name="content" cols="30" rows="5" placeholder="Tapez votre commentaire ..." <?=!isset($session) ? "readonly" : "" ?> class="input_area"></textarea>
 
-                        <input type="submit" value="Commenter">
+                        <input type="submit" value="Commenter" title="Valider" <?=!isset($session) ? "disabled" : "" ?>>
 
                     </div>
 
@@ -77,17 +77,21 @@ ob_start();
 
             <br /><br />
 
-            <section class="container_comments">
+            <?php include (ROOT."/views/components/inc/article_comments.php"); ?>
 
-                <?php foreach($comments as $c): ?>
+            <div class="container_links">
 
-                    <div>
-                        <p><?=$c->content; ?></p>
-                    </div>
+                <?php
+                    for($i = 0 ; $i< $nPages; $i++) : 
+                ?>
 
-                <?php endforeach; ?>
+                    <a href="/adventures/details/<?=$data->id."-".$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
 
-            </section>
+                <?php
+                    endfor;
+                ?>
+
+            </div> 
 
         </div>
         
@@ -100,7 +104,14 @@ ob_start();
 $content = ob_get_clean();
 $css = [
     "article.css",
-    "comments.css"
+    "comments.css",
+    "form.css"
 ];
-$temp = new Template($content, $css);
-$temp->init();
+$js = [
+    "package/Input.js",
+    "package/Form.js",
+    "comment_form.js"
+];
+$temp = new Template($content, $css, $js);
+$temp->title = $data->title;
+$temp->init(compact("session"));

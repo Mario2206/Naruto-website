@@ -10,7 +10,7 @@
     background-color: rgba(0,0,0,0.7);
     animation:OpacityGrown 1s ;
 }
-.alert {
+.error_message {
     position: relative;
     width: 50%;
     background-color: rgba(219,98,28,1);
@@ -20,14 +20,14 @@
     border-radius: 15px;
     animation: PopAlert 0.7s;
 }
-.alert strong {
+.error_message strong {
     text-align: center;
     display: block;
     font-size: 1.8em;
     font-family: 'electroharmonix';
     padding-bottom: 10px;
 }
-.alert li {
+.error_message li {
     margin: 5px 0;
     color: #313131;
     font-family: "kaorigel.bold";
@@ -36,7 +36,7 @@
     
 
 }
-.alert button {
+.error_message button {
     position: relative;
     left: 90%;
     font-size: 1.5em;
@@ -60,7 +60,7 @@
     }
 }
 /* ANIM */
-.alert button:hover {
+.error_message button:hover {
     transition: 0.5s;
     box-shadow: none;
 }

@@ -82,6 +82,10 @@ nav a:hover {
 .borderOrange {
     border: 2px solid rgb(199, 121, 57);
 }
+.brown {
+    background-color: rgb(185, 109, 57);
+    color: rgb(255, 221, 183);
+}
 
 /* ANIM */
 

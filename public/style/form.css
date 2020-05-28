@@ -1,9 +1,0 @@
-
-.goodInput {
-    transition: 0.5s;
-    background-color: rgba(22, 147, 51, 0.6);
-}
-.badInput {
-    transition: 0.5s;
-    background-color: rgba(206, 37, 37, 0.6);
-}

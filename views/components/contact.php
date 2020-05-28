@@ -36,8 +36,8 @@ ob_start();
     $content = ob_get_clean();
     $css = [
         "contact.css",
-        "form.css",
-        "alert.css"
+        "common/form.css",
+        "common/alert.css"
     ];
     $js = [
         "package/Form.js",

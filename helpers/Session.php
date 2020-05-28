@@ -27,6 +27,12 @@ class Session {
         return $_SESSION[PATH][$key] ?? null;
     }
     
+    public static function cleanValue(string $key) {
+        $val = self::getValue($key);
+        self::setValue($key, null);
+        return $val;
+    }
+
     static function setError(array $errors) {
         $_SESSION[PATH]["errors"] = $errors;
     }

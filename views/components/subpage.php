@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="<?=PATH ?>style/subscription.css">
-    <link rel="stylesheet" href="<?=PATH ?>style/common.css">
-    <link rel="stylesheet" href="<?=PATH ?>style/form.css">
-    <link rel="stylesheet" href="<?=PATH ?>style/alert.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/common/common.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/common/form.css">
+    <link rel="stylesheet" href="<?=PATH ?>style/common/alert.css">
     
 </head>
 <body>

@@ -82,19 +82,78 @@ class Getdata extends Model {
         $query = "SELECT COUNT(*) FROM ".$table;
 
         if($filters) {
-            $query .= " WHERE ";
 
-            foreach($filters as $k=>$v) {
-                $query .= "{$k}= :{$k} AND ";
-            }
+            $filterKeys = array_combine(array_keys($filters), array_keys($filters));
 
-            $query = rtrim($query, " AND ");
+            $query .= " WHERE ".$this->arrayToString($filterKeys, ["", " = :"," AND "]);
+
         }
 
         $req = $this->bdd->prepare($query);
         $req->execute($filters ?? []);
 
         return (int) get_object_vars($req->fetch())["COUNT(*)"];
+    }
+
+    /**
+     * To get entries from join tables
+     * 
+     * @param array tables (first item  is the main table)
+     * @param array entries ["table_name.field"=>"alias"]
+     * @param array joints ["table_name.field"=> "table_name.field"]
+     * @param array $filters ["field"=>"value"]
+     * @param array limits ["start", "limit"]
+     * 
+     * !return array $data
+     */
+    public function getFromTables(array $tables, array $entries, array $joints, array $filters = [], array $limits = []) : array {
+
+        $filterKeys = array_combine(array_keys($filters), array_keys($filters));
+        $query = "SELECT ";
+        
+        $query.= $this->arrayToString($entries, [""," AS ",", "])
+                ." FROM ".$tables[0]
+                ." INNER JOIN ".$tables[1]
+                ." ON ".$this->arrayToString($joints, ["", " = ", ""]);
+
+        if($filters) {
+            $query .= " WHERE ".$this->arrayToString($filterKeys, ["", " = :"," AND "]);
+        }
+            
+        $query .= " ORDER BY ".$tables[0].".id DESC";
+
+        
+        if($limits) {
+            $query .=" LIMIT {$limits[0]}, {$limits[1]}";
+        }
+
+
+        $req = $this->bdd->prepare($query);
+        $req->execute($filters);
+
+        return $req->fetchAll();
+        
+    }
+
+    /**
+     * convert associative array to string
+     * 
+     * @param array $data_to_convert
+     * @param array $separators ["before","between", "after]
+     * 
+     * !return string
+     */
+    private function arrayToString(array $data, array $separators) : string {
+
+        $r = "";
+
+        foreach($data as $k=> $d) {
+            $r .= $separators[0].$k.$separators[1].$d.$separators[2];
+        }
+
+        
+        return rtrim($r, $separators[2]);
+
     }
     
 }

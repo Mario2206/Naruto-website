@@ -4,6 +4,7 @@
 ?>
 <div>
     <div id="container_table">
+        
         <div id="container_title">
             <h1>Articles</h1>  
             <a href="/administration/admin/management/articles/creation" class="blue link">Ajouter un article</a>
@@ -33,7 +34,7 @@
                         <td><?=$item->creation_date; ?></td>
                         <td><?=$item->online_date;?></td>
                         <td><input type="checkbox" <?=$item->is_online ? "checked" : false; ?>></td>
-                        <td><a class="link green" href="/administration/admin/management/articles/modif/<?=$item->id; ?>">Modifier</a></td>
+                        <td><a class="link green" href="/administration/admin/management/articles/modif/<?=$item->id."-0"; ?>">Modifier</a></td>
                         <td><a href="/administration/admin/management/articles/delete/<?=$item->id?>" class="link red">Supprimer</a></td>
                     </form>
                 </tr>

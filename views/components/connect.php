@@ -30,7 +30,7 @@ ob_start();
 $content = ob_get_clean();
 $css = [
     "connect.css",
-    "alert.css"
+    "common/alert.css"
 ];
 $js= [
    "package/Input.js",

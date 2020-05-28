@@ -22,10 +22,7 @@ class FileReader {
      */
     public function getImage(array $file) :bool {
         $this->fileName = $file["name"];
-        //Check if the file is an image
-        if(!getImageSize($file['tmp_name'])) {
-            $this->state = false;
-        } 
+        
         //Check img extension
         $this->current_ext = strtolower(pathinfo($this->fileName, PATHINFO_EXTENSION));
         if(!in_array($this->current_ext, $this->ext_img)) {

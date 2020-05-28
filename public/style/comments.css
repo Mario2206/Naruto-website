@@ -1,3 +1,4 @@
+/* COMMENTS EDITOR */
 .container_commentaire_editor {
     background: url('../img/parchment_2.png');
     padding: 10px;
@@ -32,7 +33,7 @@
     justify-content: center;
     align-items: center;
 }
-.container_input textarea {
+.container_input .input_area {
 
     resize: none;
     font-family: "kaorigel.medium";
@@ -49,4 +50,80 @@
     color: #e2d3b5;
     border: none;
     font-size: 20px;
+    cursor: pointer;
+}
+
+/* COMMENTS LIST */
+
+.container_comments {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.comment_temp {
+    padding: 5px;
+    background: url('../img/parchment_2.png');
+    width: 90%;
+    margin: 10px 0;
+}
+.comment_temp .avatar {
+    width: 100px;
+    border-radius: 100px;
+    border: 1px solid black;
+}
+.comments_user_infos {
+    display: flex;
+    align-items: center;
+}
+.comments_user_infos strong {
+    font-family: "kaorigel.bold";
+    margin-left: 5px;
+}
+.container_comment_content {
+    margin: 5px;
+    padding: 5px;
+    background-color: #e2d3b5;
+    
+}   
+.container_comment_content p {
+    font-family: "kaorigel.medium";
+    text-align: center;
+}
+.container_date {
+    text-align: end;
+}
+.container_date em {
+    font-family: "kaorigel.medium";
+}
+.container_links {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container_links a {
+    transition: 0.5s;
+    font-size: 25px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background: url('../img/parchment_2.png');
+    color: black;
+    opacity: 0.7;
+}
+.container_links a:hover {
+    opacity: 1;
+}
+.container_links a:first-child {
+    border-radius: 20px 0 0 20px;
+}
+.container_links a:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+.selected_link {
+    background-color: #070707 !important;
+    color: black !important;
+    border: 2px solid black;
 }
