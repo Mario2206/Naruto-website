@@ -1,31 +1,41 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Demande Ajax</button>
 
-// use Template\{
-//     Template,
-//     Table
-// };
+    <script src="<?=PATH."js/package/Ajax.js" ?>"></script>
+    <script>
 
-// ob_start();
-// // $data =  [
-// //     ["article_id" => "1", "test2"=> "2", "test3"=> "3", "test4"=>"4"],
-// //     ["article_id" => "1", "test2"=> "2", "test3"=> "3", "test4"=>"4"]
+        document.querySelector("button").addEventListener("click", (e)=> {
+            // var xhr = new XMLHttpRequest();
 
-// // ];
-// $keys = ["id", "test1", "test2", "test3", "test4", "test5"];
+            // // On souhaite juste récupérer le contenu du fichier, la méthode GET suffit amplement :
+            // xhr.open('GET', "http://projet-naruto.local/api/test/");
 
-// $table = new Table($keys,$data);
-// $table->setSurroundTag(
-//     [
-//         "article_id"=>"<strong>[::data] </strong>"
-//     ]
-// );
-// $table->init();
+            // xhr.addEventListener('readystatechange', function() { // On gère ici une requête asynchrone
 
-// $content = ob_get_clean();
-// $css = [
-//     "admin/table_style_admin.css",
-// ];
-// $temp = new Template($content, $css);
-// $temp->defineHtmlTemplate("tempAdmin.php");
-// $temp->init();
-?>
+            //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { // Si le fichier est chargé sans erreur
+
+            //         console.log("ready");
+                    
+
+            //     }
+
+            // });
+
+            // xhr.send(null); // La requête est prête, on envoie tout !
+
+            let ajax = new Ajax("api/test/")
+            ajax.post(function(data){console.log(data);
+            }, {testPost : "post"})
+        
+        })
+
+    </script>
+</body>
+</html>

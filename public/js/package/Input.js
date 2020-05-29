@@ -18,7 +18,7 @@ class Input  {
         //DEFAULT EVENT TO UPDATE INPUT VALUE
         this.input.addEventListener("contextmenu", (e)=> {e.preventDefault()})
         this.input.addEventListener("input", ()=> {
-            this.value = this.input.value;    
+            this.value = this.input.value;   
         })
     }
     
@@ -32,11 +32,18 @@ class Input  {
      * 
      */
     addListener = function(eventFunc, arg) {
-        this.input.addEventListener('input', (e)=> {
-            this.state = eventFunc(arg);
-            !this.state ? this.badStyle(this.input) : this.goodStyle(this.input) 
+
+        this.input.addEventListener('input',   (e)=> {
+            this.state =  eventFunc(arg)
+            this.changeStyle()
         }) 
+        this.input.addEventListener('paste', async (e)=> {
+            this.state =  eventFunc(arg)
+            this.changeStyle()
+        }) 
+
     }
+    
     
 
     //TESTING METHODS
@@ -150,6 +157,7 @@ class Input  {
         return this.correctExtensions.includes(filename.split('.').pop());
     }.bind(this)
 
+
     //METHODS FOR STYLE
 
      style = function(element, classToAdd, classToRemove ) {
@@ -165,6 +173,12 @@ class Input  {
     }
     badStyle = function(element) {
         this.style(element, this.uncorrectStyle, this.correctStyle)
+    }
+
+    changeStyle() {
+
+        !this.state ? this.badStyle(this.input) : this.goodStyle(this.input) 
+
     }
 
     //METHODS FOR FILE READER 

@@ -46,14 +46,14 @@ class CharactersManagement extends Controller {
 
     }
 
-    public function setCharacter(array $post, int $id_charact = null) {
+    public function setCharacter(array $post, int $id_charact = 0) {
        
         $postChecked = $this->checkPostVar($post, self::POST_ALLOWED);
 
         //Check if character data has to be change or create
         $current_char_id = Session::cleanValue("id_character");
 
-        $is_update = $current_char_id == $id_charact;
+        $is_update = $current_char_id === $id_charact;
         
         if(!$postChecked || !isset($_FILES[self::FILE_ALLOWED])) {
 
@@ -74,7 +74,6 @@ class CharactersManagement extends Controller {
             $url_file = $fileReader->getUrl();
             $postChecked["image"]= $url_file;
         }
-        
 
         $postChecked["is_online"] = isset($post["is_online"]) ? 1 : 0;
       
@@ -90,7 +89,7 @@ class CharactersManagement extends Controller {
         }
         
         if($is_update) {
-            
+
             $state = $this->updateData->updateBdd("characters", $postChecked, ["id"=>$current_char_id]);
 
         } else {

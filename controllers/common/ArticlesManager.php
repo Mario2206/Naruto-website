@@ -29,7 +29,7 @@ class ArticlesManager extends Controller {
         $startSearch = $current_page * self::LIMIT_ARTICLES_BY_PAGE;
         
         $articles = $this->getData->getByFilters("articles", ["is_online"=> 1], [$startSearch, self::LIMIT_ARTICLES_BY_PAGE ]);
-
+         
         $this->render("articles_management.php", compact("articles", "nPages", "current_page", "session"));
     }
 
@@ -68,8 +68,17 @@ class ArticlesManager extends Controller {
             ];
 
             $comments = $this->getData->getFromTables($tables,$entries,$joints, $filter, [$current_page*self::LIMIT_COMMENTS_BY_ARTICLE, self::LIMIT_COMMENTS_BY_ARTICLE]);
+            
+            $nLike = $this->getData->getNumberOfEntries("articles_like", ['article_id'=>$id_article]);
+
+            $alreadyLike = false;
+
+            if($session) {
+                $alreadyLike = $this->getData->getNumberOfEntries("articles_like", ['article_id'=>$id_article, "account_id" => $session->id]) == 0 ? false : true;
+            }
+
             Session::setValue("current_page", $id_article);
-            $this->render("article.php", compact("data", "comments", "nPages", "current_page", "session"));
+            $this->render("article.php", compact("data", "comments", "nPages", "current_page", "session", "nLike", "alreadyLike"));
 
         } else {
 

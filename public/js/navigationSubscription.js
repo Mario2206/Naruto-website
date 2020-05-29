@@ -1,5 +1,6 @@
 "use-strict";
 (function(){
+    try {
     const ID_RETURN = "return"
     const ID_SUB = "submitDef"
 
@@ -10,8 +11,13 @@
     //Instance of inputObject
 
     //PART 1
+    
     const inputUsername = new Input(document.querySelector('#username'))
     inputUsername.addListener(inputUsername.testText,{minLength : 2, maxLength : 20})
+    const asyncInputUser = new AsyncInput(inputUsername)
+    asyncInputUser.addAsyncListener(asyncInputUser.functest, {dataName : "username", conditionData : false})
+    
+    
 
     const inputLastName = new Input(document.querySelector("input[name='lastname']"))
     inputLastName.addListener(inputLastName.testText, {minLength:2, maxLength : 20})
@@ -30,6 +36,8 @@
     
     const inputMail = new Input(document.querySelector("input[type='email']"))
     inputMail.addListener(inputMail.testMail)
+    const asynInputMail = new AsyncInput(inputMail)
+    asynInputMail.addAsyncListener(asynInputMail.checkData, {dataName : "mail", conditionData : false})
 
     const selectDay = new Input(document.querySelector("select[name='day']"))
     selectDay.addListener(selectDay.checkDateNumber, {min : 1, max :31})
@@ -69,12 +77,12 @@
                  if(!alreadyMove) {
                     e.preventDefault()
                         validateForm = new Form({
-                        inputUsername : {input : inputUsername, error : "Pseudo invalide"},
+                        inputUsername : {input : inputUsername, error : "Pseudo invalide ou déjà pris"},
                         inputLastName : {input : inputLastName, error : "Nom de famille incorrect(trop court ou trop long)"},
                         inputFirstName : {input : inputFirstName, error : "Prenom incorrect(trop court ou trop long)"},
                         inputPassword : {input : inputPassword, error : "Le mot de passe doit comporter 1 Maj. 1 caractere special et 2 chiffres"}, 
                         inputConfPassword : {input : inputConfPassword, error : "La confirmation du mot de passe ne correspond pas"},
-                        inputMail : {input : inputMail, error : "Le mail ne respecte pas la norme"},
+                        inputMail : {input : inputMail, error : "Le mail ne respecte pas la norme ou a déjà été pris"},
                         selectDay : {input : selectDay, error : "Jour non saisi"},
                         selectYear : {input : selectYear, error : "Année non saisie"},
                         selectMonth : {input : selectMonth, error : "Mois non saisi"}
@@ -98,6 +106,12 @@
         
         }) 
     }
+
+} catch(error) {
+
+    console.error(error)
+
+}
 
     //STOP TABULATION
     document.addEventListener("keydown", function(e){

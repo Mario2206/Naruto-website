@@ -14,9 +14,22 @@ header {
     opacity: 1;
     transition: 0.8s;
 }
-#icon_connection img {
-      width: 90px;
+#icon_connection {
+    width: 90px;
     height: 90px;
+}
+#icon_connection img {
+      width: 100%;
+    height: 100%;
+}
+.connected_icon {
+    border: 2px solid black;
+    border-radius: 100px;
+    overflow: hidden;
+}
+.connected_icon img {
+    height: 100%;
+    width: 100%;
 }
 header #img_header {
     width: 100%;

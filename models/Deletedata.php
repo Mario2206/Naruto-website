@@ -17,7 +17,6 @@ class Deletedata extends Model {
             $delete = rtrim($delete, " AND ");
         }
 
-        echo $delete;
         $req = $this->bdd->prepare($delete);
         $result = $req->execute($filters);
         return $result==1;

@@ -8,7 +8,7 @@
         <?php 
             }else{
         ?>
-            <a href="/disconnection/" id="icon_connection">
+            <a href="/disconnection/" id="icon_connection" class="connected_icon">
                  <img src="<?=PATH.$session->avatar ?>" alt="Connection icon" title="Se déconnecter" >
             </a>
         <?php 

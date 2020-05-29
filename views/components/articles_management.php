@@ -25,22 +25,22 @@ ob_start();
 
                     </span>
 
-                    <span class="part3">
+                    <!-- <span class="part3">
 
                         <div class="part3_child">
 
                             <div class="like_container">
 
-                                <img src="<?=PATH;?>img/icons/icon_like.png" alt="like">
+                                <img src="img/icons/icon_like.png" alt="like">
 
-                                <p><?=$a->like_number; ?></p>
+                                <p></p>
 
                             </div>                            
 
                         </div>
                         
 
-                    </span>
+                    </span> -->
 
                 </a>
 
@@ -67,4 +67,5 @@ $css = [
     "article_manager.css"
 ];
 $temp = new Template($content, $css);
+$temp->title = "Aventures";
 $temp->init(compact("session"));

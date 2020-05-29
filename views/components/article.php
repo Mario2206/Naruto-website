@@ -12,6 +12,7 @@ ob_start();
                 <div class="title_container">
 
                     <h1><?=$data->title ?></h1>
+                    <input type="text" id="id_article" value="<?=$data->id; ?>" hidden>
 
                 </div>
 
@@ -37,11 +38,11 @@ ob_start();
 
                     <div class="container_like">
 
-                        <a href="#">
+                        <a href="#" id="button_like" title="<?=$alreadyLike ? "Retirer like" : "Ajouter un like" ?>">
 
-                            <img src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"/>
+                            <img src="<?=$alreadyLike ? PATH."img/icons/icon_green_like.png": "https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"?>"/>
 
-                            <p><?=$data->like_number; ?></p>
+                            <p><?=$nLike; ?></p>
 
                         </a>
 
@@ -110,7 +111,9 @@ $css = [
 $js = [
     "package/Input.js",
     "package/Form.js",
-    "comment_form.js"
+    "comment_form.js",
+    "package/Ajax.js",
+    "like_manager.js"
 ];
 $temp = new Template($content, $css, $js);
 $temp->title = $data->title;

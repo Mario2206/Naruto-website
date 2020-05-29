@@ -129,7 +129,9 @@
             </div>
         </form>
     </section>
+    <script src="<?=PATH ?>js/package/Ajax.js"></script>
     <script src="<?=PATH ?>js/package/HandlerRadio.js"></script>
+    <script src="<?=PATH ?>js/package/AsyncInput.js"></script>
     <script src="<?=PATH ?>js/package/Input.js"></script>
     <script src="<?=PATH ?>js/package/Form.js"></script>
     <script src="<?=PATH ?>js/navigationSubscription.js"></script>

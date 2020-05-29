@@ -48,7 +48,7 @@ class Router extends Controller {
            });
            //<--  FRIENDS PAGE ROUTES --> 
            $router->map("GET", "/my-friends/", function() {
-            $control = new FriendsPage();
+            $control = new CharactPage();
             $control->display();
            });
            //<--  ARTICLES  ROUTES --> 
@@ -243,7 +243,15 @@ class Router extends Controller {
                 $control->deleteCharacter($params["id"]);
             });
             
-
+            //<-- API ROUTES -->
+            $router->map("POST", "/api/like/", function() {
+                $control = new \Controller\API\LikeManager();
+                $control->set($this->post);
+            });
+            $router->map("POST", "/api/check/data/user", function() {
+                $control = new \Controller\API\UserManager();
+                $control->checkData($this->post);
+            });
 
              //<-- ROUTES FOR TESTING -->
              $router->map("GET|POST", "/test/", function() {
