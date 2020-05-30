@@ -36,7 +36,7 @@ class Connection extends Controller {
 
             if(Encryption::check($postChecked["admin_password"], $currentUser[0]->admin_password)) {
                 $dataToStore = array_filter($currentUser, function($k){return $k !== "admin_password";}, ARRAY_FILTER_USE_KEY);
-                Session::startAdminSession($dataToStore);
+                Session::startAdminSession($dataToStore[0]);
                 $this->redirect(self::GOOD_DIR);
             }
             

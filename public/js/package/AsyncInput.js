@@ -59,7 +59,7 @@ class AsyncInput {
         let data = {}
         data[dataName] = this.inputObj.value
 
-        let res =  await ajax.post(data).then((data)=>data)
+        let res =  await ajax.post(data).then((data)=>data).catch((e)=>console.log(e))
         
         this.asyncState = res == conditionData
     

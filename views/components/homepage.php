@@ -23,7 +23,7 @@
                     <p id="signature">NARUTO</p>
                 </div>
                 <div id="main_pres_childImg">
-                    <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="img_symbol">
+                    <img src="<?=PATH ?>img/konoha.png" alt="symbol" title="Konoha" class="img_symbol">
                 </div>
             </div>
         </section>

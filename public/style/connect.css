@@ -101,6 +101,9 @@ input[type="submit"] {
 /* RESPONSIVE */
 
 @media screen and (max-width : 500px) {
+    .letter_maj {
+        font-size: 25px;
+    }
     #container_connect_form {
         height: auto;
     }
@@ -109,5 +112,11 @@ input[type="submit"] {
     }
     #connect_form {
         width: 80%;
+    }
+    .txt_input {
+        font-size: 15px;
+    }
+    #subLink {
+        font-size: 13px;
     }
 }

@@ -52,11 +52,14 @@
 }
 /* RESPONSIVE */
 @media screen and (max-width : 500px){
-    .alert {
+    .error_message {
         width: 80%;
     }
-    .alert button {
+    .error_message button {
         left: 80%;
+    }
+    .error_message li {
+        font-size: 12px;
     }
 }
 /* ANIM */

@@ -1,5 +1,10 @@
+
+#container_table {
+   overflow: auto;
+}
 #container_table table {
     width: 100%;
+    overflow: auto;
 }
 table {
     border-collapse: collapse;
@@ -27,7 +32,7 @@ table tbody tr {
 }
 table tbody td{
     font-family: "kaorigel.medium";
-    padding: 5px;
+    padding: 0 5px;
 }
 table tbody td .link{
     margin: 0 auto;
@@ -66,4 +71,24 @@ select option {
     background : none;
 }
 
+/* RESPONSIVE DESIGN */
 
+@media screen and (max-width : 500px) {
+    #container {
+        padding: 30px 5px;
+    }
+    #container_table  {
+        width: 100%;
+    }
+    #container_table thead th {
+        font-size: 11px;
+    }
+    #container_table tbody td {
+        font-size: 10px;
+        overflow: hidden;
+        content: "test";
+    }
+    table tbody td .link {
+        font-size: 10px;
+    }
+}

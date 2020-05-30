@@ -16,13 +16,26 @@ class AdminManagement extends Controller {
     const POST_ALLOWED = ["admin_username", "mail", "level"];
     const GOOD_DIR = "/administration/admin/management/members/"; 
 
+    private $adminLevel;
+
     public function __construct()
     {
         parent::__construct();
         $this->protectPageFor('admin');
+
+        $this->adminLevel = Session::getValue("admin")->level;
+
     }
 
     public function inviteAdmin(array $post) {
+
+        
+
+        if($this->adminLevel < 1) {
+
+            throw new \Exception(ACCESS_FORBIDDEN);
+
+        }
 
         if(array_key_exists("mail", $post)) {
 
@@ -51,6 +64,12 @@ class AdminManagement extends Controller {
 
     public function deleteAdmin(int $id) {
 
+        if($this->adminLevel < 1) {
+
+            throw new \Exception(ACCESS_FORBIDDEN);
+
+        }
+
         if($this->deleteData->deleteFromBdd("_admins", ["id"=>$id])) {
             $this->redirect(self::GOOD_DIR);
             
@@ -60,6 +79,12 @@ class AdminManagement extends Controller {
     }
 
     public function dataChanging(array $post) {
+
+        if($this->adminLevel < 1) {
+
+            throw new \Exception(ACCESS_FORBIDDEN);
+
+        }
 
         $postChecked = $this->checkPostVar($post, self::POST_ALLOWED);
         if(!$postChecked || !isset($post["id"]) || !isset($post["date"])) {

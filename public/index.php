@@ -7,8 +7,7 @@ use Controller\{
     Router
 };  
 
-define("ROOT", dirname(__DIR__));
-define("PATH", "http://projet-naruto.local/");
+
 
 session_start();
 $router = new Router();

@@ -15,13 +15,13 @@ class Slider {
         this.nSlides = this.slides.length
         this.current_slide = 0
 
-        this._init()
+        this.init()
         this._createHandlerTouch()
     }
     /**
      * Init configuration for nodes
      */
-    _init() {
+    init() {
 
         this.container.style.width = (this.screen.offsetWidth * this.nSlides) + "px"
 

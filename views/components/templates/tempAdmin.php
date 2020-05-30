@@ -12,7 +12,10 @@
     <div id="main">
         <header>
            <nav>
-               <div>
+               <div id="burger_button">
+                   <button id="button_resp"><img src="<?=PATH?>/img/icons/burger_icon.png" alt=""></button>
+               </div>
+               <div id="container_links_nav" class="nav_toggle_init ul">
                    <a href="/administration/admin/management/articles/">Articles</a>
                    <a href="/administration/admin/management/characters/">Compagnons</a>
                    <a href="/administration/admin/management/members/">Membres</a>
@@ -28,6 +31,7 @@
             <?=$content; ?>
         </div>
     </div>
+    <script src="<?=PATH?>js/menu.js"></script>
     <?= $jsLibs;?>
     <?=$scripts; ?>
 </body>

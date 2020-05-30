@@ -5,7 +5,18 @@
 
 <div>
 
-    <h1>Créer un article</h1>
+    <div class="container_header">
+
+        <h1>Créer un article</h1>
+
+        <?php if(isset($data)): ?>
+
+            <strong class="<?=$nLikes ? "fontGreen" : "fontRed" ?>"><?=$nLikes; ?> <?=$nLikes > 1 ? "j'aimes" : "j'aime" ;?></strong>
+
+        <?php endif;?>
+
+    </div>
+    
 
     <form action="/administration/admin/management/articles/<?=isset($data) ? "modif/{$data->id}": "creation/creating" ?>" method="post" enctype="multipart/form-data">
         

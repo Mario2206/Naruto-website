@@ -21,25 +21,25 @@
                     
                     <a href="/">
                         <div>
-                            <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="icon_nav">
+                            <img src="<?=PATH ?>img/konoha.png" alt="symbol" title="Konoha" class="icon_nav">
                             <p>Qui suis-je ?</p>
                         </div>
                     </a>
                     <a href="/my-friends/">
                         <div>
-                            <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="icon_nav">
+                            <img src="<?=PATH ?>img/konoha.png" alt="symbol" title="Konoha" class="icon_nav">
                             <p>Qui sont mes compagnons ?</p>
                         </div>
                     </a>
                     <a href="/adventures/0">
                         <div>
-                            <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="icon_nav">
+                            <img src="<?=PATH ?>img/konoha.png" alt="symbol" title="Konoha" class="icon_nav">
                             <p>Mes aventures</p>
                         </div>
                     </a>
                     <a href="/contact/">
                         <div>
-                            <img src="<?=PATH ?>img/symbole.png" alt="symbol" title="Konoha" class="icon_nav">
+                            <img src="<?=PATH ?>img/konoha.png" alt="symbol" title="Konoha" class="icon_nav">
                             <p>Contactez-moi !</p>
                         </div>
                     </a>

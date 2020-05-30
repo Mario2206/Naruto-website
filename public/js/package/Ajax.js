@@ -64,12 +64,16 @@ class Ajax {
             this.xhr.addEventListener("readystatechange", (e)=> {
                 
                 if(this.xhr.readyState === XMLHttpRequest.DONE && this.xhr.status === 200) {
-    
+                    
                     const data = JSON.parse(this.xhr.response)
                     
                     callback(data.response)
 
-                } 
+                } else if(this.xhr.status === 0) {
+
+                    throw "Error HTTP : domain is out"
+
+                }
             })
 
             this.xhr.send(formData)

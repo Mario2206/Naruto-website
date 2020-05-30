@@ -30,8 +30,6 @@ class UserManager extends Controller {
 
         }
 
-
-
     }
 
 }

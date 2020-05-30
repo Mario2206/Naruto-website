@@ -92,3 +92,22 @@ table {
     margin: 0 auto;
 }
 
+/* RESPONSIVE DESIGN */
+
+@media screen and (max-width : 500px) {
+
+    h1 {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .title button {
+        font-size: 12px;
+    }
+    table input {
+        font-size: 10px;
+        width: auto;
+    }
+
+}

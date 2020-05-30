@@ -2,9 +2,9 @@
     use Template\Template;
     ob_start();
 ?>
+<h1>Contacts</h1>
+<br/><br/>
 <div id="container_table">
-    <h1>Contacts</h1>
-    <br/><br/>
     <table>
         <thead>
             <tr>

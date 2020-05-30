@@ -13,9 +13,9 @@ use Template\Template;
 </div>
 <?php endif; ?>
 <!-- CONTENT -->
+<h1>Membres</h1>  
+<br/><br/>
 <div id="container_table">
-    <h1>Membres</h1>  
-    <br/><br/>
     <div id="table_users">
         <div class="title">
             <h2>Utilisateurs</h2>
@@ -70,72 +70,77 @@ use Template\Template;
             </tbody>
         </table>
     </div>
-    <div id="table_admin">
-        <div class="title">
-            <h2>Administrateurs</h2>
-            <button class="blue link initPop">Ajouter un administrateur</button>
+
+    <?php if($levelAdmin == 1) : ?>
+
+        <div id="table_admin">
+            <div class="title">
+                <h2>Administrateurs</h2>
+                <button class="blue link initPop">Ajouter un administrateur</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Pseudo</th>
+                        <th>Mail</th>
+                        <th>En fonction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($dataAdmins as $item):      
+                    ?>
+                    <tr>
+                        <form action="/administration/admin/management/members/modification/admin/" method="post">
+                            <td><input type="text" value="<?=$item->id;?>" readonly name="id"/></td>
+                            <td><input type="text" value="<?=$item->firstname; ?>"  readonly /></td>
+                            <td><input type="text" value="<?=$item->lastname; ?>"readonly /></td>
+                            <td><input type="text" value="<?=$item->admin_username; ?>" name="admin_username" class="inputAllowed"/></td>
+                            <td><input type="text" value="<?=$item->mail;?>" name="mail" class="inputAllowed" /></td>
+                            <td><input type="text" value="<?=$item->date; ?>" name="date" /></td>
+                            <td><select name="level">
+                                <option value="<?=$item->level; ?>"><?=$item->level == 0 ? "Normal" : "SuperAdmin"?></option>
+                                <option value="<?=$item->level == 0 ? 1 : 0 ; ?>"><?=$item->level == 0 ? "SuperAdmin" : "Normal" ?></option>
+                            </select></td>
+                            <?php if($item->admin_password === ""):?>
+                                <td><img src='<?=PATH."img/icons/cross_icon.png"; ?>' alt="icon"></td>
+                            <?php elseif($item->is_activated == 0) :?>
+                                <td><a href="/administration/admin/management/members/confirm/admin/finally/<?=$item->id."-".$item->vkey; ?>" class="link green">A valider</a></td>
+                            <?php else:?>
+                                <td><img src='<?=PATH."img/icons/icon_ok.png"; ?>' alt="icon"></td>
+                            <?php endif;?>
+                            <td><a class="link red" href="/administration/admin/management/members/delete/admin/<?=$item->id;?>">Supprimer</a></td>
+                            <td><input type="submit" class="link green" value='Modifier'/></td>
+                        </form>
+                    </tr>
+                    <?php
+                        endforeach;
+                    ?>
+                </tbody>
+            </table>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Pseudo</th>
-                    <th>Mail</th>
-                    <th>En fonction</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    foreach($dataAdmins as $item):      
-                ?>
-                <tr>
-                    <form action="/administration/admin/management/members/modification/admin/" method="post">
-                        <td><input type="text" value="<?=$item->id;?>" readonly name="id"/></td>
-                        <td><input type="text" value="<?=$item->firstname; ?>"  readonly /></td>
-                        <td><input type="text" value="<?=$item->lastname; ?>"readonly /></td>
-                        <td><input type="text" value="<?=$item->admin_username; ?>" name="admin_username" class="inputAllowed"/></td>
-                        <td><input type="text" value="<?=$item->mail;?>" name="mail" class="inputAllowed" /></td>
-                        <td><input type="text" value="<?=$item->date; ?>" name="date" /></td>
-                        <td><select name="level">
-                            <option value="<?=$item->level; ?>"><?=$item->level == 0 ? "Normal" : "SuperAdmin"?></option>
-                            <option value="<?=$item->level == 0 ? 1 : 0 ; ?>"><?=$item->level == 0 ? "SuperAdmin" : "Normal" ?></option>
-                        </select></td>
-                        <?php if($item->admin_password === ""):?>
-                            <td><img src='<?=PATH."img/icons/cross_icon.png"; ?>' alt="icon"></td>
-                        <?php elseif($item->is_activated == 0) :?>
-                            <td><a href="/administration/admin/management/members/confirm/admin/finally/<?=$item->id."-".$item->vkey; ?>" class="link green">A valider</a></td>
-                        <?php else:?>
-                            <td><img src='<?=PATH."img/icons/icon_ok.png"; ?>' alt="icon"></td>
-                        <?php endif;?>
-                        <td><a class="link red" href="/administration/admin/management/members/delete/admin/<?=$item->id;?>">Supprimer</a></td>
-                        <td><input type="submit" class="link green" value='Modifier'/></td>
-                    </form>
-                </tr>
-                <?php
-                    endforeach;
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="container_create_admin_hidden">
-        <div class="back_popup">
-            <form action="/administration/admin/management/members/creation/admin/" method="post" id="create_admin">
-                <h2>Précisez le mail de votre nouvel administrateur</h2>
-                <label id="infos">
-                    Il recevra un mail afin de compléter certaines informations.
-                    <br/>
-                    <strong> Pour activer son compte, l'administrateur principal devra finaliser son inscription.</strong>
-                </label>
-                <div id="input_admin_mail">
-                    <input type="mail" value="mail" name="mail" />
-                </div>
-                <input type="submit" value="Envoyer la demande">
-            </form>
+        <div class="container_create_admin_hidden">
+            <div class="back_popup">
+                <form action="/administration/admin/management/members/creation/admin/" method="post" id="create_admin">
+                    <h2>Précisez le mail de votre nouvel administrateur</h2>
+                    <label id="infos">
+                        Il recevra un mail afin de compléter certaines informations.
+                        <br/>
+                        <strong> Pour activer son compte, l'administrateur principal devra finaliser son inscription.</strong>
+                    </label>
+                    <div id="input_admin_mail">
+                        <input type="mail" value="mail" name="mail" />
+                    </div>
+                    <input type="submit" value="Envoyer la demande">
+                </form>
+            </div>
         </div>
-    </div>
     
+    <?php endif; ?>
+
 </div>
 
 <?php

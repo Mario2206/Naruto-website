@@ -3,22 +3,22 @@
     ob_start();
 ?>
 <div>
-    <div id="container_table">
-        
-        <div id="container_title">
+
+    <div id="container_title">  
             <h1>Articles</h1>  
             <a href="/administration/admin/management/articles/creation" class="blue link">Ajouter un article</a>
-        </div>
+    </div>   
+    <br/><br/>
+    <div id="container_table">
         
-        <br/><br/>
         <table>
             <thead>
                 <tr>
                     <th>id</th>
                     <th>Titre</th>
                     <th>Miniature</th>
-                    <th>Date de création</th>
-                    <th>Date de mise en ligne</th>
+                    <th>Créé le </th>
+                    <th title="Date de mise en ligne">En ligne</th>
                     <th>Etat</th>
                 </tr>
             </thead>

@@ -15,7 +15,7 @@
     const inputUsername = new Input(document.querySelector('#username'))
     inputUsername.addListener(inputUsername.testText,{minLength : 2, maxLength : 20})
     const asyncInputUser = new AsyncInput(inputUsername)
-    asyncInputUser.addAsyncListener(asyncInputUser.functest, {dataName : "username", conditionData : false})
+    asyncInputUser.addAsyncListener(asyncInputUser.checkData, {dataName : "username", conditionData : false})
     
     
 

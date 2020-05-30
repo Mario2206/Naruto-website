@@ -41,14 +41,25 @@
                     </div>
                 </div>
             </section>
-        </div>
+
     </div>
+
     <div id="container_UI">
+
         <div id="container_helper">
-            <div id="txt_helper"><p>Maintiens le clique sur le slider et glisses la souris vers la droite ou vers la gauche pour faire défiler les informations</p></div>
+            
+            <div id="txt_helper">
+                
+                <p>Maintiens le clique sur le slider et glisses la souris vers la droite ou vers la gauche pour faire défiler les informations</p>
+            
+            </div>
+            
             <div id="helper"></div>
+
             <img src="<?= PATH?>img/icon_helper.png" alt="helper" id="img_Helper">
+
         </div>
+
     </div>
 
 <?php
@@ -59,7 +70,6 @@
         "package/Slider.js",
         "slideShow.js", 
         "helperButton.js", 
-        "menu.js"
     ];
     $temp = new Template($content, $css, $js);
     $temp->title = "Mes compagnons de route";

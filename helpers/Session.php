@@ -4,7 +4,7 @@ namespace Helper;
 
 class Session {
 
-    public static function startAdminSession(array $dataAboutAdmin) {
+    public static function startAdminSession(Object $dataAboutAdmin) {
         self::setValue("admin", $dataAboutAdmin);
     }
 

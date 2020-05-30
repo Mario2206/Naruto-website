@@ -11,7 +11,7 @@
         e.preventDefault()
 
         let ajax = new Ajax("api/like/")
-        ajax.post(callback, {article_id : article_id})
+        ajax.post({article_id : article_id}).then(callback).catch((e)=>console.error(e))
     })
 
     function callback(response) {

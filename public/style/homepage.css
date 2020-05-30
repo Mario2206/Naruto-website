@@ -188,6 +188,7 @@ footer div strong {
         padding: 0 50px;
     }
     .text_desc {
+        align-items: center;
         flex-direction: column;
     }
     .button_desc button {
@@ -215,5 +216,8 @@ footer div strong {
     }
     .secondary_desc {
         font-size: 15px;
+    }
+    .text_desc p  {
+        width: 100%;
     }
 }

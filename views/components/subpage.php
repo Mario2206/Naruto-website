@@ -1,3 +1,5 @@
+<?php $months = ["Janvier", "Février","Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,24 +32,40 @@
                         <div class="label">
                             <p>Date de naissance :</p>
                             <div id="container_selects">
+
                                 <select name="day" required class="date initInput">
+
                                     <option label="jour" ></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+
+                                    <?php for($i = 1; $i <= 31 ; $i++) : ?>
+
+                                        <option value="<?=$i ?>"><?=$i ?></option>
+                                        
+                                    <?php endfor; ?>
+                                    
                                 </select>
+
                                 <select name="month" required class="date initInput">
                                     <option label="mois"></option>
-                                    <option value="1">Janvier</option>
-                                    <option value="2">Février</option>
-                                    <option value="3">Mars</option>
+
+                                    <?php for($i = 0, $c = count($months); $i < $c; $i++) :  ?>
+
+                                        <option value="<?=$i + 1;?>"><?=$months[$i]; ?></option>
+
+                                    <?php endfor; ?>
+
                                 </select>
+
                                 <select name="year" required class="date initInput">
                                     <option label="année"></option>
-                                    <option value="1999">1999</option>
-                                    <option value="2000">2000</option>
-                                    <option value="2001">2001</option>
+
+                                    <?php for($i = 1900; $i < date("Y"); $i++): ?>
+
+                                        <option value="<?=$i ?>"><?=$i ?></option>
+
+                                    <?php endfor ?>
                                 </select>
+
                             </div> 
                         </div>
                         <label>
@@ -87,9 +105,11 @@
                                 <div id="avatar_label">
                                     <label>
                                         <span id="inputFile">Cliquer-ici</span>
-                                        <input type="file" accept="image/png, image/jpeg" name="avatar"/>
+                                        <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar"/>
                                     </label>
-                                    <img id="avatarImg" src="<?=PATH ?>img/icon_connection.png" alt="AVATAR">
+                                    <label for="avatar">
+                                        <img id="avatarImg" src="<?=PATH ?>img/icon_connection.png" alt="AVATAR">
+                                    </label>
                                 </div>   
                             </div>
                         </div>
@@ -97,23 +117,23 @@
                             <p class="title">Choisis ton village caché : </p>
                             <div id="container_labelsForRadio">
                                 <label>
-                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="konoha"/>
+                                    <img src="<?=PATH ?>img/konoha.png" class="imgCharact" alt="konoha"/>
                                     <input type="radio" name="village" value="konoha" checked />
                                 </label>
                                 <label>
-                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="iwa"/>
+                                    <img src="<?=PATH ?>img/iwa.png" class="imgCharact" alt="iwa"/>
                                     <input type="radio" name="village" value="iwa"  />
                                 </label>
                                 <label>
-                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="suna"/>
+                                    <img src="<?=PATH ?>img/suna.png" class="imgCharact" alt="suna"/>
                                     <input type="radio" name="village" value="suna"  />
                                 </label>
                                 <label>
-                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="kiri"/>
+                                    <img src="<?=PATH ?>img/kiri.png" class="imgCharact" alt="kiri"/>
                                     <input type="radio" name="village" value="kiri"  />
                                 </label>
                                 <label>
-                                    <img src="<?=PATH ?>img/symbole.png" class="imgCharact" alt="kumo"/>
+                                    <img src="<?=PATH ?>img/kumo.png" class="imgCharact" alt="kumo"/>
                                     <input type="radio" name="village" value="kumo"  />
                                 </label>
                             </div>

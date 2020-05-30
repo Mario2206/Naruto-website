@@ -1,3 +1,15 @@
+.container_header {
+    display: flex;
+    justify-content: space-between;
+}
+.container_header strong {
+    margin-right: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
 form {
     margin: 30px 0;
 }
@@ -70,4 +82,16 @@ input[type='submit']:hover {
 }
 .trumbowyg-editor {
     background-color: rgba(226, 167, 89, 0.8);
+}
+
+/* LIKE STYLE */
+.fontGreen {
+    border: 2px solid green;
+    background-color: rgb(134, 241, 139);
+    color: green;
+}
+.fontRed {
+    border: 2px solid red;
+    background-color: rgb(241, 134, 134);
+    color: red;
 }

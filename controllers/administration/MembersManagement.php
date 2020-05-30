@@ -28,7 +28,8 @@ class MembersManagement extends Controller {
         $dataAdmins =$this->getData->getAll("_admins");
         $villages_allowed = Subscribe::VILLAGE_ALLOWED;
         $errors = Session::getError();
-        $this->render("administration/admin_members_management.php", compact("dataUsers", "dataAdmins", "villages_allowed", "errors"));
+        $levelAdmin = Session::getValue("admin")->level;
+        $this->render("administration/admin_members_management.php", compact("dataUsers", "dataAdmins", "villages_allowed", "errors","levelAdmin"));
         Session::cleanError();
     }
 

@@ -9,7 +9,12 @@ class LikeManager extends Controller {
 
     public function set(array $post) {
 
-        if(!isset($post["article_id"])) {echo ERROR_VAR_POST;}
+        if(!isset($post["article_id"])) {
+
+            echo json_encode(["response"=>ERROR_VAR_POST]);
+            die();
+        
+        }
 
         $user = Session::getValue("user");
 

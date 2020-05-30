@@ -7,6 +7,7 @@
 .container {
     padding: 20px 10px 60px 10px;
     background-color: rgba(219,98,28,0.5);
+    min-height: 60vh;
 }
 .main_title {
     font-family: 'electroharmonix';
@@ -134,5 +135,33 @@
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+
+@media screen and (max-width : 1050px) {
+    
+    .article_temp .part1  {
+        width: 40%;
+    }
+    
+}
+
+@media screen and (max-width : 500px) {
+    .main_title {
+        font-size: 25px;
+    }
+    .article_temp .part2 .title_article {
+        font-size: 15px;
+    }
+    .article_temp .part2 .synopsis {
+        font-size: 12px;
+    }
+    .miniature {
+        height: 100px;
+    }
+    .container_links a {
+        font-size: 15px;
     }
 }

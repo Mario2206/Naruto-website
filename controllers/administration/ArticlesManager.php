@@ -34,7 +34,7 @@ class ArticlesManager extends Controller {
     public function displayForModification(int $id, int $current_page = 0) { 
 
         if($data = $this->getData->getByFilters("articles", ["id"=>$id])[0]) {
-            
+            $nLikes = $this->getData->getNumberOfEntries("articles_like", ["article_id"=>$id]);
             $nComments = $this->getData->getNumberOfEntries("comments_article", ["article_id"=>$id]);
             $nPages = ceil($nComments / self::MAX_COMMENTS);
 
@@ -62,7 +62,7 @@ class ArticlesManager extends Controller {
 
             $comments = $this->getData->getFromTables($tables,$entries,$joints, $filter, [$current_page*self::MAX_COMMENTS, self::MAX_COMMENTS]);
             
-            $this->render("administration/admin_article_creator.php", compact("data", "comments", "nPages", "current_page"));
+            $this->render("administration/admin_article_creator.php", compact("data", "comments", "nPages", "current_page", "nLikes"));
 
         } else {
 

@@ -6,17 +6,18 @@ use Template\{
 
 ob_start();
 ?>
+
+<div id="container_title">
+
+    <h1>Personnages</h1>
+
+    <a href="/administration/admin/management/characters/create" class="create_button link blue">Créer un personnage</a>
+
+</div>
+
+<br /><br />
+
 <div id="container_table">
-
-        <div id="container_title">
-
-            <h1>Personnages</h1>
-
-            <a href="/administration/admin/management/characters/create" class="create_button link blue">Créer un personnage</a>
-
-        </div>
-
-        <br /><br />
 
         <table>
 

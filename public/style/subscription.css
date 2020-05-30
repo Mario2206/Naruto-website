@@ -63,7 +63,9 @@ section {
     box-sizing: border-box;
     border: 2px solid #edd944;
     width: 50%;
-    height: 90%;
+    min-height: 90%;
+    max-height: 100%;
+    margin: 20px 0;
 }
 label, .label {
     color: #edd944;
@@ -127,7 +129,10 @@ option {
 #avatar_label {
     cursor: pointer;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+}
+#avatar_label label {
+    width: 50%;
 }
 #titleInputFile {
     padding-bottom: 30px;
@@ -139,10 +144,9 @@ option {
     cursor: pointer;
 }
 #avatar_label img {
-    width: 20%;
-    height: 20vh;
+    width: 50%;
     border : 2px solid #edd944;
-    border-radius: 80px;
+    border-radius: 100px;
 }
 #inputFile {
     font-family: "kaorigel.medium";
@@ -231,9 +235,6 @@ option {
         width: 90%;
         justify-content: space-around;
         font-size: 1.1em;
-    }
-    #avatar_label img {
-        width: 30%;
     }
     input {
         display: block;

@@ -37,7 +37,7 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
 #container {
-    padding: 50px 20px;
+    padding: 50px 5px;
 }
 
 /* SPECIAL CLASSES  */
@@ -105,5 +105,65 @@ nav a:hover {
     }
     To {
         transform: translateY(0);
+    }
+}
+
+.anim_button {
+    transform: rotate(90deg);
+}
+
+/* RESPONSIVE DESIGN */
+#burger_button {
+    display: none;
+}
+#button_resp {
+    transition: 1s;
+    display: inline;
+    background: none;
+    border: none;
+    outline: none;
+}
+#burger_button img {
+    width: 20px;
+}
+.ul {
+    transition: 0.5s;
+}
+
+@media screen and (max-width : 500px) {
+    .nav_toggle_init {
+        transform: translateX(-100%);
+    }
+    .nav_toggle {
+        transform: translateX(0)
+    }
+    #burger_button {
+        display: block;
+        padding: 0 10px ;
+    }
+    
+    #container_links_nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: rgba(255, 153,0, 0.7);
+    }
+    #container_links_nav a {
+
+        background-color: rgb(214, 111, 26);
+        color: rgba(253, 182, 75, 0.7);
+    }
+    nav {
+        justify-content: space-between;
+    }
+    nav a {
+        font-size: 15px;
+    }
+    nav div:last-child a {
+        font-size: 12px;
     }
 }
