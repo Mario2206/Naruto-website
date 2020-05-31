@@ -245,12 +245,20 @@ class Router extends Controller {
             
             //<-- API ROUTES -->
             $router->map("POST", "/api/like/", function() {
-                $control = new \Controller\API\LikeManager();
+                $control = new \Controller\API\User\LikeManager();
                 $control->set($this->post);
             });
             $router->map("POST", "/api/check/data/user", function() {
                 $control = new \Controller\API\UserManager();
                 $control->checkData($this->post);
+            });
+            $router->map("POST", "/api/admin/set-online-state/characters", function() {
+                $control = new \Controller\API\Admin\OnlineManager();
+                $control->set($this->post, "characters");
+            });
+            $router->map("POST", "/api/admin/set-online-state/articles", function() {
+                $control = new \Controller\API\Admin\OnlineManager();
+                $control->set($this->post, "articles");
             });
 
              //<-- ROUTES FOR TESTING -->

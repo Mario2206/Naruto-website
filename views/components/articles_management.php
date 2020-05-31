@@ -17,13 +17,13 @@ ob_start();
 
                     <span class="part1"><img src="<?=PATH.$a->miniature ?>" alt="miniature" class="miniature"></span>
 
-                    <span class="part2">
+                    <div class="part2">
 
                         <p class="title_article"><?=$a->title; ?></p>
 
                         <p class="synopsis"><?= $a->synopsis ?? "Ceci est le synopsis que je dois réaliser en backoffice" ?></p>
 
-                    </span>
+                    </div>
 
                     <!-- <span class="part3">
 

@@ -53,6 +53,14 @@ abstract class Controller {
     protected function getError() {
         return $this->errors;
     }
+
+    /**
+     * API METHODS
+     */
+    protected function sendJsonResponse($resp) {
+        echo json_encode(["response"=>$resp]);
+        die();
+    }
     /**
      * protected method that enables to test the post request and check if  data is correct 
      * 

@@ -1,4 +1,4 @@
-<section class="container_comments">
+<div class="container_comments">
 
     <?php foreach($comments as $c): ?>
 
@@ -29,4 +29,4 @@
     <?php endforeach; ?>
                 
 
-</section>
+</div>

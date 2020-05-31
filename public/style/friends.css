@@ -30,7 +30,6 @@ h1 {
     align-items: center;
 }
 .slide {
-    overflow: auto;
     height: 800px;
     background: url('../img/parchment_2.png');
     padding: 10px;
@@ -40,6 +39,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
 }
+
 .slide img {
     width: 40%;
     border-radius: 15px;
@@ -57,6 +57,7 @@ h1 {
     font-family: "kaorigel.medium";
     user-select: none;
     flex: 2 1 auto;
+    overflow: auto;
 }
 .page_slide {
     text-align: end;

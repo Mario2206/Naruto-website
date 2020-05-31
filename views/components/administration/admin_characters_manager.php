@@ -37,6 +37,10 @@ ob_start();
 
                     <th>Etat</th>
 
+                    <th></th>
+
+                    <th></th>
+
                 </tr>
 
             </thead>
@@ -49,8 +53,6 @@ ob_start();
 
                 <tr>
 
-                    <form action="" method="post">
-
                         <td><?=$item->id;?></td>
 
                         <td><?=htmlspecialchars($item->name)?></td>
@@ -61,13 +63,11 @@ ob_start();
 
                         <td><?=$item->online_date;?></td>
 
-                        <td><input type="checkbox" <?=$item->is_online ? "checked" : false; ?>></td>
+                        <td><input type="checkbox" <?=$item->is_online ? "checked" : false; ?> id='<?=$item->id ?>'></td>
 
                         <td><a class="link green" href="/administration/admin/management/characters/modif/<?=$item->id; ?>" >Modifier</a></td>
 
                         <td><a href="/administration/admin/management/characters/delete/<?=$item->id; ?>" class="link red">Supprimer</a></td>
-
-                    </form>
 
                 </tr>
 
@@ -87,6 +87,11 @@ $css = [
     "admin/table_style_admin.css",
     "admin/articles_management.css"
 ];
-$temp = new Template($content, $css);
+$js = [
+    "package/Ajax.js",
+    "package/CheckboxSender.js",
+    "admin_characters_ajax_conf.js"
+];
+$temp = new Template($content, $css, $js);
 $temp->defineHtmlTemplate("tempAdmin.php");
 $temp->init();

@@ -21,13 +21,13 @@ body {
 }
 @font-face {
     font-family: "kaorigel.medium";
-    src: url('../../fonts/kaorigel.medium.ttf') format('truetype'); 
+    src: url('../../fonts/teen.ttf') format('truetype'); 
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
     font-family: "kaorigel.bold";
-    src: url('../../fonts/kaorigel.bold.ttf') format('truetype'); 
+    src: url('../../fonts/teen.bd.ttf') format('truetype'); 
 	font-weight: normal;
 	font-style: normal;
 }

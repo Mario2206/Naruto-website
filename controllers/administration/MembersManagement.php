@@ -44,6 +44,7 @@ class MembersManagement extends Controller {
     }
     //USER PART
     public function dataChanging(array $post) {
+        
         $errors = [];
         $postChecked = $this->checkPostVar($post, self::POST_ALLOWED);
 

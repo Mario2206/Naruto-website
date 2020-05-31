@@ -8,7 +8,6 @@ use Controller\{
 };  
 
 
-
 session_start();
 $router = new Router();
 $router->runRouter();

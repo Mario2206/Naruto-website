@@ -48,7 +48,7 @@ h1 {
     padding: 10px 0;
 }
 
-#checkbox_lab p {
+#checkbox_lab span {
     display: inline;
     color: white;
     font-family: "kaorigel.medium";

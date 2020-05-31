@@ -4,9 +4,9 @@ use Template\Template;
 
 ob_start(); ?>
 
-<div id="container">
+
     <h1>Panneau d'administration</h1>
-</div>
+
 <?php 
 $content = ob_get_clean();
 $css = [

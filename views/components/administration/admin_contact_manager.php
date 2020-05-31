@@ -13,6 +13,8 @@
                 <th>Sujet</th>
                 <th>Message</th>
                 <th>Date d'envoi</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

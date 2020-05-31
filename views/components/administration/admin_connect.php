@@ -9,9 +9,11 @@
 
 </head>
 <body>
+
     <?php
         if(isset($error)) :
     ?>
+    
         <div id="interface">
             <div id="container_alert">
                 <div class="alert red borderRed">
@@ -22,6 +24,7 @@
         
         
     <?php endif; ?>
+
     <div id="container_connection">
         <div id="container_form">
             <h1>ADMINISTRATION</h1>
@@ -29,11 +32,11 @@
                 <table>
                     <tr>
                         <td><label for="admin_identifiant">Identifiant Admin</label></td>
-                        <td><input type="text" name="admin_username" autocomplete="off"/></td>
+                        <td><input type="text" name="admin_username" autocomplete="off" id="admin_identifiant"/></td>
                     </tr>
                     <tr>
                         <td><label for="admin_password">Mot de passe</label></td>
-                        <td><input type="password" name="admin_password" autocomplete="off"/></td>
+                        <td><input type="password" name="admin_password" autocomplete="off" id="admin_password"/></td>
                     </tr>
                 </table>
                 <input type="submit" value="Connexion" id="sub_button">

@@ -22,7 +22,7 @@
         
         <div id="container_titles">
 
-            <input type="text" value="<?=$data->id ?? "" ?>" name="<?=$data->id ? "id" : "" ?>" readonly hidden>
+            <input type="text" value="<?=$data->id ?? "" ?>" <?=isset($data->id) ? "name='id'" : "" ?> readonly hidden>
 
             <div class="title" id="title">
 
@@ -61,10 +61,10 @@
 
         <div>
 
-            <label for="is_online">
+            <label for="is_online_check">
 
                 Mettre en ligne
-                <input type="checkbox" name="is_online" <?=isset($data) && $data->is_online == 1 ? "checked" : "" ?>>
+                <input type="checkbox" name="is_online" <?=isset($data) && $data->is_online == 1 ? "checked" : "" ?> id="is_online_check">
 
             </label>
             

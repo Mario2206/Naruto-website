@@ -13,20 +13,17 @@ class UserManager extends Controller {
 
         if(!in_array(key($post),self::DATA_ALLOWED) || count($post) != 1) {
            
-            echo json_encode(["response" => $post]);
-            die();
+            $this->sendJsonResponse(ERROR_VAR_POST);
     
         }
 
         if($this->getData->getId("accounts", $post)) {
 
-            echo json_encode(["response"=>true]);
-            die();
+            $this->sendJsonResponse(true);
 
         } else {
 
-            echo json_encode(["response"=>false]);
-            die();
+            $this->sendJsonResponse(false);
 
         }
 

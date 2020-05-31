@@ -95,3 +95,38 @@ input[type='submit']:hover {
     background-color: rgb(241, 134, 134);
     color: red;
 }
+
+/* RESPONSIVE DESIGN */
+
+@media screen and (max-width : 1050px) {
+    .blue {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width : 850px) {
+    .trumbowyg-button-pane button {
+        width: 30px;
+    }
+    .trumbowyg-box svg, .trumbowyg-modal svg{
+        width: 12px;
+    }
+}
+
+@media screen and (max-width : 500px) {
+    h1 {
+        font-size: 20px;
+    }
+    .blue {
+        font-size: 12px;
+    }
+    #miniature_ex {
+        width: 30%;
+    }
+    #title input {
+        font-size: 12px;
+    }
+    .title:not(#title) {
+        width: 50%;
+    }
+}

@@ -7,7 +7,7 @@ body {
     background: url("../../img/background.png");
 }
 h1 {
-    font-family: sans-serif;
+    font-family: "electroharmonix";
     color: rgb(255, 224, 45);
 }
 #main {
@@ -58,6 +58,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center ;
+    text-align: center;
 }
 .green {
     background-color: rgb(50, 211, 117);
@@ -128,6 +129,7 @@ nav a:hover {
 }
 .ul {
     transition: 0.5s;
+    z-index: 1000;
 }
 
 @media screen and (max-width : 500px) {

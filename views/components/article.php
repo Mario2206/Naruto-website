@@ -32,7 +32,7 @@ ob_start();
 
                     <div class="container_date">
 
-                        <p><?=$data->online_date ?></span>
+                        <p><?=$data->online_date ?></p>
 
                     </div>
 
@@ -40,7 +40,7 @@ ob_start();
 
                         <a href="#" id="button_like" title="<?=$alreadyLike ? "Retirer like" : "Ajouter un like" ?>">
 
-                            <img src="<?=$alreadyLike ? PATH."img/icons/icon_green_like.png": "https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"?>"/>
+                            <img src="<?=$alreadyLike ? PATH."img/icons/icon_green_like.png": "https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"?>" alt="like"/>
 
                             <p><?=$nLike; ?></p>
 
@@ -52,7 +52,7 @@ ob_start();
 
             </section>
 
-            <section class="container_commentaire_editor">
+            <div class="container_commentaire_editor">
 
                 <form action="<?=isset($session) ? "/adventures/details/post-comment" : "" ?>" method="post">
 
@@ -74,7 +74,7 @@ ob_start();
 
                 </form>
 
-            </section>
+            </div>
 
             <br /><br />
 

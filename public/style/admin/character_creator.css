@@ -42,6 +42,7 @@ form > div:not(form div:first-child) {
     align-items: center;
     width: 100%;
     padding: 10px;
+    box-sizing: border-box;
 }
 .container_profil {
     display: flex;
@@ -84,4 +85,13 @@ form > div:not(form div:first-child) {
 input[type="submit"] {
     font-size: 23px;
     border-radius: 0;
+}
+
+@media screen and (max-width : 500px) {
+    h1 {
+        font-size: 20px;
+    }
+    .container_input_header > input {
+        font-size: 15px;
+    }
 }

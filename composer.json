@@ -11,6 +11,8 @@
             "Controller\\" : "controllers/common/",
             "Controller\\Admin\\" : "controllers/administration/",
             "Controller\\API\\" : "controllers/api/",
+            "Controller\\API\\Admin\\" : "controllers/api/admin",
+            "Controller\\API\\User\\" : "controllers/api/user",
             "Model\\" : "models/",
             "Helper\\" : "helpers/",
             "Exception\\" : "exceptions",
