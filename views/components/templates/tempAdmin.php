@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<?= PATH ?>img/icons/favicon.png" /><link/>
     <link rel="stylesheet" href="<?=PATH?>style/admin/common_admin.css" />
     <link rel="stylesheet" href="<?=PATH?>style/common/common.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

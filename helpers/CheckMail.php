@@ -37,7 +37,7 @@ class CheckMail {
 
     public static function mailVerif (string $id,string $dest, string $vKey) : bool 
     {
-        $link = "http://projet-naruto.local/subscription/verification/".$id."-".$vKey;
+        $link = PATH."subscription/verification/".$id."-".$vKey;
         $subject = "Verification du compte";
         $message = "
         <h1>Bonjour!</h1>
@@ -61,7 +61,7 @@ class CheckMail {
     }
     public static function inviteAdmin(string $id,string $dest, string $vKey) {
 
-        $link = "http://projet-naruto.local/administration/admin/management/members/confirm/admin/".$id."-".$vKey;
+        $link = PATH."administration/admin/management/members/confirm/admin/".$id."-".$vKey;
         $subject = "Invitation";
         $message = "
         <h1>Bonjour!</h1>

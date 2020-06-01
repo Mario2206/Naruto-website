@@ -1,3 +1,6 @@
+h1 {
+    text-align: center;
+}
 .alert {
     width: 60%;
 }
@@ -76,4 +79,28 @@ li {
 }
 #container_sub input:hover {
     border-radius: 0 15px;
+}
+
+@media screen and (max-width : 1050px) {
+
+    #container_form form {
+        width: 60%;
+    }
+
+}
+
+
+@media screen and (max-width : 500px) {
+    h1 {
+        font-size: 20px;
+    }
+    
+    #container_form form {
+        width: 90%;
+    }
+    
+    #container_input label {
+        font-size: 15px;
+    }
+
 }

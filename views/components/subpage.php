@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?=PATH ?>style/common/common.css">
     <link rel="stylesheet" href="<?=PATH ?>style/common/form.css">
     <link rel="stylesheet" href="<?=PATH ?>style/common/alert.css">
+    <link rel="icon" type="image/png" href="<?= PATH ?>img/icons/favicon.png" /><link/>
     
 </head>
 <body>

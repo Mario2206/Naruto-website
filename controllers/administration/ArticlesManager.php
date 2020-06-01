@@ -107,6 +107,7 @@ class ArticlesManager extends Controller {
         $postToSend = array_merge($postChecked, $addons);
 
         if($this->postData->setData("articles", $postToSend)) {
+
             $this->redirect(self::GOOD_DIR);
 
         } else {

@@ -6,6 +6,7 @@
     <title>Administration</title>
     <link rel="stylesheet" href="<?=PATH?>style/admin/connection_admin.css">
     <link rel="stylesheet" href="<?=PATH?>style/admin/common_admin.css">
+    <link rel="icon" type="image/png" href="<?= PATH ?>img/icons/favicon.png" /><link/>
 
 </head>
 <body>

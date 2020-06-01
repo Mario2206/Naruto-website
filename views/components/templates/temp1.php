@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="<?= PATH ?>img/icons/favicon.png" /><link/>
     <link rel="stylesheet" href="<?= PATH ?>style/common/nav.css">
     <link rel="stylesheet" href="<?= PATH ?>style/common/footer.css">
     <link rel="stylesheet" href="<?= PATH ?>style/common/common.css">

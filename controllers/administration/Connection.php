@@ -34,6 +34,10 @@ class Connection extends Controller {
 
          if($currentUser = $this->getData->getByFilters("_admins", ["admin_username"=>$postChecked["admin_username"]])) {
 
+            if($currentUser[0]->is_activated == 0) {
+                $this->redirect("/");
+            }
+
             if(Encryption::check($postChecked["admin_password"], $currentUser[0]->admin_password)) {
                 $dataToStore = array_filter($currentUser, function($k){return $k !== "admin_password";}, ARRAY_FILTER_USE_KEY);
                 Session::startAdminSession($dataToStore[0]);

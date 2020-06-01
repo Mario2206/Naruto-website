@@ -125,6 +125,7 @@ class Router extends Controller {
 
                 //Connection
             $router->map("GET", "/administration/admin/connect", function() {
+                
                 $control = new \Controller\Admin\Connection();
                 $control->display();
             });
@@ -263,15 +264,7 @@ class Router extends Controller {
                 $control->set($this->post, "articles");
             });
 
-             //<-- ROUTES FOR TESTING -->
-             $router->map("GET|POST", "/test/", function() {
-                $data = $this->getData->getAll("comments_article");
-               require("../views/test.php");
-            });
-            $router->map("POST", "/test/ok", function() {
-                $fileReader = new FileReader();
-                echo $this->debug($fileReader->getImage($_FILES["test"]));
-            });
+             
             
            //MATCH ROUTE
            $match = $router->match();

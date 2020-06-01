@@ -34,11 +34,11 @@
                 </div>
                 <div class="center">
                     <label>Mot de passe</label>
-                    <input type="text" name="admin_password">
+                    <input type="password" name="admin_password">
                 </div>
                 <div class="center">
                     <label>Confirmer mot de passe</label>
-                    <input type="text" name="confirmPassword">
+                    <input type="password" name="confirmPassword">
                 </div>
             </div>
             <div id="container_sub" class="center">

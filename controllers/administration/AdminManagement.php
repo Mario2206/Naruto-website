@@ -21,15 +21,14 @@ class AdminManagement extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->protectPageFor('admin');
 
-        $this->adminLevel = Session::getValue("admin")->level;
+        $this->adminLevel = Session::getValue("admin")->level ?? 0;
 
     }
 
     public function inviteAdmin(array $post) {
 
-        
+        $this->protectPageFor('admin');
 
         if($this->adminLevel < 1) {
 
@@ -63,7 +62,7 @@ class AdminManagement extends Controller {
     }
 
     public function deleteAdmin(int $id) {
-
+        $this->protectPageFor('admin');
         if($this->adminLevel < 1) {
 
             throw new \Exception(ACCESS_FORBIDDEN);
@@ -79,7 +78,7 @@ class AdminManagement extends Controller {
     }
 
     public function dataChanging(array $post) {
-
+        $this->protectPageFor('admin');
         if($this->adminLevel < 1) {
 
             throw new \Exception(ACCESS_FORBIDDEN);
@@ -161,6 +160,7 @@ class AdminManagement extends Controller {
     }
 
     public function confirmSubsribeByAdmin(int $id, int $vkey) {
+        $this->protectPageFor('admin');
 
         if($data = $this->getData->getByFilters("_admins", ["id"=>$id, "vkey"=>$vkey])) {
 
