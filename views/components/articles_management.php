@@ -13,7 +13,7 @@ ob_start();
 
             <?php foreach($articles as $a): ?>
 
-                <a href="/adventures/details/<?=$a->id; ?>-0" class="article_temp">
+                <a href="<?=INTER_DIR?>/adventures/details/<?=$a->id; ?>-0" class="article_temp">
 
                     <span class="part1"><img src="<?=PATH.$a->miniature ?>" alt="miniature" class="miniature"></span>
 
@@ -51,7 +51,7 @@ ob_start();
             <?php
                 for($i = 0 ; $i< $nPages; $i++) : 
             ?>
-            <a href="/adventures/<?=$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
+            <a href="<?=INTER_DIR?>/adventures/<?=$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
             <?php
                 endfor;
             ?>

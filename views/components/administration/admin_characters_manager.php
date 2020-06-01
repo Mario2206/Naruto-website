@@ -11,7 +11,7 @@ ob_start();
 
     <h1>Personnages</h1>
 
-    <a href="/administration/admin/management/characters/create" class="create_button link blue">Créer un personnage</a>
+    <a href="<?=INTER_DIR?>/administration/admin/management/characters/create" class="create_button link blue">Créer un personnage</a>
 
 </div>
 
@@ -65,9 +65,9 @@ ob_start();
 
                         <td><input type="checkbox" <?=$item->is_online ? "checked" : false; ?> id='<?=$item->id ?>'></td>
 
-                        <td><a class="link green" href="/administration/admin/management/characters/modif/<?=$item->id; ?>" >Modifier</a></td>
+                        <td><a class="link green" href="<?=INTER_DIR?>/administration/admin/management/characters/modif/<?=$item->id; ?>" >Modifier</a></td>
 
-                        <td><a href="/administration/admin/management/characters/delete/<?=$item->id; ?>" class="link red">Supprimer</a></td>
+                        <td><a href="<?=INTER_DIR?>/administration/admin/management/characters/delete/<?=$item->id; ?>" class="link red">Supprimer</a></td>
 
                 </tr>
 

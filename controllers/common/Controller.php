@@ -43,7 +43,7 @@ abstract class Controller {
     }
 
     protected function redirect(string $url) {
-        header("Location:".$url);
+        header("Location:".INTER_DIR.$url);
         exit();
     }
 

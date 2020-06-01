@@ -4,6 +4,7 @@ namespace Controller\Admin;
 use Controller\Controller;
 use Helper\Checker;
 use Helper\FileReader;
+use Helper\Session;
 
 class ArticlesManager extends Controller {
 
@@ -21,7 +22,7 @@ class ArticlesManager extends Controller {
     }
     
     public function display() 
-    {
+    {   
         $articles = $this->getData->getAll("articles");
         $this->render("administration/admin_articles_management.php", compact("articles"));
     }

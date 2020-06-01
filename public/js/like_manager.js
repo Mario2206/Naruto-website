@@ -5,6 +5,7 @@
     let p_like = document.querySelector("#button_like p")
 
     let article_id = document.querySelector("#id_article").value
+    let domain = new Ajax().domain
 
     button_like.addEventListener("click", (e)=>{
         
@@ -19,7 +20,7 @@
         
         if(response === "add") {
 
-            img_like.src = "http://projet-naruto.local/img/icons/icon_green_like.png"
+            img_like.src = domain + "img/icons/icon_green_like.png"
             p_like.innerText = parseInt(p_like.innerText) + 1
 
         } else if (response === "delete") {
@@ -30,7 +31,7 @@
         } else if(response === "no identification") {
 
             alert("Il faut être connecté pour liker des articles")
-            window.location.replace("http://projet-naruto.local/connection/")
+            window.location.replace( domain +"connection/")
 
         }
         

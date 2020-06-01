@@ -22,7 +22,8 @@ class Form {
      * !return bool 
      */
     validateForm = ()=> {
-
+        
+        this.triggerResponse()
         this.error = [];
         for(const input in this.inputObject) {
             const inputObj = this.inputObject[input]
@@ -41,9 +42,7 @@ class Form {
                 this.error.push(inputObj.error)
             }
         }
-        if(this.error.length !== 0) {
-            this.triggerResponse()
-        }
+        
         
         return this.error.length === 0 && this.state  
 

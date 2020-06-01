@@ -16,13 +16,13 @@
                    <button id="button_resp"><img src="<?=PATH?>/img/icons/burger_icon.png" alt=""></button>
                </div>
                <div id="container_links_nav" class="nav_toggle_init ul">
-                   <a href="/administration/admin/management/articles/">Articles</a>
-                   <a href="/administration/admin/management/characters/">Compagnons</a>
-                   <a href="/administration/admin/management/members/">Membres</a>
-                   <a href="/administration/admin/management/contacts/">Contacts</a>
+                   <a href="<?=INTER_DIR?>/administration/admin/management/articles/">Articles</a>
+                   <a href="<?=INTER_DIR?>/administration/admin/management/characters/">Compagnons</a>
+                   <a href="<?=INTER_DIR?>/administration/admin/management/members/">Membres</a>
+                   <a href="<?=INTER_DIR?>/administration/admin/management/contacts/">Contacts</a>
                </div>
                <div>
-                   <a href="/administration/admin/disconnect">Se déconnecter</a>
+                   <a href="<?=INTER_DIR?>/administration/admin/disconnect">Se déconnecter</a>
                </div>
                 
             </nav> 

@@ -14,7 +14,7 @@
 </head>
 <body>
     <section>
-        <form method="post" action="/subscription/subscribing" enctype="multipart/form-data">
+        <form method="post" action="<?=INTER_DIR?>/subscription/subscribing" enctype="multipart/form-data">
             <div id="container_h1">
                 <h1>Inscription</h1>
             </div>
@@ -143,7 +143,7 @@
             </div>
             <div id="container_buttonForm">
                 <div>
-                     <a href="/" class="submit" id="return">Retour</a>
+                     <a href="<?=INTER_DIR?>/" class="submit" id="return">Retour</a>
                      <input type="submit" value="Valider" class="submit" id="submitDef"/>
                 </div>
             </div>

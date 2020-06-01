@@ -4,8 +4,8 @@
 class Ajax {
 
     constructor(url) {
-
-        this.domain = "http://projet-naruto.local/"
+        
+        this.domain = "http://projet-naruto.loc/projet_naruto/public/"
         this.url = url
         this.xhr = new XMLHttpRequest()
 

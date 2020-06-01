@@ -5,7 +5,7 @@ ob_start();
     <div id="main_container_child">
             <section>
                 <h1>Contacte-moi mon ami(e) !!</h1>
-                <form action="/contact/contacting" method="post">
+                <form action="<?=INTER_DIR?>/contact/contacting" method="post">
                     <div id="form_container">
                         <div>
                             <label>
@@ -19,7 +19,7 @@ ob_start();
                                 ?>
                                 <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail"> 
                                     <?php }else{?>
-                                <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail" value="<?=$session->mail?>" disabled>    
+                                <input type="email" required placeholder="example@mail.com" class="initInput input" name="mail" value="<?=$session->mail?>" readonly>    
                                     <?php }?>
                             </label>
                         </div>

@@ -54,7 +54,7 @@ ob_start();
 
             <div class="container_commentaire_editor">
 
-                <form action="<?=isset($session) ? "/adventures/details/post-comment" : "" ?>" method="post">
+                <form action="<?=isset($session) ? INTER_DIR."/adventures/details/post-comment" : "" ?>" method="post">
 
                     <div class="container_input">
                         
@@ -86,7 +86,7 @@ ob_start();
                     for($i = 0 ; $i< $nPages; $i++) : 
                 ?>
 
-                    <a href="/adventures/details/<?=$data->id."-".$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
+                    <a href="<?=INTER_DIR?>/adventures/details/<?=$data->id."-".$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
 
                 <?php
                     endfor;

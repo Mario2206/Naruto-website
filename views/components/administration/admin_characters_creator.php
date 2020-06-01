@@ -15,7 +15,7 @@ ob_start();
 
 <div class="container_form">
 
-    <form action="<?= isset($data) ? "/administration/admin/management/characters/changing/".$data->id :  "/administration/admin/management/characters/creating" ?>" method="post" enctype="multipart/form-data">
+    <form action="<?= isset($data) ? INTER_DIR."/administration/admin/management/characters/changing/".$data->id :  INTER_DIR."/administration/admin/management/characters/creating" ?>" method="post" enctype="multipart/form-data">
 
         <div class="container_input_header">
 

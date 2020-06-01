@@ -31,6 +31,7 @@ class Router extends Controller {
     public function runRouter() {
 
         $router = new \AltoRouter();
+        $router->setBasePath(INTER_DIR);
 
         try{
             //CREATE ROUTES
@@ -143,6 +144,7 @@ class Router extends Controller {
             });
                 //articles
             $router->map("GET", "/administration/admin/management/articles/", function() {
+                
                 $control = new \Controller\Admin\ArticlesManager();
                 $control->display();
             });
@@ -256,7 +258,7 @@ class Router extends Controller {
                 $control = new \Controller\API\Admin\OnlineManager();
                 $control->set($this->post, "characters");
             });
-            $router->map("POST", "/api/admin/set-online-state/articles", function() {
+            $router->map("POST|GET", "/api/admin/set-online-state/articles", function() {
                 $control = new \Controller\API\Admin\OnlineManager();
                 $control->set($this->post, "articles");
             });
@@ -270,7 +272,7 @@ class Router extends Controller {
                 $fileReader = new FileReader();
                 echo $this->debug($fileReader->getImage($_FILES["test"]));
             });
-
+            
            //MATCH ROUTE
            $match = $router->match();
 

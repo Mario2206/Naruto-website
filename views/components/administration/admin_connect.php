@@ -28,7 +28,7 @@
     <div id="container_connection">
         <div id="container_form">
             <h1>ADMINISTRATION</h1>
-            <form method="post" action="/administration/admin/connecting">
+            <form method="post" action="<?=INTER_DIR?>/administration/admin/connecting">
                 <table>
                     <tr>
                         <td><label for="admin_identifiant">Identifiant Admin</label></td>

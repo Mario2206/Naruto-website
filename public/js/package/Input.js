@@ -86,7 +86,7 @@ class Input  {
         const regMaj = this.caractFinder(/[A-Z]/);
         const regNum = this.caractFinder(/[0-9]/);
         const regCaract = this.caractFinder(/[$!/;,?ù%£^+=}{'@#]/);
-        return regMaj.length > 0 && regNum.length > 2 && regCaract.length > 0 && this.value.length > 10
+        return regMaj.length > 0 && regNum.length >= 2 && regCaract.length > 0 && this.value.length >= 10
     }.bind(this)
 
     /**For testing the equality between password and confirmPassword

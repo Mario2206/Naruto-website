@@ -54,7 +54,7 @@ class Connection extends Controller {
 
             //CHECK PASSWORD
             if(Encryption::check($password,$account->password)) {
-
+                Session::setValue("user_verif", $account);
                 if($account->isVerif == 1) {
                     Session::startUserSession($account);
                     if(isset($post["keepConnection"])) {
@@ -85,16 +85,17 @@ class Connection extends Controller {
      */
     public function displayConfirmMail() {
         $dir = self::MAIL_DIR;
-        $message = "Veuillez confirmer votre adresse mail silvousplait.<br/>Si le mail ne vous est pas parvenu, <a href='{$dir}'>cliquez-ici</a>";
+        $message = "Veuillez confirmer votre adresse mail silvousplait.<br/>Si le mail ne vous est pas parvenu, <a href='".INTER_DIR.$dir."'>cliquez-ici</a>";
         $this->render("info.php", compact("dir", "message"));
     }
     /**
      * method for resending confirm mail
      */
     public function sendEmailForSub() {
-        $dest = $_SESSION['current_account']->mail;
-        $vKey = $_SESSION["current_account"]->vKey;
-        $id = $_SESSION["current_account"]->id;
+     
+        $dest = Session::getValue("user_verif")->mail;
+        $vKey =Session::getValue("user_verif")->vKey;
+        $id = Session::getValue("user_verif")->id;
         CheckMail::mailVerif($id,$dest, $vKey);
         $this->redirect(self::VERIF_DIR);
     }

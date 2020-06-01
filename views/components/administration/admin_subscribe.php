@@ -15,7 +15,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form action="/administration/admin/management/members/confirm/admin/checking/<?=$id."-".$vkey ?>" method="post">
+        <form action="<?=INTER_DIR?>/administration/admin/management/members/confirm/admin/checking/<?=$id."-".$vkey ?>" method="post">
             <div id="title" class="center">
                 <h1>Inscription administration</h1>
             </div>

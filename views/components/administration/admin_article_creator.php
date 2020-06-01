@@ -18,7 +18,7 @@
     </div>
     
 
-    <form action="/administration/admin/management/articles/<?=isset($data) ? "modif/{$data->id}": "creation/creating" ?>" method="post" enctype="multipart/form-data">
+    <form action="<?=INTER_DIR?>/administration/admin/management/articles/<?=isset($data) ? "modif/{$data->id}": "creation/creating" ?>" method="post" enctype="multipart/form-data">
         
         <div id="container_titles">
 
@@ -90,7 +90,7 @@
                     for($i = 0 ; $i< $nPages; $i++) : 
                 ?>
 
-                    <a href="/administration/admin/management/articles/modif/<?=$data->id."-".$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
+                    <a href="<?=INTER_DIR?>/administration/admin/management/articles/modif/<?=$data->id."-".$i; ?>" <?=$current_page == $i ? "class='selected_link'" :"" ?>><?=$i + 1; ?></a>
 
                 <?php
                     endfor;

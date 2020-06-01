@@ -33,7 +33,7 @@
                 <td><?=htmlspecialchars($item->subject); ?></td>
                 <td><?=htmlspecialchars($item->message); ?></td>
                 <td><?=htmlspecialchars($item->sending_date); ?></td>
-                <td><a class="link green" href="/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
+                <td><a class="link green" href="<?=INTER_DIR?>/administration/admin/management/contacts/<?=$item->id;?>">Voir</a></td>
                 <td>
                     <?=$item->already_seen == 1 ? "<img src='".PATH."img/icons/courriel.png' alt='Courriel'/>" : false ?>
                 </td>

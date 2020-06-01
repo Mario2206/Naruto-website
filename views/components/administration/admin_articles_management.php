@@ -6,7 +6,7 @@
 
     <div id="container_title">  
             <h1>Articles</h1>  
-            <a href="/administration/admin/management/articles/creation" class="blue link">Ajouter un article</a>
+            <a href="<?=INTER_DIR?>/administration/admin/management/articles/creation" class="blue link">Ajouter un article</a>
     </div>   
     <br/><br/>
     <div id="container_table">
@@ -34,8 +34,8 @@
                         <td><?=$item->creation_date; ?></td>
                         <td><?=$item->online_date;?></td>
                         <td><input type="checkbox" <?=$item->is_online ? "checked" : false; ?> id="<?=$item->id; ?>"></td>
-                        <td><a class="link green" href="/administration/admin/management/articles/modif/<?=$item->id."-0"; ?>">Modifier</a></td>
-                        <td><a href="/administration/admin/management/articles/delete/<?=$item->id?>" class="link red">Supprimer</a></td>
+                        <td><a class="link green" href="<?=INTER_DIR?>/administration/admin/management/articles/modif/<?=$item->id."-0"; ?>">Modifier</a></td>
+                        <td><a href="<?=INTER_DIR?>/administration/admin/management/articles/delete/<?=$item->id?>" class="link red">Supprimer</a></td>
                     </tr>
                 <?php
                     endforeach;

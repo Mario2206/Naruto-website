@@ -10,9 +10,9 @@
             <div class="footer_child">
                 <strong>DEVENONS HOKAGE !</strong>
                 <div class="a_footer">
-                    <a href="/connection/">Rejoignez-moi !</a>
+                    <a href="<?=INTER_DIR?>/connection/">Rejoignez-moi !</a>
                     <a href="">Mes réseaux</a>
-                    <a href="/legal_notices/">Mentions légales</a>
+                    <a href="<?=INTER_DIR?>/legal_notices/">Mentions légales</a>
                 </div>
             </div>
         </footer>

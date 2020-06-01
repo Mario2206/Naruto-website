@@ -9,6 +9,7 @@ use Helper\Session;
  */
 class HomePage extends Controller {
 
+
     public function display() {
         $session = Session::getValue("user");
         $this->render("homepage.php", compact("session"));

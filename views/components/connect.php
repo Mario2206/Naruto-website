@@ -5,7 +5,7 @@ ob_start();
 ?>
 <section id="container_connect_form">
     <div id="container_color">
-        <form action="/connection/connecting" method="post" id="connect_form">
+        <form action="<?=INTER_DIR?>/connection/connecting" method="post" id="connect_form">
             <div id="title_container">
                 <h1 class="letter_maj">Se connecter</h1>  
             </div>
@@ -14,7 +14,7 @@ ob_start();
             <label id="checkbox_lab">
                 <input type="checkbox" name="keepConnection" value="1" id="checkbox"/> <span>Conserver la connexion</span>
             </label>
-            <a href="/subscription/" id="subLink">Pas de compte ? Inscrivez-vous ici !</a> 
+            <a href="<?=INTER_DIR?>/subscription/" id="subLink">Pas de compte ? Inscrivez-vous ici !</a> 
             <hr />
             <strong id="errorMessage">
                 <?=isset($error[0]) ? $error[0]."<br/><a href='#' > Changer de mot de passe </a>" : "" ?>

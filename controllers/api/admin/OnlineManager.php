@@ -10,12 +10,12 @@ class OnlineManager extends Controller {
     const POST_ALLOWED = ["is_online", "id"];
 
     public function set(array $post, string $table) {
-
+        
         $admin = Session::getValue("admin");
-
+        
         if(!$admin) {
 
-          $this->sendJsonResponse(ACCESS_FORBIDDEN);
+          $this->sendJsonResponse($_SESSION);
 
         }
 

@@ -3,6 +3,7 @@ namespace Controller\Admin;
 
 use Controller\Controller;
 use Helper\CheckMail;
+use Helper\Session;
 
 class ContactManagement extends Controller {
 
@@ -17,12 +18,12 @@ class ContactManagement extends Controller {
     public function display() {
         $data = $this->getData->getAll("contacts");
         $this->render("administration/admin_contact_manager.php", compact("data"));
-        $_SESSION["errors"] = null;
+        Session::cleanError();
     }
 
     public function displayContact(int $id) {
         $data = $this->getData->getByFilters("contacts", ["id"=>$id]);
-        $errors = $_SESSION["errors"] ?? null; 
+        $errors = Session::getError() ?? null; 
 
         if($data[0]->already_seen == 0) {
             $this->updateData->updateBdd("contacts",["already_seen" => true], ["id"=>$id]);
@@ -32,7 +33,7 @@ class ContactManagement extends Controller {
         }
         
         $this->render("administration/admin_contact_details.php", compact("data", "errors"));
-        $_SESSION["errors"] = null;
+        Session::cleanError();
     }
 
     public function sendResponse(array $post, int $idContact) {
@@ -42,7 +43,7 @@ class ContactManagement extends Controller {
         $currentContact = $this->getData->getByFilters("contacts", ["id"=>$idContact]);
 
         if(iconv_strlen($postChecked["message"]) < 15 ) {
-            $_SESSION["errors"] = "Le message doit faire au minimum 15 caractères";
+            Session::setError(["Le message doit faire au minimum 15 caractères"]);
             $this->redirect("/administration/admin/management/contacts/".$idContact);
         }
         $dataForMail = [
@@ -66,7 +67,9 @@ class ContactManagement extends Controller {
             }
             $this->redirect("/administration/admin/management/contacts/".$idContact);
         } else{
-            throw new \Exception("Error for sending mail, maybe the mail doesn't exist");
+            // throw new \Exception("Error for sending mail, maybe the mail doesn't exist");
+            Session::setError(["Le mail ne s'est pas correctement envoyé"]);
+            $this->redirect("/administration/admin/management/contacts/".$idContact);
         }
     }
 }

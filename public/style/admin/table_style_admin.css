@@ -1,10 +1,9 @@
 
-#container_table {
+/* #container_table {
    overflow: auto;
-}
+} */
 #container_table table {
     width: 100%;
-    overflow: auto;
 }
 table {
     border-collapse: collapse;
@@ -58,7 +57,7 @@ input[type="text"] {
     height: 100%;
    
 }
-input[type="text"]:not(.inputAllowed) {
+table input[type="text"]:not(.inputAllowed) {
      cursor: not-allowed;
 }
 
@@ -71,13 +70,18 @@ select option {
 }
 
 /* RESPONSIVE DESIGN */
-
+@media screen and (max-width : 1750px) {
+    #container_table  {
+        overflow: auto;
+    }
+}
 @media screen and (max-width : 500px) {
     #container {
         padding: 30px 5px;
     }
     #container_table  {
         width: 100%;
+        overflow: auto;
     }
     #container_table thead th {
         font-size: 11px;

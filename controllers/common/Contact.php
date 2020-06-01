@@ -34,8 +34,9 @@ class Contact extends Controller {
      */
     public function checkContactReq(array $post) {
         //verifications
+        
         if(!$postChecked= $this->checkPostVar($post, self::POST_ALLOWED)) {
-            throw new \Exception("Error about post request");
+            throw new \Exception(ERROR_VAR_POST);
         }
         $mail = $postChecked["mail"];
         $subject = $postChecked["subject"];
@@ -53,24 +54,30 @@ class Contact extends Controller {
         }
 
         if(empty($errors)) {
-            $data = [
-                "sender"=>$mail,
-                "dest"=>$GLOBALS["ADMIN_ADRESS"],
-                "subject"=>$subject,
-                "message"=>$mess,
-            ];
-            if(CheckMail::mail($data, false)){
-                $this->postData->setData("contacts", [
+            
+                if(!$this->postData->setData("contacts", [
                     "sender"=>$mail,
                     "subject"=>$subject,
                     "message"=>$mess,
                     "sending_date"=>date("Y-m-d H:i:s.u")
-                ]);
+                ]))
+                {
+                    throw new \Exception(BDD_ERROR);
+                }
+
+                $data = [
+                    "sender"=>$mail,
+                    "dest"=>$GLOBALS["ADMIN_ADRESS"],
+                    "subject"=>$subject,
+                    "message"=>$mess,
+                ];
+
+                CheckMail::mail($data, false);
                 $this->redirect(self::GOOD_DIR);
-            } else {
-                throw new \Exception("Bad sending !");
-            }
+                
+           
         } else {
+
             throw new ExceptionArr($errors);//show errors
         }
     }

@@ -22,9 +22,9 @@
 
 <?php if(!isset($data[0]->contact_reply)) :?>
 
-    <?=$errors ? "<div class=\"alert red borderRed\"><strong>".$errors."</div>" : false ?>
+    <?=$errors ? "<div class=\"alert red borderRed\"><strong>".$errors[0]."</div>" : false ?>
 
-    <form action="/administration/admin/management/contacts/reply/<?=$data[0]->id;?>" method="post">
+    <form action="<?=INTER_DIR?>/administration/admin/management/contacts/reply/<?=$data[0]->id;?>" method="post">
 
         <div id="area_mess">
 

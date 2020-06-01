@@ -81,7 +81,7 @@ use Template\Template;
 
                             <input type="text" value="<?=$item->id;?>" readonly name="id" form="user_form<?=$item->id; ?>"/>
 
-                            <form action="/administration/admin/management/members/modification/" method="post" id="user_form<?=$item->id; ?>"></form>
+                            <form action="<?=INTER_DIR?>/administration/admin/management/members/modification/" method="post" id="user_form<?=$item->id; ?>"></form>
 
                         </td>
 
@@ -152,7 +152,7 @@ use Template\Template;
 
                         <td>
 
-                            <a class="link red" href="/administration/admin/management/members/delete/<?=$item->id;?>">Supprimer</a>
+                            <a class="link red" href="<?=INTER_DIR?>/administration/admin/management/members/delete/<?=$item->id;?>">Supprimer</a>
 
                         </td>
 
@@ -227,7 +227,7 @@ use Template\Template;
 
                                 <input type="text" value="<?=$item->id;?>" readonly name="id" form="form_admin<?=$item->id;?>"/>
 
-                                <form action="/administration/admin/management/members/modification/admin/" method="post" id="form_admin<?=$item->id; ?>"></form>
+                                <form action="<?=INTER_DIR?>/administration/admin/management/members/modification/admin/" method="post" id="form_admin<?=$item->id; ?>"></form>
 
                             </td>
 
@@ -281,7 +281,7 @@ use Template\Template;
 
                                 <td>
                                     
-                                    <a href="/administration/admin/management/members/confirm/admin/finally/<?=$item->id."-".$item->vkey; ?>" class="link green">A valider</a>
+                                    <a href="<?=INTER_DIR?>/administration/admin/management/members/confirm/admin/finally/<?=$item->id."-".$item->vkey; ?>" class="link green">A valider</a>
                                 
                                 </td>
 
@@ -293,7 +293,7 @@ use Template\Template;
 
                             <td>
 
-                                <a class="link red" href="/administration/admin/management/members/delete/admin/<?=$item->id;?>">Supprimer</a>
+                                <a class="link red" href="<?=INTER_DIR?>/administration/admin/management/members/delete/admin/<?=$item->id;?>">Supprimer</a>
 
                             </td>
 
@@ -319,7 +319,7 @@ use Template\Template;
 
             <div class="back_popup">
 
-                <form action="/administration/admin/management/members/creation/admin/" method="post" id="create_admin">
+                <form action="<?=INTER_DIR?>/administration/admin/management/members/creation/admin/" method="post" id="create_admin">
 
                     <h2>Précisez le mail de votre nouvel administrateur</h2>
 
